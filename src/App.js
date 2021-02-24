@@ -12,7 +12,6 @@ function App() {
           <Login />
         </Route>
         <Route exact path="/home">
-          <Nav />
           <Home />
         </Route>
       </Switch>
