@@ -7,12 +7,14 @@ import Navbar from "react-bootstrap/Navbar";
 function nav() {
   return (
     <Navbar className={styles.Navbar} fluid>
-      <Navbar.Brand as={Link} to="/" className={styles.Brand}>
+      <Navbar.Brand as={Link} to="/home" className={styles.Brand}>
         <p> UTDesign Crib </p>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
-        <Nav className={styles.links}></Nav>
+        <Nav className={styles.links}>
+          <Nav.Link as={Link} to="/login"> <p> LogIn </p></Nav.Link>
+        </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
