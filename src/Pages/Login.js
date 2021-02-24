@@ -1,9 +1,8 @@
 import React from 'react'
+import Nav from '../Components/Nav/Nav';
 
 export default function Login() {
     return (
-        <div>
-            <h1>Login Page</h1>
-        </div>
+       <Nav /> 
     )
 }
