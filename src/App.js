@@ -5,14 +5,14 @@ import Nav from './Components/Nav/Nav.js';
 function App() {
   return (
      <Router>
-      <div>
-        <Nav />
         <Switch>
           <Route path="/">
-     
+ 
+          </Route>
+          <Route path="/home"> 
+          <Nav/> 
           </Route>
         </Switch>
-      </div>
     </Router>
     );
 }
