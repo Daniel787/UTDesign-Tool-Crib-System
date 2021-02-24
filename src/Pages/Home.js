@@ -3,7 +3,7 @@ import Nav from "../Components/Nav/Nav.js";
 
 function home() {
     return (
-      <Nav/>  
+        <Nav />
     )
 
 }
