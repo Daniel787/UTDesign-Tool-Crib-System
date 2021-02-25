@@ -3,6 +3,7 @@ import Nav from "../Components/Nav/Nav.js";
 import styles from "./Home.module.css";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import Footer from '../Components/Footer/Footer.js';
 
 function home() {
     return (
@@ -12,6 +13,7 @@ function home() {
                 <h1>Home Page</h1>
                 <Link to="/"><Button>Logout</Button></Link>
             </div>
+            <Footer />
         </div>
 
 
