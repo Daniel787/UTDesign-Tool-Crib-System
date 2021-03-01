@@ -13,7 +13,12 @@ function nav() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className={styles.links}>
-          <Nav.Link as={Link} to="/login"> <p> Logout </p></Nav.Link>
+          <Nav.Link as={Link} to="/buy>"> <p> Buy </p> </Nav.Link>
+          <Nav.Link as={Link} to="/rent"> <p> Rents </p> </Nav.Link>
+          <Nav.Link as={Link} to="/holds"> <p> Holds</p> </Nav.Link>
+          <Nav.Link as={Link} to="/expenses"> <p> Expenses </p> </Nav.Link>
+          <Nav.Link as={Link} to="/inventory"> <p> Inventory </p></Nav.Link>
+          <Nav.Link as={Link} to="/login"> <p> Logout </p> </Nav.Link> 
         </Nav>
       </Navbar.Collapse>
     </Navbar>
