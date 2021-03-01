@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
-export default function Login() {
+export default function Login(props) {
     const loginData = require('../../data/authenticate.json');
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -13,18 +12,16 @@ export default function Login() {
     function handleEmpty() {
         return (username.length === 0 || password.length === 0)
     }
-    function handleInvalid() {
-        const logins = loginData.logins
-        if (logins.filter(user => user.username === username).length === 0) {
-            return (true)
+    function handleChange() {
+        let auth
+        if (loginData.logins.filter(user => user.username === username).length === 0) {
+            auth = true
         } else {
-            if (loginData.logins[loginData.logins.map(e => e.username).indexOf(username)].password !== password) {
-                return (true)
-            }
-            else {
-                return (false)
-            }
+            auth = loginData.logins[loginData.logins.map(e => e.username).indexOf(username)].password !== password
         }
+        setError(auth)
+        auth ? setCount(prev => prev + 1) : setCount(0)
+        !auth && props.setToken(true)
     }
     return (
         <div className={styles.Login}>
@@ -50,11 +47,9 @@ export default function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
-                <Link to={handleInvalid() ? "" : "/home"} >
-                    <Button variant="primary" type="submit" disabled={handleEmpty()} onClick={function () { setError(handleInvalid()); setCount(prev => prev + 1) }}>
-                        Sign In
-                    </Button>
-                </Link>
+                <Button variant="primary" type="submit" disabled={handleEmpty()} onClick={() => handleChange()}>
+                    Sign In
+                </Button>
             </Form>
         </div>
     )
