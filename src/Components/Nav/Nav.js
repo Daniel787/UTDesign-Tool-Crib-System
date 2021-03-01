@@ -13,7 +13,7 @@ function nav() {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className={styles.links}>
-          <Nav.Link as={Link} to="/login"> <p> LogIn </p></Nav.Link>
+          <Nav.Link as={Link} to="/login"> <p> Logout </p></Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

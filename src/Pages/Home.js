@@ -16,10 +16,7 @@ function home() {
             </div>
             <Footer />
         </div>
-
-
     )
-
 }
 
 export default home; 
