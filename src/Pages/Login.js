@@ -8,6 +8,7 @@ export default function Login() {
     const loginData = require('../data/authenticate.json');
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [count, setCount] = useState(0)
     const [error, setError] = useState(false)
     function handleEmpty() {
         return (username.length === 0 || password.length === 0)
@@ -15,12 +16,14 @@ export default function Login() {
     function handleInvalid() {
         const logins = loginData.logins
         if (logins.filter(user => user.username === username).length === 0) {
+
             return (true)
         } else {
             if (loginData.logins[loginData.logins.map(e => e.username).indexOf(username)].password !== password) {
                 return (true)
             }
             else {
+
                 return (false)
             }
         }
@@ -30,7 +33,7 @@ export default function Login() {
             <div>
                 <h1>Login Page</h1>
             </div>
-            <h3 className={styles.Fail} >{error && 'Invalid Login'}</h3>
+            <h3 className={styles.Fail} >{error && `Invalid Login ${count}`}</h3>
             <Form onSubmit={(event) => event.preventDefault()}>
                 <Form.Group size="lg" controlId="user">
                     <Form.Label>Login:</Form.Label>
@@ -50,7 +53,7 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)} />
                 </Form.Group>
                 <Link to={handleInvalid() ? "" : "/home"} >
-                    <Button variant="primary" type="submit" disabled={handleEmpty()} onClick={() => setError(handleInvalid())}>
+                    <Button variant="primary" type="submit" disabled={handleEmpty()} onClick={function () { setError(handleInvalid()); setCount(prev => prev + 1) }}>
                         Sign In
                     </Button>
                 </Link>
