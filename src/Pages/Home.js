@@ -11,8 +11,6 @@ function home() {
             <Nav />
             <div className={styles.Body}>
                 <h1>Home Page</h1>
-                <Link to="/"><Button>Logout</Button></Link>
-
             </div>
             <Footer />
         </div>
