@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import styles from "./Login.module.css";
 
 export default function Login() {
-    const loginData = require('../data/authenticate.json');
+    const loginData = require('../../data/authenticate.json');
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [count, setCount] = useState(0)
@@ -16,14 +16,12 @@ export default function Login() {
     function handleInvalid() {
         const logins = loginData.logins
         if (logins.filter(user => user.username === username).length === 0) {
-
             return (true)
         } else {
             if (loginData.logins[loginData.logins.map(e => e.username).indexOf(username)].password !== password) {
                 return (true)
             }
             else {
-
                 return (false)
             }
         }
