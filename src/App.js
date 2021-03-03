@@ -14,16 +14,13 @@ import Footer from './Components/Footer/Footer.js';
 function App() {
   const [token, setToken] = useState(false)
   if (!token) {
-    return <Router> <Route exact path="/"><Login setToken={setToken} /> </Route></Router>
+    return <Router> <Route exact path="/"> <Login setToken={setToken} /> </Route></Router>
   }
   else {
     return (
       <Router>
         <Nav setToken={setToken} />
         <Switch>
-          <Route exact path="/">
-            <Home setToken={setToken} />
-          </Route>
           <Route exact path="/buy">
             <Buy />
           </Route>
@@ -41,6 +38,9 @@ function App() {
           </Route>
           <Route exact path="/prints">
             <Prints />
+          </Route>
+          <Route exact path="/">
+            <Home setToken={setToken} />
           </Route>
         </Switch>
         <Footer setToken={setToken} />
