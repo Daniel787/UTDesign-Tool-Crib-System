@@ -10,7 +10,7 @@ export default function Buy() {
     function handleSearch(event) {
         setSearch({ search: event.target.value, data: null })
         try {
-            axios.get('/inventory/' + search)
+            axios.get('/inventory/:?' + search)
                 .then(res => {
                     const obj = res.data;
                     setSearch(curr => ({ ...curr, data: obj }));
