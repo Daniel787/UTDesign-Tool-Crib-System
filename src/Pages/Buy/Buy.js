@@ -4,7 +4,6 @@ import styles from "./Buy.module.css";
 
 export default function Buy() {
     const [search, setSearch] = useState('')
-    const [quantity, setQuantity] = useState(0)
     function quaryItem() {
         console.log('quary: ' + search)
     }
