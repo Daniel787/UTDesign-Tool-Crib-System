@@ -7,16 +7,6 @@ export default function Buy() {
     const [search, setSearch] = useState(null);
     const [info, setInfo] = useState(null);
 
-    function handleSearch(event) {
-        setSearch({ search: event.target.value, data: null })
-        try {
-            axios.get('/inventory/' + search)
-                .then(res => {
-                    const obj = res.data;
-                    setSearch(curr => ({ ...curr, data: obj }));
-                })
-        } catch { }
-    }
     // Function for getting info
     function loadData() {
         // Change to correct url later
@@ -43,15 +33,22 @@ export default function Buy() {
     useEffect(() => {
         loadData();
     });
-    function queryItem() {
+    function handleSearch() {
         console.log('query: ' + search)
+        try {
+            axios.get('/inventory/' + search)
+                .then(res => {
+                    const obj = res.data;
+                    setSearch(curr => ({ ...curr, data: obj }));
+                })
+        } catch { }
     }
     return (
         <div className={styles.Body}>
             <h1>Buy Page</h1>
             <div>
-                Item: <input type="text" onChange={handleSearch}></input>
-                <button onClick={queryItem}>Enter</button>
+                Item: <input type="text" onChange={e => setSearch({ search: e.target.value, data: null })}></input>
+                <button onClick={handleSearch}>Enter</button>
                 <ul>
                     {info.map((current, index) => { return <li> {current.name}  {current.quantity}  {current.cost} </li> })}
                 </ul>
