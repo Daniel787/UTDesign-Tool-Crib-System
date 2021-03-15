@@ -4,34 +4,34 @@ import styles from "./Buy.module.css";
 
 
 export default function Buy() {
-    const [search, setSearch]  = (""); 
-    const [info, setInfo] = (null);
+    const [search, setSearch] = useState("");
+    const [info, setInfo] = useState(null);
 
     // Function for getting info
-    function loadData() { 
+    function loadData() {
         // Change to correct url later
-         axios.get('/inventory/')
+        axios.get('/inventory/')
             .then(res => {
                 const obj = res.data;
-                setInfo(obj); 
+                setInfo(obj);
             })
-        }
+    }
     function sendData(obj) {
         // Change to correct url later
-        axios.post('/inventory', 
-        {
-            id : obj.id,
-            quantity : obj.quantity
-        })
-        .then((respone) => { 
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(response); 
-        });
+        axios.post('/inventory',
+            {
+                id: obj.id,
+                quantity: obj.quantity
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
     useEffect(() => {
-        loadData(); 
+        loadData();
     });
     function queryItem() {
         console.log('query: ' + search)
@@ -43,8 +43,8 @@ export default function Buy() {
                 Item: <input type="text" onChange={e => setSearch(e.target.value)}></input>
                 <button onClick={queryItem}>Enter</button>
                 <ul>
-                   {info.map((current, index) => {<li> {current.name}  {current.quantity}  {current.cost} </li>  }) }  
-                </ul> 
+                    {info.map((current, index) => { return <li> {current.name}  {current.quantity}  {current.cost} </li> })}
+                </ul>
             </div>
             {search}
         </div>
