@@ -4,9 +4,19 @@ import styles from "./Buy.module.css";
 
 
 export default function Buy() {
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState(null);
     const [info, setInfo] = useState(null);
 
+    function handleSearch(event) {
+        setSearch({ search: event.target.value, data: null })
+        try {
+            axios.get('/inventory/' + search)
+                .then(res => {
+                    const obj = res.data;
+                    setSearch(curr => ({ ...curr, data: obj }));
+                })
+        } catch { }
+    }
     // Function for getting info
     function loadData() {
         // Change to correct url later
@@ -40,7 +50,7 @@ export default function Buy() {
         <div className={styles.Body}>
             <h1>Buy Page</h1>
             <div>
-                Item: <input type="text" onChange={e => setSearch(e.target.value)}></input>
+                Item: <input type="text" onChange={handleSearch}></input>
                 <button onClick={queryItem}>Enter</button>
                 <ul>
                     {info.map((current, index) => { return <li> {current.name}  {current.quantity}  {current.cost} </li> })}
