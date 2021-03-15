@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from './Pages/Home/Home'
+import Login from './Pages/Login/Login'
+import Buy from "./Pages/Buy/Buy";
+import Rent from "./Pages/Rent/Rent";
+import Holds from "./Pages/Holds/Holds";
+import Expenses from "./Pages/Expenses/Expenses";
+import Inventory from "./Pages/Inventory/Inventory";
+import Prints from "./Pages/Prints/Prints";
+import Nav from "./Components/Nav/Nav.js";
+import Footer from './Components/Footer/Footer.js';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [token, setToken] = useState(false)
+  if (!token) {
+    return <Router> <Route exact path="/"> <Login setToken={setToken} /> </Route></Router>
+  }
+  else {
+    return (
+      <Router>
+        <Nav setToken={setToken} />
+        <Switch>
+          <Route exact path="/buy">
+            <Buy />
+          </Route>
+          <Route exact path="/rent">
+            <Rent />
+          </Route>
+          <Route exact path="/holds">
+            <Holds />
+          </Route>
+          <Route exact path="/expenses">
+            <Expenses />
+          </Route>
+          <Route exact path="/inventory">
+            <Inventory />
+          </Route>
+          <Route exact path="/prints">
+            <Prints />
+          </Route>
+          <Route exact path="/">
+            <Home setToken={setToken} />
+          </Route>
+        </Switch>
+        <Footer setToken={setToken} />
+      </Router>
+    );
+  }
 }
 
 export default App;
