@@ -49,7 +49,7 @@ export default function Buy() {
   function removeFromCart(id) {
     let old = [...cart].map((current) => {return current.id});
     let index = old.indexOf(id);
-    if (index != -1) {
+    if (index !== -1) {
       old.splice(index, 1);
       this.setState(old);
     }
