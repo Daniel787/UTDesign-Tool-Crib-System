@@ -12,7 +12,7 @@ import Nav from "./Components/Nav/Nav.js";
 import Footer from './Components/Footer/Footer.js';
 
 function App() {
-  const [token, setToken] = useState(false)
+  const [token, setToken] = useState(true)
   if (!token) {
     return <Router> <Route exact path="/"> <Login setToken={setToken} /> </Route></Router>
   }
