@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import styles from "./Buy.module.css";
 
 export default function Buy() {
-  const [search, setSearch] = useState(null);
-  const [info, setInfo] = useState(null);
-  const [cart, setCart] = useState(null);
+  const [search, setSearch] = useState([]);
+  const [info, setInfo] = useState([]);
+  const [cart, setCart] = useState([]);
 
   // Function for getting info
   function loadData() {
@@ -42,6 +42,8 @@ export default function Buy() {
     } catch {}
   }
   function addToCart(obj) {
+    if (obj.quantity - 1 == )
+    obj.quantity = obj.quantity - 1;  
     let old = [...cart];
     old.push(obj);
     setCart(old);
