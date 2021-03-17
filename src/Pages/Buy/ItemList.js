@@ -39,7 +39,7 @@ export default function ItemList(props) {
             newCart.push({ item: item, quantity: 1, total: item.cost })
         }
         else {
-            if (newCart[index].quantity < newCart[index].item.quantity) {
+            if (newCart[index].quantity < newCart[index].item.quantity_available) {
                 newCart[index].quantity++
                 newCart[index].total = newCart[index].quantity * newCart[index].item.cost
             }
@@ -65,7 +65,7 @@ export default function ItemList(props) {
                 return <div key={i} className="useritem">
                     <h3>{el.name}</h3>
                     <label> ID:</label> {el.part_id} <br />
-                    <label>Quantity:</label> {el.quantity} <br />
+                    <label>Quantity:</label> {el.quantity_available} <br />
                     <label>Price:</label> ${el.cost}<br />
                     <button onClick={() => addToCart(el)}>Add To Cart</button>
                 </div>

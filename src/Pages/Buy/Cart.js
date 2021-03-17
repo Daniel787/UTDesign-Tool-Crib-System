@@ -40,9 +40,9 @@ export default function Cart(props) {
                 return <div key={i} className="useritem">
                     <h3>{el.item.name}</h3>
                     <label> ID:</label> {el.item.part_id} <br />
-                    <label>Quantity in Stock:</label> {el.item.quantity} <br />
+                    <label>Quantity in Stock:</label> {el.item.quantity_available} <br />
                     <label>Price:</label> ${el.item.cost}<br />
-                    <label>Quantity:</label><input type="number" value={props.cart[i].quantity} min="1" max={props.cart[i].item.quantity} onFocus={e => e.target.select()} onChange={e => changeQuantity(e, i)}></input><br />
+                    <label>Quantity:</label><input type="number" value={props.cart[i].quantity} min="1" max={props.cart[i].item.quantity_available} onFocus={e => e.target.select()} onChange={e => changeQuantity(e, i)}></input><br />
                     {el.quantity > 1 && <><label>Total Price:</label> ${el.quantity * el.item.cost}<br /></>}
                     <button onClick={() => removeFromCart(i)}>Remove</button>
                 </div>
