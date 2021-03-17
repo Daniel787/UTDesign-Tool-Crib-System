@@ -20,7 +20,7 @@ export default function Cart(props) {
         let newCart = [...props.cart]
         const value = parseInt(event.target.value)
         newCart[index].quantity = value > 0 ? value : 1
-        newCart[index].total = newCart[index].quantity * newCart[index].item.cost
+        newCart[index].total = newCart[index].quantity * newCart[index].item.current_cost
         props.setCart(newCart)
     }
 
@@ -41,9 +41,9 @@ export default function Cart(props) {
                     <h3>{el.item.name}</h3>
                     <label> ID:</label> {el.item.part_id} <br />
                     <label>Quantity in Stock:</label> {el.item.quantity_available} <br />
-                    <label>Price:</label> ${el.item.cost}<br />
+                    <label>Price:</label> ${el.item.current_cost}<br />
                     <label>Quantity:</label><input type="number" value={props.cart[i].quantity} min="1" max={props.cart[i].item.quantity_available} onFocus={e => e.target.select()} onChange={e => changeQuantity(e, i)}></input><br />
-                    {el.quantity > 1 && <><label>Total Price:</label> ${el.quantity * el.item.cost}<br /></>}
+                    {el.quantity > 1 && <><label>Total Price:</label> ${el.quantity * el.item.current_cost}<br /></>}
                     <button onClick={() => removeFromCart(i)}>Remove</button>
                 </div>
             })}

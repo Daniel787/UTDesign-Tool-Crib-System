@@ -13,17 +13,16 @@ export default function Buy() {
   }, [])
 
   function refreshList() {
-    Axios.get('http://localhost:5000/')
+    Axios.get('http://localhost:5000/inventory')
       .then((response) => {
-        setList(response.data)
-        console.log(response.data);
+        setList(response.data);
       })
   }
 
   return (
     <div className={styles.Body}>
       <h1>Buy Page</h1>
-    {/*  <Cart cart={cart} setCart={setCart} /> */}
+     <Cart cart={cart} setCart={setCart} /> 
       <ItemList refreshList={refreshList} list={list} setList={setList} cart={cart} setCart={setCart} />
     </div>
   );
