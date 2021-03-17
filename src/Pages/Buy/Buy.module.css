@@ -4,3 +4,26 @@
 	margin-right: 10%;
 	margin-top: 2rem;
 }
+
+.allusers,
+.insert,
+.cart {
+	margin: 1rem auto;
+	max-width: calc(100% - 2rem);
+	width: 60rem;
+	border-style: ridge;
+	border-radius: 1rem;
+	padding: 0.5rem;
+}
+h3 {
+	margin: 0;
+	font-size: x-large;
+}
+
+.useritem,
+.search {
+	font-size: large;
+	border-style: ridge;
+	margin: 0.2rem;
+	padding: 0.5rem;
+}
