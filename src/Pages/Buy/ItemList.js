@@ -47,7 +47,7 @@ export default function ItemList(props) {
         if (index < 0) {
             newCart.push({ item: item, quantity: 1, total: item.current_cost, isValid: true });
         } else {
-            if (newCart[index].quantity) {
+            if (newCart[index].quantity && newCart[index].quantity < newCart[index].item.quantity_available) {
                 newCart[index].quantity++;
                 newCart[index].total = newCart[index].quantity * newCart[index].item.current_cost;
             }
