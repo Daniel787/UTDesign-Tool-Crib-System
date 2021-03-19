@@ -14,8 +14,14 @@ function nav(props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className={styles.links}>
-          <Nav.Link as={Link} to="/buy"> <p> Buy </p> </Nav.Link>
-          <Nav.Link as={Link} to="/rent"> <p> Rents </p> </Nav.Link>
+          <Nav.Link as={Link} to="/buy">
+            {" "}
+            <p> Buy </p>{" "}
+          </Nav.Link>
+          <Nav.Link as={Link} to="/rent">
+            {" "}
+            <p> Rents </p>{" "}
+          </Nav.Link>
           <Button onClick={() => props.setToken(false)}>Logout</Button>
         </Nav>
       </Navbar.Collapse>
