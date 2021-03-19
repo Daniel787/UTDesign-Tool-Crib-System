@@ -50,7 +50,7 @@ export default function ItemList(props) {
       if (newCart[index].quantity < newCart[index].item.quantity_available) {
         newCart[index].quantity++;
         newCart[index].total =
-          newCart[index].quantity * newCart[index].item.cost;
+          newCart[index].quantity * newCart[index].item.current_cost;
       }
     }
     props.setCart(newCart);
