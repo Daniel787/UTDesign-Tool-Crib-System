@@ -38,17 +38,19 @@ export default function ItemList(props) {
         setNamesearch("");
     }
 
-    function addToCart(item) {
+    function addToCart(item, amount) {
         let exists = [...props.cart].map((el) => {
             return el.item.part_id;
         });
         let newCart = [...props.cart];
         let index = exists.indexOf(item.part_id);
         if (index < 0) {
-            newCart.push({ item: item, quantity: 1, total: item.current_cost });
+            newCart.push({ item: item, quantity: 1, total: item.current_cost, isValid: true });
         } else {
-            newCart[index].quantity++;
-            newCart[index].total = newCart[index].quantity * newCart[index].item.current_cost;
+            if (newCart[index].quantity) {
+                newCart[index].quantity++;
+                newCart[index].total = newCart[index].quantity * newCart[index].item.current_cost;
+            }
         }
         props.setCart(newCart);
         props.refreshList();
@@ -59,8 +61,6 @@ export default function ItemList(props) {
             <div className="allusers">
                 <Navbar fluid>
                     <Nav className={styles.links}>
-                        {/* <div className="search"> */}
-                        {/*    <h3>Search</h3> */}
                         <div className={styles.label}>
                             <label>By Part ID:</label>{" "}
                             <input
