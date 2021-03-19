@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+import {Container, Row, Col, Navbar, Nav} from "react-bootstrap"
+import styles from "./ItemList.module.css"
 
 export default function ItemList(props) {
     const [idsearch, setIdsearch] = useState(0)
@@ -50,18 +52,20 @@ export default function ItemList(props) {
     }
 
     return (
-        <div className="allusers">
-            <h2>Items</h2>
-            <button onClick={props.refreshList}>Refresh List</button>
-            <div className="search">
-                <h3>Search</h3>
-                <div>
+        <Container>
+              <div className="allusers">
+            <Navbar fluid>
+            <Nav className={styles.links}>
+            {/* <div className="search"> */}
+            {/*    <h3>Search</h3> */}
+                <div className={styles.label}>
                     <label>By Part ID:</label> <input type="number" onFocus={e => e.target.select()} value={idsearch} onChange={e => setIdsearch(parseInt(e.target.value))}></input><button onClick={searchID}>Search</button>
                 </div>
-                <div>
+                <div className={styles.label}>
                     <label>By Name:</label> <input type="text" value={namesearch} onChange={e => setNamesearch(e.target.value)}></input><button onClick={searchName}>Search</button>
-                </div>
-            </div> 
+            </div>
+            </Nav> 
+            </Navbar>
             {props.list.map((el, i) => {
                 return <div key={i} className="useritem">
                     <h3>{el.name}</h3>
@@ -71,6 +75,8 @@ export default function ItemList(props) {
                     <button onClick={() => addToCart(el)}>Add To Cart</button> 
                 </div>
             })}
+            <button onClick={props.refreshList}>Refresh List</button>
         </div>
+        </Container>
     )
 }
