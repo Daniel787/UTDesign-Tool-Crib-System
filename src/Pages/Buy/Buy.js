@@ -20,7 +20,7 @@ export default function Buy() {
   return (
     <div className={styles.Body}>
       <h1>Buy Page</h1>
-      {/* <Cart cart={cart} setCart={setCart} /> */}
+      <Cart cart={cart} setCart={setCart} />
       <ItemList
         refreshList={refreshList}
         list={list}

@@ -45,7 +45,7 @@ export default function ItemList(props) {
     let newCart = [...props.cart];
     let index = exists.indexOf(item.part_id);
     if (index < 0) {
-      newCart.push({ item: item, quantity: 1, total: item.cost });
+      newCart.push({ item: item, quantity: 1, total: item.current_cost });
     } else {
       if (newCart[index].quantity < newCart[index].item.quantity_available) {
         newCart[index].quantity++;
