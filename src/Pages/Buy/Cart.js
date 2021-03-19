@@ -4,7 +4,7 @@ import Axios from "axios";
 export default function Cart(props) {
     const [total, setTotal] = useState(0);
     const [groupInfo, setgroupInfo] = useState({ groupID: 0, netID: '' })
-    const [error, setError] = useState(false)
+    const [error, setError] = useState({ quantity: false, netID: false, groupID: false, length: false })
     function removeFromCart(index) {
         let newCart = [...props.cart];
         newCart.splice(index, 1);
@@ -13,18 +13,23 @@ export default function Cart(props) {
     useEffect(() => {
         let temp = 0;
         for (let i = 0; i < props.cart.length; i++) {
-            if (props.cart[i].quantity < 0 || !props.cart[i].quantity) {
-                setError(true)
+            if (props.cart[i].quantity < 0 || !props.cart[i].quantity || props.cart[i].quantity > props.cart[i].item.quantity_available) {
+                setError(prev => ({ ...prev, quantity: true }))
                 break
             }
             else {
-                setError(false)
+                setError(prev => ({ ...prev, quantity: false }))
             }
             temp += props.cart[i].total;
         }
-
         setTotal(temp);
+        props.cart.length === 0 ? setError(prev => ({ ...prev, length: true })) : setError(prev => ({ ...prev, length: false }))
     }, [props.cart]);
+
+    useEffect(() => {
+        groupInfo.netID.length === 9 ? setError(prev => ({ ...prev, netID: false })) : setError(prev => ({ ...prev, netID: true }))
+        groupInfo.groupID === 0 ? setError(prev => ({ ...prev, groupID: true })) : setError(prev => ({ ...prev, groupID: false }))
+    }, [groupInfo]);
 
     function changeQuantity(event, index) {
         let newCart = [...props.cart];
@@ -36,12 +41,16 @@ export default function Cart(props) {
     }
 
     function checkOut() {
-        // Axios.post("http://localhost:5000/api/inventory/", props.cart);
-        if (groupInfo.groupID > 0 && groupInfo.netID && !error && props.cart.length > 0) {
+        if (error.quantity || error.netID || error.groupID || error.length) {
+
+        }
+        else {
             const newObj = Object.assign(props.cart, groupInfo)
+            // Axios.post("http://localhost:5000/api/inventory/", newObj);
             console.log(newObj)
             props.setCart([]);
             setgroupInfo({ groupID: 0, netID: '' })
+            setError(false)
         }
     }
 
@@ -57,18 +66,18 @@ export default function Cart(props) {
                         <br />
                         <label>Price:</label> ${el.item.current_cost}
                         <br />
-                        <label>Quantity:</label>
+                        <label>Quantity Wanted:</label>
                         <input
                             type="number"
                             value={props.cart[i].quantity}
                             onFocus={(e) => e.target.select()}
                             onChange={(e) => changeQuantity(e, i)}
                         ></input>
-                        {error && <h4>Input Error</h4>}
+                        {error.quantity && <h4>Input Error</h4>}
                         <br />
                         {el.quantity > 1 && (
                             <>
-                                <label>Total Price:</label> $
+                                <label>Total Price of Item:</label> $
                                 {el.quantity * el.item.current_cost}
                                 <br />
                             </>
@@ -77,7 +86,7 @@ export default function Cart(props) {
                     </div>
                 );
             })}
-            {props.cart.length > 0 ? <h3>Total Price: ${error ? 'invalid' : total}</h3> : <h3>Cart Empty</h3>}
+            {props.cart.length > 0 ? <h3>Total Price: ${error.quantity ? 'invalid' : total}</h3> : <h3>Cart Empty</h3>}
             <label>Group ID</label>: <input value={groupInfo.groupID} onFocus={(e) => e.target.select()} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} /><br />
             <label>NetID</label>: <input value={groupInfo.netID} onFocus={(e) => e.target.select()} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} /><br />
             <button onClick={() => checkOut()}>Check Out</button>
