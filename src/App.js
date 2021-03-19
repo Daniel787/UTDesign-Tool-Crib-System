@@ -43,7 +43,7 @@ function App() {
             <Home setToken={setToken} />
           </Route>
         </Switch>
-        <Footer setToken={setToken} />
+        {/* <Footer setToken={setToken} /> */}
       </Router>
     );
   }
