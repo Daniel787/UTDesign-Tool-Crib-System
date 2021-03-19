@@ -26,15 +26,7 @@ export default function Cart(props) {
   }
 
   function checkOut() {
-    for (let i = 0; i < props.cart.length; i++) {
-      const newObj = {
-        part_id: props.cart[i].item.part_id,
-        quantity_purchased: props.cart[i].quantity,
-        purchased_cost: props.cart[i].total,
-      };
-      console.log(newObj);
-      // Axios.post('http://localhost:5000/api/newtransaction/', newObj)
-    }
+    Axios.post("http://localhost:5000/api/inventory/", props.cart);
     props.setCart([]);
   }
 
