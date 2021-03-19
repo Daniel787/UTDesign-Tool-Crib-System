@@ -4,7 +4,7 @@ import Axios from "axios";
 export default function Cart(props) {
     const [total, setTotal] = useState(0);
     const [groupInfo, setgroupInfo] = useState({ groupID: 0, netID: '' })
-    const [error, setError] = useState({ quantity: false, netID: false, groupID: false, length: false })
+    const [error, setError] = useState({ quantity: false, netID: false, groupID: false })
     function removeFromCart(index) {
         let newCart = [...props.cart];
         newCart.splice(index, 1);
@@ -23,7 +23,6 @@ export default function Cart(props) {
             temp += props.cart[i].total;
         }
         setTotal(temp);
-        props.cart.length === 0 ? setError(prev => ({ ...prev, length: true })) : setError(prev => ({ ...prev, length: false }))
     }, [props.cart]);
 
     useEffect(() => {
@@ -41,14 +40,14 @@ export default function Cart(props) {
     }
 
     function checkOut() {
-        if (error.quantity || error.netID || error.groupID || error.length) {
+        if (error.quantity || error.netID || error.groupID) {
 
         }
         else {
             const newObj = Object.assign(props.cart, groupInfo)
             // Axios.post("http://localhost:5000/api/inventory/", newObj);
             console.log(newObj)
-            props.setCart([]);
+            props.setCart([])
             setgroupInfo({ groupID: 0, netID: '' })
             setError(false)
         }
@@ -61,10 +60,10 @@ export default function Cart(props) {
                 return (
                     <div key={i} className="useritem">
                         <h3>{el.item.name}</h3>
-                        <label> ID:</label> {el.item.part_id} <br />
+                        <label>Part ID:</label> {el.item.part_id} <br />
                         <label>Quantity in Stock:</label> {el.item.quantity_available}{" "}
                         <br />
-                        <label>Price:</label> ${el.item.current_cost}
+                        <label>Current Price:</label> ${el.item.current_cost}
                         <br />
                         <label>Quantity Wanted:</label>
                         <input
@@ -72,7 +71,7 @@ export default function Cart(props) {
                             value={props.cart[i].quantity}
                             onFocus={(e) => e.target.select()}
                             onChange={(e) => changeQuantity(e, i)}
-                        ></input>
+                        />
                         {error.quantity && <h4>Input Error</h4>}
                         <br />
                         {el.quantity > 1 && (
