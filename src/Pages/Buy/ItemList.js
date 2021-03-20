@@ -72,6 +72,7 @@ export default function ItemList(props) {
                         </div>
                     </Nav>
                 </Navbar>
+                <button onClick={refreshList}>Refresh List</button>
                 {list.map((el, i) => {
                     return (
                         <div key={i} className="useritem">
