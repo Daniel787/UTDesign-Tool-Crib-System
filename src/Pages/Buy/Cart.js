@@ -45,7 +45,6 @@ export default function Cart(props) {
         }
         else {
             const newObj = { cart: props.cart, customer: groupInfo }
-
             console.log(newObj)
             // Axios.post("http://localhost:5000/inventory/transaction/", newObj);
             props.setCart([])
@@ -77,7 +76,7 @@ export default function Cart(props) {
                         <br />
                         {el.quantity > 1 && (
                             <>
-                                <label>Total Price of Item:</label> $
+                                <label>Total of Item:</label> $
                                 {el.quantity * el.item.current_cost}
                                 <br />
                             </>
