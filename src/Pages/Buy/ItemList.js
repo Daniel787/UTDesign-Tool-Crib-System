@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Container, Row, Col, Navbar, Nav } from "react-bootstrap";
 import styles from "./ItemList.module.css";
@@ -6,51 +6,35 @@ import styles from "./ItemList.module.css";
 export default function ItemList(props) {
   const [idsearch, setIdsearch] = useState(0);
   const [namesearch, setNamesearch] = useState("");
+  const url = "http://localhost:5000/inventory";
+  const [list, setList] = useState([]);
 
-  function searchID() {
-    if (idsearch > 0) {
-      Axios.get("http://localhost:5000/inventory/searchid?id=" + idsearch).then(
-        (response) => {
-          response.data.length > 0
-            ? props.setList(response.data)
-            : props.refreshList();
-          console.log(response.data);
-        }
-      );
-    } else {
-      props.refreshList();
-    }
-    setIdsearch(0);
+  useEffect(() => {
+    refreshList();
+  }, []);
+
+  function refreshList() {
+    Axios.get(url).then((response) => {
+      setList(response.data);
+    });
   }
 
-  function searchName() {
-    if (namesearch.length > 0) {
-      Axios.get(
-        "http://localhost:5000/inventory/searchname?id=" + namesearch
-      ).then((response) => {
-        response.data.length > 0
-          ? props.setList(response.data)
-          : props.refreshList();
-      });
-    } else {
-      props.refreshList();
-    }
+  function search(newurl, request) {
+    Axios.get(url + newurl + request).then((response) => {
+      response.data.length > 0 ? setList(response.data) : refreshList();
+    });
+    setIdsearch(0);
     setNamesearch("");
   }
 
   function addToCart(item, amount) {
-    let exists = [...props.cart].map((el) => {
+    let exists = props.cart.map((el) => {
       return el.item.part_id;
     });
     let newCart = [...props.cart];
     let index = exists.indexOf(item.part_id);
     if (index < 0) {
-      newCart.push({
-        item: item,
-        quantity: 1,
-        total: item.current_cost,
-        isValid: true,
-      });
+      newCart.push({ item: item, quantity: 1, total: item.current_cost });
     } else {
       if (
         newCart[index].quantity &&
@@ -62,7 +46,7 @@ export default function ItemList(props) {
       }
     }
     props.setCart(newCart);
-    props.refreshList();
+    refreshList();
   }
 
   return (
@@ -74,24 +58,34 @@ export default function ItemList(props) {
               <label>By Part ID:</label>{" "}
               <input
                 type="number"
-                onFocus={(e) => e.target.select()}
                 value={idsearch}
                 onChange={(e) => setIdsearch(parseInt(e.target.value))}
               ></input>
-              <button onClick={searchID}>Search</button>
+              <button
+                disabled={idsearch === 0 || !idsearch}
+                onClick={() => search("/searchid?id=", idsearch)}
+              >
+                Search
+              </button>
             </div>
-            <div className={styles.label}>
+            <div className={styles.label_first}>
               <label>By Name:</label>{" "}
               <input
                 type="text"
                 value={namesearch}
                 onChange={(e) => setNamesearch(e.target.value)}
               ></input>
-              <button onClick={searchName}>Search</button>
+              <button
+                disabled={namesearch.length === 0}
+                onClick={() => search("/searchname?id=", namesearch)}
+              >
+                Search
+              </button>
             </div>
           </Nav>
         </Navbar>
-        {props.list.map((el, i) => {
+        <button onClick={refreshList}>Refresh List</button>
+        {list.map((el, i) => {
           return (
             <div key={i} className={styles.useritem}>
               <h3>{el.name}</h3>
@@ -103,7 +97,7 @@ export default function ItemList(props) {
             </div>
           );
         })}
-        <button onClick={props.refreshList}>Refresh List</button>
+        <button onClick={refreshList}>Refresh List</button>
       </div>
     </Container>
   );

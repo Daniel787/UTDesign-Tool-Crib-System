@@ -15,6 +15,7 @@ export default function Cart(props) {
         for (let i = 0; i < props.cart.length; i++) {
             if (props.cart[i].quantity < 0 || !props.cart[i].quantity || props.cart[i].quantity > props.cart[i].item.quantity_available) {
                 setError(prev => ({ ...prev, quantity: true }))
+                temp = 0
                 break
             }
             else {
@@ -27,7 +28,7 @@ export default function Cart(props) {
 
     useEffect(() => {
         groupInfo.netID.length === 9 ? setError(prev => ({ ...prev, netID: false })) : setError(prev => ({ ...prev, netID: true }))
-        groupInfo.groupID === 0 ? setError(prev => ({ ...prev, groupID: true })) : setError(prev => ({ ...prev, groupID: false }))
+        groupInfo.groupID > 0 ? setError(prev => ({ ...prev, groupID: false })) : setError(prev => ({ ...prev, groupID: true }))
     }, [groupInfo]);
 
     function changeQuantity(event, index) {
@@ -40,18 +41,13 @@ export default function Cart(props) {
     }
 
     function checkOut() {
-        if (error.quantity || error.netID || error.groupID) {
+        const newObj = { cart: props.cart, customer: groupInfo }
+        console.log(newObj)
+        // Axios.post("http://localhost:5000/inventory/transaction/", newObj);
+        props.setCart([])
+        setgroupInfo({ groupID: 0, netID: '' })
+        setError(false)
 
-        }
-        else {
-            const newObj = { cart: props.cart, customer: groupInfo }
-
-            console.log(newObj)
-            // Axios.post("http://localhost:5000/inventory/transaction/", newObj);
-            props.setCart([])
-            setgroupInfo({ groupID: 0, netID: '' })
-            setError(false)
-        }
     }
 
     return (
@@ -73,23 +69,17 @@ export default function Cart(props) {
                             onFocus={(e) => e.target.select()}
                             onChange={(e) => changeQuantity(e, i)}
                         />
-                        {error.quantity && <h4>Input Error</h4>}
                         <br />
-                        {el.quantity > 1 && (
-                            <>
-                                <label>Total Price of Item:</label> $
-                                {el.quantity * el.item.current_cost}
-                                <br />
-                            </>
-                        )}
+                        {el.quantity > 1 && <h4>Total of Item: ${el.total}</h4>}
                         <button onClick={() => removeFromCart(i)}>Remove</button>
                     </div>
                 );
             })}
-            {props.cart.length > 0 ? <h3>Total Price: ${error.quantity ? 'invalid' : total}</h3> : <h3>Cart Empty</h3>}
+            {error.quantity && <h3>Quantity Error</h3>}
+            {total > 0 ? <h3>Total Price: ${total}</h3> : <h3>Cart Empty</h3>}
             <label>Group ID</label>: <input value={groupInfo.groupID} onFocus={(e) => e.target.select()} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} /><br />
             <label>NetID</label>: <input value={groupInfo.netID} onFocus={(e) => e.target.select()} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} /><br />
-            <button onClick={() => checkOut()}>Check Out</button>
+            <button disabled={error.groupID || error.netID || error.quantity} onClick={() => checkOut()}>Check Out</button>
         </div>
     );
 }
