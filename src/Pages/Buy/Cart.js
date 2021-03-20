@@ -44,9 +44,10 @@ export default function Cart(props) {
 
         }
         else {
-            const newObj = Object.assign(props.cart, groupInfo)
-            // Axios.post("http://localhost:5000/api/inventory/", newObj);
+            const newObj = { cart: props.cart, customer: groupInfo }
+
             console.log(newObj)
+            // Axios.post("http://localhost:5000/inventory/transaction/", newObj);
             props.setCart([])
             setgroupInfo({ groupID: 0, netID: '' })
             setError(false)
