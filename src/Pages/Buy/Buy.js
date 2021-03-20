@@ -20,7 +20,6 @@ export default function Buy() {
   return (
     <div className={styles.Body}>
       <h1>Buy Page</h1>
-      {cart.length > 0 && <Cart cart={cart} setCart={setCart} />}
       <ItemList
         refreshList={refreshList}
         list={list}
@@ -28,6 +27,7 @@ export default function Buy() {
         cart={cart}
         setCart={setCart}
       />
+      {cart.length > 0 && <Cart cart={cart} setCart={setCart} />}
     </div>
   );
 }

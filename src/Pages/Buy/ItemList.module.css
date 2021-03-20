@@ -1,13 +1,26 @@
-.links {
-  margin-left: auto;
-  width: 100%;
-}
-
 .Brand {
   margin-left: 5%;
   color: white;
 }
 
-.label {
-  margin-left: 10%;
+.label_first {
+  margin-left: auto;
+  margin-right: 5%;
+}
+
+.links {
+  width: 100%;
+}
+
+.Container {
+  width: 100%;
+  padding: 0;
+}
+
+.useritem,
+.search {
+  font-size: large;
+  border-style: ridge;
+  margin: 0.2rem;
+  padding: 0.5rem;
 }
