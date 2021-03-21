@@ -5,9 +5,9 @@ import formComp from "../Form/Form";
 function ModalForm() {
   const [modal, setModal] = useState(false);
 
-  toggle = () => {
+  function toggle() {
     setModal(!modal);
-  };
+  }
 
   const closeBtn = (
     <button className="close" onClick={toggle}>
