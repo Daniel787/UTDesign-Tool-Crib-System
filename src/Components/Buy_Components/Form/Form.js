@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "react-bootstrap";
 
-function Form() {
+function formComp() {
   const [info, setinfo] = useState([]);
   const [nameSearch, setNameSearch] = useState("");
   const url = "http://localhost:5000/inventory";
@@ -63,4 +63,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default formComp;
