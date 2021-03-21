@@ -2,9 +2,7 @@ import axios from "axios";
 import React, { useEffect } from "react";
 import { Table, Button } from "react-bootstrap";
 
-function dataTable() {
-  const url = "http://localhost:5000/inventory";
-
+dataTable = () => {
   const [items, setItems] = props.items.map((item) => {
     return (
       <tr key={item.part_id}>
@@ -26,9 +24,9 @@ function dataTable() {
         </tr>
       </Thread>
       <tbody>{items}</tbody>
-      <button onClick={props.refreshList()}> Refresh List </button>
+      <Button onClick={props.refreshList()}> Refresh List </Button>
     </Table>
   );
-}
+};
 
 export default dataTable;
