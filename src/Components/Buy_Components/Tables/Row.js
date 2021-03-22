@@ -24,12 +24,12 @@ function DataRow(props) {
         </Form>
       </td>
       <td>
-        <Confirmation_Modal
+        {/* <Confirmation_Modal
           item={props.item}
           addToCart={() => {
             props.addToCart(props.item, amount);
           }}
-        />
+        /> */}
       </td>
     </tr>
   );

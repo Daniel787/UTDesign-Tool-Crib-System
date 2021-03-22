@@ -7,8 +7,7 @@ import Row from "./Row";
 function DataTable(props) {
   const [displayList, setDisplayList] = useState([]);
 
-  function refreshItem() {
-    props.refreshList();
+  useEffect(() => {
     setDisplayList(() =>
       props.list.map((item) => {
         return (
@@ -16,11 +15,8 @@ function DataTable(props) {
         );
       })
     );
-  }
+  }, [props.list])
 
-  useEffect(() => {
-    refreshItem();
-  }, []);
   return (
     <div>
       <Table responsive hover>
@@ -36,7 +32,7 @@ function DataTable(props) {
         </thead>
         <tbody>{displayList}</tbody>
       </Table>
-      <Button onClick={refreshItem}> Refresh List </Button>
+      <Button onClick={props.refreshList()}> Refresh List </Button>
       <Button> Go To Cart</Button>
     </div>
   );

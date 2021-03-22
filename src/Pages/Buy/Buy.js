@@ -58,10 +58,7 @@ export default function Buy() {
         addToCart={addToCart}
         refreshList={refreshList}
         list={list}
-        addToCart={addToCart}
-      >
-        {" "}
-      </DataTable>
+      />
       {/*
       <ItemList cart={cart} setCart={setCart} />
       {cart.length > 0 && <Cart cart={cart} setCart={setCart} />} */}
