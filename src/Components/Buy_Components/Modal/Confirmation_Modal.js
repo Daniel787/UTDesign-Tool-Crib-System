@@ -19,9 +19,14 @@ function Confirmation_Modal(props) {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title> Modal heading </Modal.Title>
+          <Modal.Title> Confirmation Modal </Modal.Title>
         </Modal.Header>
-        <Modal.Body> Body </Modal.Body>
+        <Modal.Body>
+          {" "}
+          ID : {props.item.id} <br /> Name : {props.item.name} <br /> Current
+          Cost : {props.item.current_cost} <br /> Quantity Selected :{" "}
+          {props.amount}{" "}
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             {" "}
@@ -30,7 +35,7 @@ function Confirmation_Modal(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.addToCart(props.item);
+              props.addToCart(props.item, props.amount);
               handleClose();
             }}
           >
