@@ -105,7 +105,7 @@ function CartModal(props) {
             })}
             {error.quantity && <h3>Quantity Error</h3>}
             {total > 0 ? <h3>Total Price: ${total}</h3> : <h3>Cart Empty</h3>}
-            <label>Group ID</label>:{" "}
+            {/* <label>Group ID</label>:{" "}
             <input
               value={groupInfo.groupID}
               onFocus={(e) => e.target.select()}
@@ -121,7 +121,7 @@ function CartModal(props) {
               onChange={(e) =>
                 setgroupInfo((prev) => ({ ...prev, netID: e.target.value }))
               }
-            />
+            /> */}
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -131,7 +131,7 @@ function CartModal(props) {
           </Button>
           <Button
             variant="primary"
-            disabled={error.groupID || error.netID || error.quantity}
+            // disabled={error.groupID || error.netID || error.quantity}
             onClick={() => {
               checkOut()
               handleClose();

@@ -1,5 +1,5 @@
-import ItemList from "./ItemList";
-import Cart from "./Cart";
+
+
 import React, { useState, useEffect } from "react";
 import styles from "./Buy.module.css";
 import axios from "axios";
@@ -9,8 +9,6 @@ import CartModal from "../../Components/Buy_Components/Modal/Cart_Modal";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
-  const [idsearch, setIdsearch] = useState(0);
-  const [namesearch, setNamesearch] = useState("");
   const url = "http://localhost:5000/inventory";
   const [list, setList] = useState([]);
 
@@ -27,14 +25,6 @@ export default function Buy() {
   useEffect(() => {
     console.log(cart)
   }, [cart]);
-
-  function search(newurl, request) {
-    axios.get(url + newurl + request).then((response) => {
-      response.data.length > 0 ? setList(response.data) : refreshList();
-    });
-    setIdsearch(0);
-    setNamesearch("");
-  }
 
   function addToCart(item, amount) {
     let exists = cart.map((el) => {
