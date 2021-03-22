@@ -15,7 +15,7 @@ function DataTable(props) {
         );
       })
     );
-  }, [props.list])
+  }, [props.list]);
 
   return (
     <div>
@@ -32,7 +32,14 @@ function DataTable(props) {
         </thead>
         <tbody>{displayList}</tbody>
       </Table>
-      <Button onClick={props.refreshList()}> Refresh List </Button>
+      <Button
+        onClick={() => {
+          props.refreshList();
+        }}
+      >
+        {" "}
+        Refresh List{" "}
+      </Button>
       <Button> Go To Cart</Button>
     </div>
   );
