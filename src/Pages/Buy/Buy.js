@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Buy.module.css";
 import axios from "axios";
 import DataTable from "../../Components/Buy_Components/Tables/Table";
+import Search from './Search'
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
@@ -54,6 +55,7 @@ export default function Buy() {
   return (
     <div className={styles.Body}>
       <h1>Buy Page</h1>
+      {/* <Search url={url} refreshList={refreshList} setList={setList} /> */}
       <DataTable
         addToCart={addToCart}
         refreshList={refreshList}
