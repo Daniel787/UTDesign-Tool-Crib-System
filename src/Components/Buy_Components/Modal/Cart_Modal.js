@@ -122,13 +122,6 @@ function CartModal(props) {
                 setgroupInfo((prev) => ({ ...prev, netID: e.target.value }))
               }
             />
-            <br />
-            <button
-              disabled={error.groupID || error.netID || error.quantity}
-              onClick={() => checkOut()}
-            >
-              Check Out
-            </button>
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -138,10 +131,9 @@ function CartModal(props) {
           </Button>
           <Button
             variant="primary"
+            disabled={error.groupID || error.netID || error.quantity}
             onClick={() => {
-              {
-                /* Checkout function */
-              }
+              checkOut()
               handleClose();
             }}
           >

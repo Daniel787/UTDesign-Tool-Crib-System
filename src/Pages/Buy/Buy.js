@@ -24,6 +24,10 @@ export default function Buy() {
     refreshList();
   }, []);
 
+  useEffect(() => {
+    console.log(cart)
+  }, [cart]);
+
   function search(newurl, request) {
     axios.get(url + newurl + request).then((response) => {
       response.data.length > 0 ? setList(response.data) : refreshList();
