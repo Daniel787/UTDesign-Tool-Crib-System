@@ -14,6 +14,7 @@ function CartModal(props) {
     let newCart = [...props.cart];
     newCart.splice(index, 1);
     props.setCart(newCart);
+    console.log(newCart);
   }
   useEffect(() => {
     let temp = 0;
@@ -47,8 +48,9 @@ function CartModal(props) {
     let newCart = [...props.cart];
     const value = parseInt(event.target.value);
     newCart[index].quantity = value;
-    newCart[index].total =
-      newCart[index].quantity * newCart[index].item.current_cost;
+    newCart[index].total = parseFloat(
+      newCart[index].quantity * parseFloat(newCart[index].item.current_cost)
+    );
     props.setCart(newCart);
   }
 
@@ -133,12 +135,12 @@ function CartModal(props) {
             variant="primary"
             // disabled={error.groupID || error.netID || error.quantity}
             onClick={() => {
-              checkOut()
+              checkOut();
               handleClose();
             }}
           >
             {" "}
-            Add To Cart{" "}
+            Check Out{" "}
           </Button>
         </Modal.Footer>
       </Modal>
