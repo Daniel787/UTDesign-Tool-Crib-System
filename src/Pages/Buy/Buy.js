@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./Buy.module.css";
 import axios from "axios";
 import DataTable from "../../Components/Buy_Components/Tables/Table";
-import Search from './Search'
+import Search from "./Search";
+import CartModal from "../../Components/Buy_Components/Modal/Cart_Modal";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
@@ -35,7 +36,7 @@ export default function Buy() {
     let exists = cart.map((el) => {
       return el.item.part_id;
     });
-    let newCart = [cart];
+    let newCart = [...cart];
     let index = exists.indexOf(item.part_id);
     if (index < 0) {
       newCart.push({ item: item, quantity: 1, total: item.current_cost });
@@ -56,11 +57,8 @@ export default function Buy() {
     <div className={styles.Body}>
       <h1>Buy Page</h1>
       {/* <Search url={url} refreshList={refreshList} setList={setList} /> */}
-      <DataTable
-        addToCart={addToCart}
-        refreshList={refreshList}
-        list={list}
-      />
+      <DataTable addToCart={addToCart} refreshList={refreshList} list={list} />
+      <CartModal cart={cart} setCart={setCart} />
       {/*
       <ItemList cart={cart} setCart={setCart} />
       {cart.length > 0 && <Cart cart={cart} setCart={setCart} />} */}

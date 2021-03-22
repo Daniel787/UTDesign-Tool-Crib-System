@@ -9,6 +9,10 @@ function DataRow(props) {
     setAmount(e.target.value);
   };
 
+  const resetInput = () => {
+    setAmount(1);
+  };
+
   const formStyle = {
     width: "100%",
   };
@@ -28,6 +32,7 @@ function DataRow(props) {
           item={props.item}
           amount={amount}
           addToCart={props.addToCart}
+          reset={resetInput}
         />
       </td>
     </tr>

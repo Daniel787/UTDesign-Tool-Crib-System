@@ -40,7 +40,6 @@ function DataTable(props) {
         {" "}
         Refresh List{" "}
       </Button>
-      <Button> Go To Cart</Button>
     </div>
   );
 }
