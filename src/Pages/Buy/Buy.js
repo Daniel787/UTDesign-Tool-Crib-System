@@ -54,7 +54,12 @@ export default function Buy() {
   return (
     <div className={styles.Body}>
       <h1>Buy Page</h1>
-      <DataTable addToCart={addToCart} refreshList={refreshList} list={list}>
+      <DataTable
+        addToCart={addToCart}
+        refreshList={refreshList}
+        list={list}
+        addToCart={addToCart}
+      >
         {" "}
       </DataTable>
       {/*

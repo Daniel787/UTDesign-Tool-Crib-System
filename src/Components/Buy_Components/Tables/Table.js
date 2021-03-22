@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Table, Button, Form } from "react-bootstrap";
+import Confirmation_Modal from "../Modal/Confirmation_Modal";
 
 function DataTable(props) {
   const [list, setList] = useState([]);
@@ -23,7 +24,7 @@ function DataTable(props) {
               </Form>
             </td>
             <td>
-              <Button> Add To Cart </Button>
+              <Confirmation_Modal item={item} addToCart={props.addToCart} />
             </td>
           </tr>
         );
