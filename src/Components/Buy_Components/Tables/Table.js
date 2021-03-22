@@ -4,11 +4,10 @@ import { Table, Button, Form } from "react-bootstrap";
 
 function DataTable(props) {
   const [list, setList] = useState([]);
-
+  const formStyle = {
+    width: "100%",
+  };
   function refreshItem() {
-    const formStyle = {
-      width: "100%",
-    };
     props.refreshList();
     setList(() =>
       props.list.map((item) => {
@@ -39,7 +38,7 @@ function DataTable(props) {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Quantity</th>
+            <th>Stock</th>
             <th>Cost</th>
             <th> Quantity </th>
             <th> Add To Cart</th>
