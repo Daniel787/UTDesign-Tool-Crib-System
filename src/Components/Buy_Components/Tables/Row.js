@@ -28,8 +28,8 @@ function DataRow(props) {
           item={props.item}
           addToCart={() => {
             props.addToCart(props.item, amount);
-          }}
-        /> */}
+          }} */}
+        />
       </td>
     </tr>
   );
