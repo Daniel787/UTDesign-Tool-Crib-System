@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Table } from "react-bootstrap";
+import Axios from "axios";
 
 function CartModal(props) {
   const [show, setShow] = useState(false);
   const [total, setTotal] = useState(0);
-  const [groupInfo, setgroupInfo] = useState({ groupID: 0, netID: "" });
+  const [groupInfo, setgroupInfo] = useState({
+    groupID: 357,
+    netID: "bcd180003",
+  });
   const [error, setError] = useState({
     quantity: false,
     netID: false,
@@ -56,7 +60,16 @@ function CartModal(props) {
   function checkOut() {
     const newObj = { cart: props.cart, customer: groupInfo };
     console.log(newObj);
-    // Axios.post("http://localhost:5000/inventory/transaction/", newObj);
+
+    Axios.post("http://localhost:5000/inventory/buy/", newObj).then(
+      (response) => {
+        console.log(response);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
     props.setCart([]);
     setgroupInfo({ groupID: 0, netID: "" });
     setError(false);

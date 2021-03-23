@@ -21,13 +21,13 @@ export default function Buy() {
   }, []);
 
   useEffect(() => {
-    console.log('Change');
+    console.log("Change");
     console.log(cart);
   }, [cart]);
 
   function addToCart(item, amount) {
-    console.log('Add');
-    console.log(cart)
+    console.log("Add");
+    console.log(cart);
     let exists = [...cart].map((el) => {
       return el.item.part_id;
     });
@@ -57,7 +57,12 @@ export default function Buy() {
     <div className={styles.Body}>
       <h1>Buy Page</h1>
       <Search url={url} refreshList={refreshList} setList={setList} />
-      <DataTable addToCart={addToCart} cart={cart} refreshList={refreshList} list={list} />
+      <DataTable
+        addToCart={addToCart}
+        cart={cart}
+        refreshList={refreshList}
+        list={list}
+      />
       <CartModal cart={cart} setCart={setCart} />
     </div>
   );
