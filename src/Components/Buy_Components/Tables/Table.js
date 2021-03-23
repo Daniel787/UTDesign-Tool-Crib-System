@@ -16,7 +16,7 @@ function DataTable(props) {
         );
       })
     );
-  }, [props.list]);
+  }, [props.list, props.cart]);
 
   return (
     <div>

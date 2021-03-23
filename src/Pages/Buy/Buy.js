@@ -21,16 +21,18 @@ export default function Buy() {
   }, []);
 
   useEffect(() => {
+    console.log('Change');
     console.log(cart);
   }, [cart]);
 
   function addToCart(item, amount) {
+    console.log('Add');
+    console.log(cart)
     let exists = [...cart].map((el) => {
       return el.item.part_id;
     });
     let newCart = [...cart];
     let index = exists.indexOf(item.part_id);
-    console.log(index);
     if (index < 0) {
       newCart.push({
         item: item,
@@ -54,12 +56,9 @@ export default function Buy() {
   return (
     <div className={styles.Body}>
       <h1>Buy Page</h1>
-      {/* <Search url={url} refreshList={refreshList} setList={setList} /> */}
-      <DataTable addToCart={addToCart} refreshList={refreshList} list={list} />
+      <Search url={url} refreshList={refreshList} setList={setList} />
+      <DataTable addToCart={addToCart} cart={cart} refreshList={refreshList} list={list} />
       <CartModal cart={cart} setCart={setCart} />
-      {/*
-      <ItemList cart={cart} setCart={setCart} />
-      {cart.length > 0 && <Cart cart={cart} setCart={setCart} />} */}
     </div>
   );
 }

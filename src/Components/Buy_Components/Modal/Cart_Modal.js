@@ -14,7 +14,7 @@ function CartModal(props) {
     let newCart = [...props.cart];
     newCart.splice(index, 1);
     props.setCart(newCart);
-    console.log(newCart);
+
   }
   useEffect(() => {
     let temp = 0;
