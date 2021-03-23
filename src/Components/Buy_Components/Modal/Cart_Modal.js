@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Table } from "react-bootstrap";
 
 function CartModal(props) {
   const [show, setShow] = useState(false);
@@ -14,7 +14,6 @@ function CartModal(props) {
     let newCart = [...props.cart];
     newCart.splice(index, 1);
     props.setCart(newCart);
-
   }
   useEffect(() => {
     let temp = 0;
@@ -75,56 +74,21 @@ function CartModal(props) {
       <Button variant="primary" onClick={handleShow}>
         Go To Cart
       </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title> Confirmation </Modal.Title>
+          <Modal.Title> Cart </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="cart">
-            <h2>Shopping Cart</h2>
-            {props.cart.map((el, i) => {
-              return (
-                <div key={i} className="useritem">
-                  <h3>{el.item.name}</h3>
-                  <label>Part ID:</label> {el.item.part_id} <br />
-                  <label>Quantity in Stock:</label> {el.item.quantity_available}{" "}
-                  <br />
-                  <label>Current Price:</label> ${el.item.current_cost}
-                  <br />
-                  <label>Quantity Wanted:</label>
-                  <input
-                    type="number"
-                    value={props.cart[i].quantity}
-                    onFocus={(e) => e.target.select()}
-                    onChange={(e) => changeQuantity(e, i)}
-                  />
-                  <br />
-                  {el.quantity > 1 && <h4>Total of Item: ${el.total}</h4>}
-                  <button onClick={() => removeFromCart(i)}>Remove</button>
-                </div>
-              );
-            })}
-            {error.quantity && <h3>Quantity Error</h3>}
-            {total > 0 ? <h3>Total Price: ${total}</h3> : <h3>Cart Empty</h3>}
-            {/* <label>Group ID</label>:{" "}
-            <input
-              value={groupInfo.groupID}
-              onFocus={(e) => e.target.select()}
-              onChange={(e) =>
-                setgroupInfo((prev) => ({ ...prev, groupID: e.target.value }))
-              }
-            />
-            <br />
-            <label>NetID</label>:{" "}
-            <input
-              value={groupInfo.netID}
-              onFocus={(e) => e.target.select()}
-              onChange={(e) =>
-                setgroupInfo((prev) => ({ ...prev, netID: e.target.value }))
-              }
-            /> */}
-          </div>
+          {props.cart.map((el) => {
+            return (
+              <div>
+                ID : {el.item.part_id} <br />
+                Name : {el.item.name} <br />
+                Quantity Selected : {el.quantity} <br />
+                Total : {el.total} <br />
+              </div>
+            );
+          })}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

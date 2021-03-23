@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import Confirmation_Modal from "../Modal/Confirmation_Modal";
+import ConfirmationModal from "../Modal/Confirmation_Modal";
 
 function DataRow(props) {
   const [amount, setAmount] = useState(1);
@@ -30,7 +30,7 @@ function DataRow(props) {
         </Form>
       </td>
       <td>
-        <Confirmation_Modal
+        <ConfirmationModal
           item={props.item}
           amount={parseInt(amount)}
           addToCart={props.addToCart}
