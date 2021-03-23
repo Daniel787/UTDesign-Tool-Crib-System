@@ -4,6 +4,7 @@ import axios from "axios";
 import DataTable from "../../Components/Buy_Components/Tables/Table";
 import Search from "./Search";
 import CartModal from "../../Components/Buy_Components/Modal/Cart_Modal";
+import CSVDownload from "../../Components/Buy_Components/Download_CSV/CSVDownload";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
@@ -64,6 +65,7 @@ export default function Buy() {
         list={list}
       />
       <CartModal cart={cart} setCart={setCart} />
+      <CSVDownload />
     </div>
   );
 }
