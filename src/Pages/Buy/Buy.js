@@ -5,6 +5,7 @@ import DataTable from "../../Components/Buy_Components/Tables/Table";
 import Search from "./Search";
 import CartModal from "../../Components/Buy_Components/Modal/Cart_Modal";
 import CSVDownload from "../../Components/Buy_Components/Download_CSV/CSVDownload";
+import RefreshList from "../../Components/Buy_Components/Refresh_List/RefreshList";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
@@ -64,6 +65,7 @@ export default function Buy() {
         refreshList={refreshList}
         list={list}
       />
+      <RefreshList refreshList={refreshList} />
       <CartModal cart={cart} setCart={setCart} />
       <CSVDownload />
     </div>

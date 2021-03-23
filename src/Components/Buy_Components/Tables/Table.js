@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { Table, Button } from "react-bootstrap";
-import Confirmation_Modal from "../Modal/Confirmation_Modal";
 import Row from "./Row";
 
 function DataTable(props) {
@@ -33,14 +32,6 @@ function DataTable(props) {
         </thead>
         <tbody>{displayList}</tbody>
       </Table>
-      <Button
-        onClick={() => {
-          props.refreshList();
-        }}
-      >
-        {" "}
-        Refresh List{" "}
-      </Button>
     </div>
   );
 }
