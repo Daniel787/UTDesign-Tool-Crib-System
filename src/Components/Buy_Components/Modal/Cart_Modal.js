@@ -75,19 +75,9 @@ function CartModal(props) {
     setError(false);
   }
 
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow = () => {
-    setShow(true);
-  };
-
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
-        Go To Cart
-      </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={props.cartShow} onHide={props.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Cart </Modal.Title>
         </Modal.Header>
@@ -104,7 +94,7 @@ function CartModal(props) {
           })}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={props.handleClose}>
             {" "}
             Cancel{" "}
           </Button>
@@ -113,7 +103,8 @@ function CartModal(props) {
             // disabled={error.groupID || error.netID || error.quantity}
             onClick={() => {
               checkOut();
-              handleClose();
+              props.refreshList();
+              props.handleClose();
             }}
           >
             {" "}

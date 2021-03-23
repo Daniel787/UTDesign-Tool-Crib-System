@@ -3,7 +3,7 @@ import Axios from "axios";
 import { Button } from "react-bootstrap";
 import downloadjs from "downloadjs";
 
-function CSVDownload() {
+function CSVDownload(props) {
   const url = "http://localhost:5000/expense/full";
 
   function getData() {
@@ -13,6 +13,7 @@ function CSVDownload() {
   }
   return (
     <Button
+      className={props.styles.Container}
       onClick={() => {
         getData();
       }}

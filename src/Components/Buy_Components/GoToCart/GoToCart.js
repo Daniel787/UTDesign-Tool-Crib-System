@@ -1,18 +1,16 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-function RefreshList(props) {
+function GoToCart(props) {
   return (
     <Button
       className={props.styles.Container}
-      onClick={() => {
-        props.refreshList();
-      }}
+      variant="primary"
+      onClick={props.handleShow}
     >
-      {" "}
-      Refresh List{" "}
+      Go To Cart
     </Button>
   );
 }
 
-export default RefreshList;
+export default GoToCart;

@@ -6,11 +6,21 @@ import Search from "./Search";
 import CartModal from "../../Components/Buy_Components/Modal/Cart_Modal";
 import CSVDownload from "../../Components/Buy_Components/Download_CSV/CSVDownload";
 import RefreshList from "../../Components/Buy_Components/Refresh_List/RefreshList";
+import AddToCart from "../../Components/Buy_Components/GoToCart/GoToCart";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
   const url = "http://localhost:5000/inventory";
   const [list, setList] = useState([]);
+
+  const [cartShow, setCartShow] = useState(false);
+
+  const handleClose = () => {
+    setCartShow(false);
+  };
+  const handleShow = () => {
+    setCartShow(true);
+  };
 
   function refreshList() {
     axios.get(url).then((response) => {
@@ -65,9 +75,18 @@ export default function Buy() {
         refreshList={refreshList}
         list={list}
       />
-      <RefreshList refreshList={refreshList} />
-      <CartModal cart={cart} setCart={setCart} />
-      <CSVDownload />
+      <div className={styles.Parent}>
+        <RefreshList styles={styles} refreshList={refreshList} />
+        <AddToCart styles={styles} handleShow={handleShow} />
+        <CSVDownload styles={styles} />
+      </div>
+      <CartModal
+        cart={cart}
+        setCart={setCart}
+        cartShow={cartShow}
+        handleClose={handleClose}
+        refreshList={refreshList}
+      />
     </div>
   );
 }
