@@ -6,7 +6,9 @@ export default function Search(props) {
   const [idsearch, setIdsearch] = useState(0);
   const [namesearch, setNamesearch] = useState("");
   function search(newurl, request) {
+    console.log(request);
     Axios.get(props.url + newurl + request).then((response) => {
+      console.log(response.data);
       response.data.length > 0
         ? props.setList(response.data)
         : props.refreshList();
@@ -27,7 +29,7 @@ export default function Search(props) {
         ></input>
         <button
           disabled={idsearch === 0 || !idsearch}
-          onClick={() => search("/searchid?id=", idsearch)}
+          onClick={() => search("/search?id=", idsearch)}
         >
           Search
         </button>
@@ -42,7 +44,7 @@ export default function Search(props) {
         ></input>
         <button
           disabled={namesearch.length === 0}
-          onClick={() => search("/searchname?id=", namesearch)}
+          onClick={() => search("/searchname?name=", namesearch)}
         >
           Search
         </button>

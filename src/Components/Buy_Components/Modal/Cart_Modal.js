@@ -71,8 +71,15 @@ function CartModal(props) {
     );
 
     props.setCart([]);
-    setgroupInfo({ groupID: 0, netID: "" });
-    setError(false);
+    {
+      /* setgroupInfo({ groupID: 0, netID: "" }); */
+    }
+    setError({
+      quantity: false,
+      netID: false,
+      groupID: false,
+    });
+    props.refreshList();
   }
 
   return (
@@ -103,7 +110,6 @@ function CartModal(props) {
             // disabled={error.groupID || error.netID || error.quantity}
             onClick={() => {
               checkOut();
-              props.refreshList();
               props.handleClose();
             }}
           >

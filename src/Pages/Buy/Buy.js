@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./Buy.module.css";
 import axios from "axios";
 import DataTable from "../../Components/Buy_Components/Tables/Table";
-import Search from "./Search";
+import Search from "../../Components/Buy_Components/Search/Search";
 import CartModal from "../../Components/Buy_Components/Modal/Cart_Modal";
 import CSVDownload from "../../Components/Buy_Components/Download_CSV/CSVDownload";
 import RefreshList from "../../Components/Buy_Components/Refresh_List/RefreshList";
