@@ -63,12 +63,7 @@ function CartModal(props) {
 
     props.setCart([]);
     setgroupInfo({ groupID: 0, netID: "" });
-
-    setError({
-      quantity: false,
-      netID: false,
-      groupID: false,
-    });
+    setError(false);
     props.refreshList();
   }
 
