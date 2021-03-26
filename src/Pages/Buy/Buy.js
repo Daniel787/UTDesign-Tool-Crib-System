@@ -13,7 +13,7 @@ export default function Buy() {
   const url = "http://localhost:5000/inventory";
   const [list, setList] = useState([]);
 
-  const [cartShow, setCartShow] = useState(true);
+  const [cartShow, setCartShow] = useState(false);
 
   const handleClose = () => {
     setCartShow(false);
