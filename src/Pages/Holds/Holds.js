@@ -1,10 +1,26 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import styles from "./Holds.module.css";
+import DataTable from "./Components/Table/Table";
 
 export default function Holds() {
-    return (
-        <div className={styles.Body}>
-            <h1>Holds Page</h1>
-        </div>
-    )
+  const url = "http://localhost:5000/student/holds";
+  const [list, setList] = useState([]);
+
+  function refreshList() {
+    axios.get(url).then((response) => {
+      setList(response.data);
+    });
+  }
+
+  useEffect(() => {
+    refreshList();
+  }, []);
+
+  return (
+    <div className={styles.Body}>
+      <h1>Holds Page</h1>
+      <DataTable list={list} refreshList={refreshList} />
+    </div>
+  );
 }
