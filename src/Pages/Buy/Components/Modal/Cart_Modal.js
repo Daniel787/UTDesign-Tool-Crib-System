@@ -3,11 +3,10 @@ import { Modal, Button, Table } from "react-bootstrap";
 import Axios from "axios";
 
 function CartModal(props) {
-  const [show, setShow] = useState(false);
   const [total, setTotal] = useState(0);
   const [groupInfo, setgroupInfo] = useState({
-    groupID: 357,
-    netID: "bcd180003",
+    groupID: 0,
+    netID: "",
   });
   const [error, setError] = useState({
     quantity: false,
@@ -99,6 +98,8 @@ function CartModal(props) {
               </div>
             );
           })}
+          <input placeholder="netid" type="text" />
+          <input placeholder="groupid" type="number" />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>
