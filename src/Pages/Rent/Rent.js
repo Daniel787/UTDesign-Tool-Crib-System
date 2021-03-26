@@ -34,28 +34,17 @@ export default function Rent() {
 
   function addToCart(item, amount) {
     let exists = [...cart].map((el) => {
-      return el.item.part_id;
+      return el.item.tool_id;
     });
     let newCart = [...cart];
-    let index = exists.indexOf(item.part_id);
+    let index = exists.indexOf(item.tool_id);
     if (index < 0) {
       newCart.push({
         item: item,
-        quantity: amount > 0 ? amount : 1,
-        total: item.current_cost * (amount > 0 ? amount : 1),
       });
-    } else {
-      if (
-        newCart[index].quantity &&
-        newCart[index].quantity < newCart[index].item.quantity_available
-      ) {
-        newCart[index].quantity += amount > 0 ? amount : 1;
-        newCart[index].total = parseFloat(
-          newCart[index].quantity * parseFloat(newCart[index].item.current_cost)
-        );
-      }
     }
     setCart(newCart);
+    console.log(newCart);
     refreshList();
   }
   return (
