@@ -8,11 +8,7 @@ function CartModal(props) {
     groupID: 0,
     netID: "",
   });
-  const [error, setError] = useState({
-    quantity: false,
-    netID: false,
-    groupID: false,
-  });
+  const [error, setError] = useState(false);
   function removeFromCart(index) {
     let newCart = [...props.cart];
     newCart.splice(index, 1);
@@ -26,25 +22,17 @@ function CartModal(props) {
         !props.cart[i].quantity ||
         props.cart[i].quantity > props.cart[i].item.quantity_available
       ) {
-        setError((prev) => ({ ...prev, quantity: true }));
+        setError(true);
         temp = 0;
         break;
       } else {
-        setError((prev) => ({ ...prev, quantity: false }));
+        setError(false);
       }
       temp += props.cart[i].total;
     }
+    props.cart.length === 0 && setError(false)
     setTotal(temp);
   }, [props.cart]);
-
-  useEffect(() => {
-    groupInfo.netID.length === 9
-      ? setError((prev) => ({ ...prev, netID: false }))
-      : setError((prev) => ({ ...prev, netID: true }));
-    groupInfo.groupID > 0
-      ? setError((prev) => ({ ...prev, groupID: false }))
-      : setError((prev) => ({ ...prev, groupID: true }));
-  }, [groupInfo]);
 
   function changeQuantity(event, index) {
     let newCart = [...props.cart];
@@ -91,32 +79,38 @@ function CartModal(props) {
           <Modal.Title> Cart </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.cart.map((el) => {
+          {props.cart.map((el, i) => {
             return (
               <div>
                 ID : {el.item.part_id} <br />
                 Name : {el.item.name} <br />
-                Quantity Selected : {el.quantity} <br />
-                Total : {el.total} <br />
+                Quantity Wanted : <input
+                  type="number"
+                  value={el.quantity}
+                  onFocus={(e) => e.target.select()}
+                  onChange={(e) => changeQuantity(e, i)}
+                /><br />
+                Total : {el.total > 0 ? (el.item.quantity_available < el.quantity ? 'not enough in stock' : el.total) : 'invalid quantity'} <br />
+                <Button onClick={() => removeFromCart(i)}>Remove</Button>
               </div>
             );
           })}
-          <div>
-            <input placeholder="netid" type="text" value={groupInfo.netID} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} />
-            <input placeholder="groupid" type="number" value={groupInfo.groupID} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} />
-          </div>
+          {props.cart.length > 0 &&
+            <div>
+              <input placeholder="netid" type="text" value={groupInfo.netID} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} />
+              <input placeholder="groupid" type="number" value={groupInfo.groupID} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} />
+            </div>}
           {!initInput() && <h3>Invalid Input Format</h3>}
         </Modal.Body>
         <Modal.Footer>
-
+          {error ? <h3>Invalid Quantity Field</h3> : <h3>Total : {total}</h3>}
           <Button variant="secondary" onClick={props.handleClose}>
             {" "}
             Cancel{" "}
           </Button>
           <Button
             variant="primary"
-            disabled={groupInfo.netID.length !== 9 || !(groupInfo.groupID > 0)}
-            // disabled={error.groupID || error.netID || error.quantity}
+            disabled={groupInfo.netID.length !== 9 || !(groupInfo.groupID > 0) || error}
             onClick={() => {
               checkOut();
               props.handleClose();
