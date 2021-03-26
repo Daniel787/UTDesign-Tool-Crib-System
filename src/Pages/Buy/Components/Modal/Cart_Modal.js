@@ -56,6 +56,10 @@ function CartModal(props) {
     props.setCart(newCart);
   }
 
+  function initInput() {
+    return (groupInfo.netID.length === 0 && (groupInfo.groupID === 0 || !groupInfo.groupID))
+  }
+
   function checkOut() {
     const newObj = { cart: props.cart, customer: groupInfo };
     console.log(newObj);
@@ -70,9 +74,8 @@ function CartModal(props) {
     );
 
     props.setCart([]);
-    {
-      /* setgroupInfo({ groupID: 0, netID: "" }); */
-    }
+    setgroupInfo({ groupID: 0, netID: "" });
+
     setError({
       quantity: false,
       netID: false,
@@ -98,16 +101,21 @@ function CartModal(props) {
               </div>
             );
           })}
-          <input placeholder="netid" type="text" />
-          <input placeholder="groupid" type="number" />
+          <div>
+            <input placeholder="netid" type="text" value={groupInfo.netID} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} />
+            <input placeholder="groupid" type="number" value={groupInfo.groupID} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} />
+          </div>
+          {!initInput() && <h3>Invalid Input Format</h3>}
         </Modal.Body>
         <Modal.Footer>
+
           <Button variant="secondary" onClick={props.handleClose}>
             {" "}
             Cancel{" "}
           </Button>
           <Button
             variant="primary"
+            disabled={groupInfo.netID.length !== 9 || !(groupInfo.groupID > 0)}
             // disabled={error.groupID || error.netID || error.quantity}
             onClick={() => {
               checkOut();

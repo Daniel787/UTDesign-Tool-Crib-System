@@ -32,14 +32,7 @@ export default function Buy() {
     refreshList();
   }, []);
 
-  useEffect(() => {
-    console.log("Change");
-    console.log(cart);
-  }, [cart]);
-
   function addToCart(item, amount) {
-    console.log("Add");
-    console.log(cart);
     let exists = [...cart].map((el) => {
       return el.item.part_id;
     });
