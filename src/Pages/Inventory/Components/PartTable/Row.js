@@ -1,5 +1,6 @@
 import React from "react";
-import ConfirmationModal from "./Confirmation_Modal";
+import ConfirmationDeltete from "./Confirmation_Delete";
+import ConfirmationModify from "./Confirmation_Modify";
 
 function DataRow(props) {
 
@@ -10,9 +11,16 @@ function DataRow(props) {
       <td> {props.item.quantity_available} </td>
       <td> {props.item.current_cost} </td>
       <td>
-        <ConfirmationModal
+        <ConfirmationDeltete
           item={props.item}
           removePart={props.removePart}
+        />
+
+      </td>
+      <td>
+        <ConfirmationModify
+          item={props.item}
+          modifyPart={props.modifyPart}
         />
       </td>
     </tr>

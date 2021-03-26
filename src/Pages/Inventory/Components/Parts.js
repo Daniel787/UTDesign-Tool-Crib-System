@@ -15,7 +15,12 @@ export default function Parts() {
 
     function removePart(part_id) {
         console.log(part_id)
-        //  axios.post(url+"/delete?id=").then((response) => { });
+        //  axios.post(url+"/delete?id="+part_id).then((response) => { });
+    }
+
+    function modifyPart(part_id, quantity, price) {
+        console.log(part_id + ' : ' + quantity + ' ' + price)
+        //  axios.post(url+"/modify?id="+part_id).then((response) => { });
     }
 
     useEffect(() => {
@@ -30,6 +35,7 @@ export default function Parts() {
             <DataTable
                 refreshList={refreshList}
                 removePart={removePart}
+                modifyPart={modifyPart}
                 list={list}
             />
         </div>

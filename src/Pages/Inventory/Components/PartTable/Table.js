@@ -17,12 +17,13 @@ function DataTable(props) {
             <th>Stock</th>
             <th>Cost</th>
             <th>Remove</th>
+            <th>Modify</th>
           </tr>
         </thead>
         <tbody>{
           props.list.map((item) => {
             return (
-              <Row key={item.part_id} removePart={props.removePart} item={item} />
+              <Row key={item.part_id} removePart={props.removePart} modifyPart={props.modifyPart} item={item} />
             );
           })
         }</tbody>

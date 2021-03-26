@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-function Confirmation_Modal(props) {
+function Confirmation_Deltete(props) {
   const [show, setShow] = useState(false);
-
+  const [quantity, setQuantity] = useState(0)
+  const [price, setPrice] = useState(0.0)
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => {
     setShow(true);
+    setQuantity(props.item.quantity_available)
+    setPrice(props.item.current_cost)
   };
 
   return (
     <div>
       <Button variant="primary" onClick={handleShow}>
-        Remove
+        Modify
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -22,8 +25,10 @@ function Confirmation_Modal(props) {
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {" "}
-          ID : {props.item.part_id} <br /> Name : {props.item.name} <br />{" "}
+          Name : {props.item.name} <br />
+          ID : {props.item.part_id} <br />
+          New Quantity : <input value={quantity} onChange={(e) => setQuantity(e.target.value)} /><br />
+          New Price : $<input value={price} onChange={(e) => setPrice(e.target.value)} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -33,7 +38,7 @@ function Confirmation_Modal(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.removePart(props.item.part_id);
+              props.modifyPart(props.item.part_id, quantity, price);
               handleClose();
             }}
           >
@@ -46,4 +51,4 @@ function Confirmation_Modal(props) {
   );
 }
 
-export default Confirmation_Modal;
+export default Confirmation_Deltete;
