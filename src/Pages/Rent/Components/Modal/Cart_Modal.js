@@ -60,7 +60,7 @@ function CartModal(props) {
     const newObj = { cart: props.cart, customer: groupInfo };
     console.log(newObj);
 
-    Axios.post("http://localhost:5000/inventory/buy/", newObj).then(
+    Axios.post("http://localhost:5000/inventory/rent", newObj).then(
       (response) => {
         console.log(response);
       },
@@ -96,8 +96,22 @@ function CartModal(props) {
               </div>
             );
           })}
-          <input placeholder="netid" type="text" />
-          <input placeholder="groupid" type="number" />
+          <input
+            placeholder="netid"
+            type="text"
+            value={groupInfo.netID}
+            onChange={(e) =>
+              setgroupInfo((prev) => ({ ...prev, netID: e.target.value }))
+            }
+          />
+          <input
+            placeholder="groupid"
+            type="number"
+            value={groupInfo.groupID}
+            onChange={(e) =>
+              setgroupInfo((prev) => ({ ...prev, groupID: e.target.value }))
+            }
+          />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={props.handleClose}>
