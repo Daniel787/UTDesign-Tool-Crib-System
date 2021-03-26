@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Holds.module.css";
 import DataTable from "./Components/Table/Table";
+import RefreshList from "./Components/Refresh_List/RefreshList";
 
 export default function Holds() {
   const url = "http://localhost:5000/student/holds";
@@ -21,6 +22,7 @@ export default function Holds() {
     <div className={styles.Body}>
       <h1>Holds Page</h1>
       <DataTable list={list} refreshList={refreshList} />
+      <RefreshList styles={styles} refreshList={refreshList} />
     </div>
   );
 }
