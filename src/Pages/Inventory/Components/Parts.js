@@ -33,10 +33,11 @@ export default function Parts() {
             <Button onClick={() => refreshList()}>Refresh</Button>
             <Search url={url} refreshList={refreshList} setList={setList} />
             <DataTable
+                list={list}
                 refreshList={refreshList}
                 removePart={removePart}
                 modifyPart={modifyPart}
-                list={list}
+
             />
         </div>
     )

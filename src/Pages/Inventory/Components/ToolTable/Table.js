@@ -14,16 +14,14 @@ function DataTable(props) {
           <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Stock</th>
-            <th>Cost</th>
-            <th> Quantity </th>
-            <th> Add To Cart</th>
+            <th>Remove</th>
+            <th>Modify</th>
           </tr>
         </thead>
         <tbody>{
           props.list.map((item) => {
             return (
-              <Row key={item.part_id} item={item} addToCart={props.addToCart} />
+              <Row key={item.part_id} removePart={props.removePart} modifyPart={props.modifyPart} item={item} />
             );
           })
         }</tbody>
