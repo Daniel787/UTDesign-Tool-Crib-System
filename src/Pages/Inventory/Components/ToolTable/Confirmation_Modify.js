@@ -23,7 +23,7 @@ function Confirmation_Deltete(props) {
         </Modal.Header>
         <Modal.Body>
           Name : {props.item.name} <br />
-          ID : {props.item.part_id} <br />
+          ID : {props.item.tool_id} <br />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -33,7 +33,7 @@ function Confirmation_Deltete(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.modifyPart(props.item.part_id);
+              props.modifyPart(props.item.tool_id);
               handleClose();
             }}
           >

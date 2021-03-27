@@ -6,7 +6,7 @@ function DataRow(props) {
 
   return (
     <tr>
-      <td> {props.item.part_id} </td>
+      <td> {props.item.tool_id} </td>
       <td> {props.item.name} </td>
       <td>
         <ConfirmationDeltete
