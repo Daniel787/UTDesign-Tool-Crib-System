@@ -7,9 +7,8 @@ export default function Search(props) {
   const [idsearch, setIdsearch] = useState(0);
   const [namesearch, setNamesearch] = useState("");
   function search(newurl, request) {
-    console.log(request);
+    console.log(request)
     Axios.get(props.url + newurl + request).then((response) => {
-      console.log(response.data);
       response.data.length > 0
         ? props.setList(response.data)
         : props.refreshList();
@@ -26,10 +25,10 @@ export default function Search(props) {
           type="number"
           placeholder="By Part ID"
           value={idsearch}
-          onChange={(e) => setIdsearch(parseInt(e.target.value))}
+          onChange={(e) => setIdsearch(e.target.value)}
         ></input>
         <Button
-          disabled={idsearch === 0 || !idsearch}
+          disabled={idsearch === 0 || !idsearch || idsearch % 1 > 0}
           onClick={() => search("/search?id=", idsearch)}
         >
           Search

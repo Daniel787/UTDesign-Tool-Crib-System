@@ -76,7 +76,7 @@ function CartModal(props) {
         <Modal.Body>
           {props.cart.map((el, i) => {
             return (
-              <div>
+              <div key={i}>
                 ID : {el.item.part_id} <br />
                 Name : {el.item.name} <br />
                 Quantity Wanted : <input
