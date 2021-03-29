@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from "./Inventory.module.css";
 import { Tabs, Tab } from "react-bootstrap";
-import Parts from './Components/Parts'
-import Tools from './Components/Tools'
+import Parts from './Components/PartItems/Parts'
+import Tools from './Components/ToolItems/Tools'
 
 
 export default function Inventory() {

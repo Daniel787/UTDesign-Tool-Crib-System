@@ -3,20 +3,15 @@ import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
   const [show, setShow] = useState(false);
-  const [quantity, setQuantity] = useState(0)
-  const [price, setPrice] = useState(0.0)
+  const [name, setName] = useState("")
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => {
     setShow(true);
-    setQuantity(props.item.quantity_available)
-    setPrice(props.item.current_cost)
-  };
+    setName(props.item.name)
 
-  function valid() {
-    return quantity > 0 && (price > 0 && ((price * 100) % 1) === 0)
-  }
+  };
 
   return (
     <div>
@@ -29,12 +24,8 @@ function Confirmation_Deltete(props) {
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Name : {props.item.name} <br />
-          ID : {props.item.part_id} <br />
-          New Quantity : <input value={quantity} onChange={(e) => setQuantity(e.target.value)} /><br />
-          New Price : $<input value={price} onChange={(e) => setPrice(e.target.value)} />
-          {!valid() && (!(quantity > 0) ? <h3>Invalid Quantity</h3> : <h3>Invalid Price</h3>)}
-
+          Name : <input value={name} onChange={(e) => setName(e.target.value)} /><br />
+          ID : {props.item.tool_id} <br />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -43,9 +34,8 @@ function Confirmation_Deltete(props) {
           </Button>
           <Button
             variant="primary"
-            disabled={!(valid())}
             onClick={() => {
-              props.modifyPart(props.item.part_id, quantity, price);
+              props.modifyPart(props.item.tool_id, name);
               handleClose();
             }}
           >

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import DataTable from "./ToolTable/Table";
-import Search from './Search/Search'
+import Search from '../Search/Search'
 import SingleModal from './InsertTool/SingleModal'
 import MultiModal from './InsertTool/MultiModal'
 
@@ -20,7 +20,7 @@ export default function Tools() {
         //  axios.post(url+"/delete?id="+part_id).then((response) => { });
     }
 
-    function modifyPart(part_id) {
+    function modifyPart(part_id, name) {
         console.log(part_id)
         //  axios.post(url+"/modify?id="+part_id).then((response) => { });
     }
