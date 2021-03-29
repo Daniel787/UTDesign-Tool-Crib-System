@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import DataTable from "./PartTable/Table";
 import Search from './Search/Search'
 import SingleModal from './InsertPart/SingleModal'
+import MultiModal from './InsertPart/MultiModal'
 
 export default function Parts() {
     const url = "http://localhost:5000/inventory";
@@ -38,6 +39,7 @@ export default function Parts() {
             <h2>Part List</h2>
             <Button onClick={() => refreshList()}>Refresh</Button>
             <SingleModal addPart={addPart} />
+            <MultiModal />
             <Search url={url} refreshList={refreshList} setList={setList} />
             <DataTable
                 list={list}

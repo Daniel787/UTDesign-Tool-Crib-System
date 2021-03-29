@@ -4,6 +4,7 @@ import { Button } from "react-bootstrap";
 import DataTable from "./ToolTable/Table";
 import Search from './Search/Search'
 import SingleModal from './InsertTool/SingleModal'
+import MultiModal from './InsertTool/MultiModal'
 
 export default function Tools() {
     const url = "http://localhost:5000/tools";
@@ -35,9 +36,10 @@ export default function Tools() {
 
     return (
         <div>
-            <h2>Part List</h2>
+            <h2>Tool List</h2>
             <Button onClick={() => refreshList()}>Refresh</Button>
             <SingleModal addPart={addTool} />
+            <MultiModal />
             <Search url={url} refreshList={refreshList} setList={setList} />
 
             <DataTable
