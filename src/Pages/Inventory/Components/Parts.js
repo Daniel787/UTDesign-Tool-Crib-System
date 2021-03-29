@@ -3,6 +3,7 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import DataTable from "./PartTable/Table";
 import Search from './Search/Search'
+import SingleModal from './InsertPart/SingleModal'
 
 export default function Parts() {
     const url = "http://localhost:5000/inventory";
@@ -23,6 +24,11 @@ export default function Parts() {
         //  axios.post(url+"/modify?id="+part_id).then((response) => { });
     }
 
+    function addPart(row) {
+        //Axios.post('http://localhost:5000/inventory/insert', row)
+        console.log(row)
+    }
+
     useEffect(() => {
         refreshList();
     }, []);
@@ -31,13 +37,13 @@ export default function Parts() {
         <div>
             <h2>Part List</h2>
             <Button onClick={() => refreshList()}>Refresh</Button>
+            <SingleModal addPart={addPart} />
             <Search url={url} refreshList={refreshList} setList={setList} />
             <DataTable
                 list={list}
                 refreshList={refreshList}
                 removePart={removePart}
                 modifyPart={modifyPart}
-
             />
         </div>
     )

@@ -44,8 +44,8 @@ function CartModal(props) {
     props.setCart(newCart);
   }
 
-  function initInput() {
-    return (groupInfo.netID.length === 0 && (groupInfo.groupID === 0 || !groupInfo.groupID))
+  function valid() {
+    return groupInfo.netID.length === 9 && (groupInfo.groupID > 0 && groupInfo.groupID % 1 === 0)
   }
 
   function checkOut() {
@@ -95,7 +95,7 @@ function CartModal(props) {
               <input placeholder="netid" type="text" value={groupInfo.netID} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} />
               <input placeholder="groupid" type="number" value={groupInfo.groupID} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} />
             </div>}
-          {!initInput() && <h3>Invalid Input Format</h3>}
+          {!valid() && <h4>Input valid NetID and GroupID</h4>}
         </Modal.Body>
         <Modal.Footer>
           {error ? <h3>Invalid Quantity Field</h3> : <h3>Total : {total}</h3>}

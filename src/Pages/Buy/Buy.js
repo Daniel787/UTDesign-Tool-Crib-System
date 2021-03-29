@@ -10,10 +10,10 @@ import AddToCart from "./Components/GoToCart/GoToCart";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
-  // const url = "http://localhost:5000/inventory";
+  const url = "http://localhost:5000/inventory";
   const host = process.env.REACT_APP_SERVER_SITE;
   const port = process.env.REACT_APP_INVENTORY;
-  const url = host + port;
+  // const url = host + port;
   console.log(url);
   const [list, setList] = useState([]);
 
