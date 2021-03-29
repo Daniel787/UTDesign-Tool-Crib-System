@@ -4,14 +4,6 @@ import ConfirmationModal from "./Confirmation_Modal";
 
 function DataRow(props) {
   const [amount, setAmount] = useState(1);
-
-  const resetInput = () => {
-    setAmount(1);
-  };
-
-  const formStyle = {
-    width: "100%",
-  };
   return (
     <tr>
       <td> {props.item.part_id} </td>
@@ -21,7 +13,9 @@ function DataRow(props) {
       <td>
         <Form>
           <Form.Control
-            style={formStyle}
+            style={{
+              width: "100%",
+            }}
             value={amount}
             onChange={(e) => {
               setAmount(e.target.value);
@@ -34,7 +28,7 @@ function DataRow(props) {
           item={props.item}
           amount={parseInt(amount)}
           addToCart={props.addToCart}
-          reset={resetInput}
+          reset={() => { setAmount(1) }}
         />
       </td>
     </tr>
