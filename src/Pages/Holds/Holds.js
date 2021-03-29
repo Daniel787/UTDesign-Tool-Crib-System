@@ -5,7 +5,12 @@ import DataTable from "./Components/Table/Table";
 import RefreshList from "./Components/Refresh_List/RefreshList";
 
 export default function Holds() {
-  const url = "http://localhost:5000/student/holds";
+  // const url = "http://localhost:5000/student/holds";
+  const host = process.env.REACT_APP_SERVER_SITE;
+  const StudentRoute = process.env.REACT_APP_STUDENTS;
+  const HoldRoute = process.env.REACT_APP_HOLDS;
+  const url = host + StudentRoute + HoldRoute;
+  console.log(url);
   const [list, setList] = useState([]);
 
   function refreshList() {
