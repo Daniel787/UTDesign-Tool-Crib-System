@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Buy.module.css";
 import axios from "axios";
-import DataTable from "./Components/Tables/Table";
+import DataTable from "./Components/ItemTable/Table";
 import Search from "./Components/Search/Search";
-import CartModal from "./Components/Cart/Cart_Modal";
+import CartModal from "./Components/Cart/CartModal";
 import CSVDownload from "./Components/Download_CSV/CSVDownload";
 import RefreshList from "./Components/Refresh_List/RefreshList";
 
@@ -63,13 +63,8 @@ export default function Buy() {
         list={list}
       />
       <div className={styles.Parent}>
-        <RefreshList styles={styles} refreshList={refreshList} />
-        <CartModal
-          cart={cart}
-          styles={styles}
-          setCart={setCart}
-          refreshList={refreshList}
-        />
+        <RefreshList refreshList={refreshList} />
+        <CartModal cart={cart} setCart={setCart} refreshList={refreshList} />
         <CSVDownload styles={styles} />
       </div>
 

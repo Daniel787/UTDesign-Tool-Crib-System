@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import ConfirmationModal from "./Confirmation_Modal";
+import ConfirmationModal from "./ConfirmationModal";
 
 function DataRow(props) {
   const [amount, setAmount] = useState(1);

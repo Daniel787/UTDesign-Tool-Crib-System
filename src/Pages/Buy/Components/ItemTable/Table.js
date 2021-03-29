@@ -1,23 +1,16 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 
 import React from "react";
 import { Table } from "react-bootstrap";
 import Row from "./Row";
 
 function DataTable(props) {
-
-
+  const head = ["ID", "Name", "Stock", "Cost", "Quantity", "Add To Cart"]
   return (
     <div>
       <Table responsive hover>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Stock</th>
-            <th>Cost</th>
-            <th> Quantity </th>
-            <th> Add To Cart</th>
+            {head.map((el) => { return (<th>{el}</th>) })}
           </tr>
         </thead>
         <tbody>{

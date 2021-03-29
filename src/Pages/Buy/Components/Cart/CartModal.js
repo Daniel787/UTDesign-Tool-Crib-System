@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button, Table } from "react-bootstrap";
+import { Modal, Button } from "react-bootstrap";
+import styles from "../../Buy.module.css";
 import Axios from "axios";
+import CartTable from './CartTable'
 
 function CartModal(props) {
   const [total, setTotal] = useState(0);
@@ -70,7 +72,7 @@ function CartModal(props) {
 
   return (
     <div>
-      <Button className={props.styles.Container} variant="primary" onClick={() => { setCartShow(true) }}>
+      <Button className={styles.Container} variant="primary" onClick={() => { setCartShow(true) }}>
         Cart
       </Button>
       <Modal show={cartShow} onHide={() => { setCartShow(false) }}>
@@ -78,22 +80,7 @@ function CartModal(props) {
           <Modal.Title> Cart </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {props.cart.map((el, i) => {
-            return (
-              <div key={i}>
-                ID : {el.item.part_id} <br />
-                Name : {el.item.name} <br />
-                Quantity Wanted : <input
-                  type="number"
-                  value={el.quantity}
-                  onFocus={(e) => e.target.select()}
-                  onChange={(e) => changeQuantity(e, i)}
-                /><br />
-                Total : {el.total > 0 ? (el.item.quantity_available < el.quantity ? 'not enough in stock' : el.total) : 'invalid quantity'} <br />
-                <Button onClick={() => removeFromCart(i)}>Remove</Button>
-              </div>
-            );
-          })}
+          <CartTable cart={props.cart} removeFromCart={removeFromCart} changeQuantity={changeQuantity} />
           {props.cart.length > 0 &&
             <div>
               <input placeholder="netid" type="text" value={groupInfo.netID} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} />
