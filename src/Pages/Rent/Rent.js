@@ -10,7 +10,10 @@ import AddToCart from "./Components/GoToCart/GoToCart";
 
 export default function Rent() {
   const [cart, setCart] = React.useState([]);
-  const url = "http://localhost:5000/tools";
+  const Host = process.env.REACT_APP_SERVER_SITE;
+  const toolPort = process.env.REACT_APP_RENT;
+  // const url = "http://localhost:5000/tools";
+  const url = Host + toolPort;
   const [list, setList] = useState([]);
 
   const [cartShow, setCartShow] = useState(false);
