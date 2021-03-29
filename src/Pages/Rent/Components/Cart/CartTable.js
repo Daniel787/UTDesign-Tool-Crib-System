@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Table } from "react-bootstrap";
 
 export default function CartTable(props) {
-    const head = ["Name", "ID", "In Stock", "Quantity Wanted", "Total", "Remove"]
+    const head = ["Name", "ID", "Remove"]
     return (
         <div>
             <Table responsive hover>
@@ -16,16 +16,7 @@ export default function CartTable(props) {
                         return (
                             <tr key={i}>
                                 <td > {el.item.name} </td>
-                                <td>  {el.item.part_id} </td>
-                                <td>{el.item.quantity_available}</td>
-                                <td> <input
-                                    type="number"
-                                    value={el.quantity}
-                                    style={{ "width": "3rem" }}
-                                    onFocus={(e) => e.target.select()}
-                                    onChange={(e) => props.changeQuantity(e, i)}
-                                /></td>
-                                <td> {el.total > 0 ? (el.item.quantity_available < el.quantity ? 'too much' : el.total) : 'invalid quantity'} </td>
+                                <td>  {el.item.tool_id} </td>
                                 <td> <Button onClick={() => props.removeFromCart(i)}>Remove</Button></td>
                             </tr>
                         );

@@ -1,29 +1,19 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Rent.module.css";
 import axios from "axios";
-import DataTable from "./Components/Tables/Table";
+import DataTable from "./Components/ItemTable/Table";
 import Search from "./Components/Search/Search";
-import CartModal from "./Components/Modal/Cart_Modal";
+import CartModal from "./Components/Cart/CartModal";
 import CSVDownload from "./Components/Download_CSV/CSVDownload";
 import RefreshList from "./Components/Refresh_List/RefreshList";
-import AddToCart from "./Components/GoToCart/GoToCart";
 
 export default function Rent() {
   const [cart, setCart] = React.useState([]);
   const Host = process.env.REACT_APP_SERVER_SITE;
   const toolPort = process.env.REACT_APP_RENT;
-  // const url = "http://localhost:5000/tools";
-  const url = Host + toolPort;
+  const url = "http://localhost:5000/tools";
+  // const url = Host + toolPort;
   const [list, setList] = useState([]);
-
-  const [cartShow, setCartShow] = useState(false);
-
-  const handleClose = () => {
-    setCartShow(false);
-  };
-  const handleShow = () => {
-    setCartShow(true);
-  };
 
   function refreshList() {
     axios.get(url).then((response) => {
@@ -35,7 +25,7 @@ export default function Rent() {
     refreshList();
   }, []);
 
-  function addToCart(item, amount) {
+  function addToCart(item) {
     let exists = [...cart].map((el) => {
       return el.item.tool_id;
     });
@@ -47,29 +37,29 @@ export default function Rent() {
       });
     }
     setCart(newCart);
-    console.log(newCart);
+
     refreshList();
   }
   return (
     <div className={styles.Body}>
       <h1>Rent Page</h1>
+      <Search url={url} refreshList={refreshList} setList={setList} />
       <DataTable
         addToCart={addToCart}
         cart={cart}
         refreshList={refreshList}
         list={list}
       />
-      <div classname={styles.Parent}>
+      <div className={styles.Parent}>
         <RefreshList refreshList={refreshList} styles={styles} />
-        <AddToCart styles={styles} handleShow={handleShow} />
+        <CartModal
+          cart={cart}
+          setCart={setCart}
+          styles={styles}
+          refreshList={refreshList}
+        />
       </div>
-      <CartModal
-        cart={cart}
-        setCart={setCart}
-        cartShow={cartShow}
-        handleClose={handleClose}
-        refreshList={refreshList}
-      />
+
     </div>
   );
 }

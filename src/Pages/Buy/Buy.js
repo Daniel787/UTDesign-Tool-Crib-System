@@ -63,8 +63,8 @@ export default function Buy() {
         list={list}
       />
       <div className={styles.Parent}>
-        <RefreshList refreshList={refreshList} />
-        <CartModal cart={cart} setCart={setCart} refreshList={refreshList} />
+        <RefreshList styles={styles} refreshList={refreshList} />
+        <CartModal styles={styles} cart={cart} setCart={setCart} refreshList={refreshList} />
         <CSVDownload styles={styles} />
       </div>
 

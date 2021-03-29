@@ -4,7 +4,7 @@ import { Table } from "react-bootstrap";
 import Row from "./Row";
 
 function DataTable(props) {
-  const head = ["ID", "Name", "Stock", "Cost", "Quantity", "Add To Cart"]
+  const head = ["ID", "Name", "Status", "Add To Cart"]
   return (
     <div>
       <Table responsive hover>
@@ -14,9 +14,9 @@ function DataTable(props) {
           </tr>
         </thead>
         <tbody>{
-          props.list.map((item) => {
+          props.list.map((item, i) => {
             return (
-              <Row key={item.part_id} item={item} addToCart={props.addToCart} />
+              <Row key={item.tool_id} item={item} addToCart={props.addToCart} />
             );
           })
         }</tbody>

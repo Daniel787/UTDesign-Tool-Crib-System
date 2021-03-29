@@ -13,7 +13,9 @@ function Confirmation_Modal(props) {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary"
+        // disabled={!props.item.staus}
+        onClick={handleShow}>
         Add To Cart
       </Button>
 
@@ -23,7 +25,8 @@ function Confirmation_Modal(props) {
         </Modal.Header>
         <Modal.Body>
           {" "}
-          ID : {props.item.tool_id} <br /> Name : {props.item.name} <br />
+          ID : {props.item.tool_id} <br />
+          Name : {props.item.name} <br />{" "}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -33,8 +36,7 @@ function Confirmation_Modal(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.addToCart(props.item, props.amount);
-              props.reset();
+              props.addToCart(props.item);
               handleClose();
             }}
           >
