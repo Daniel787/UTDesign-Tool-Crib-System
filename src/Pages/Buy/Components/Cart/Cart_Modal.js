@@ -8,6 +8,7 @@ function CartModal(props) {
     groupID: 0,
     netID: "",
   });
+  const [cartShow, setCartShow] = useState(false);
   const [error, setError] = useState(false);
   function removeFromCart(index) {
     let newCart = [...props.cart];
@@ -69,7 +70,10 @@ function CartModal(props) {
 
   return (
     <div>
-      <Modal show={props.cartShow} onHide={props.handleClose}>
+      <Button className={props.styles.Container} variant="primary" onClick={() => { setCartShow(true) }}>
+        Cart
+      </Button>
+      <Modal show={cartShow} onHide={() => { setCartShow(false) }}>
         <Modal.Header closeButton>
           <Modal.Title> Cart </Modal.Title>
         </Modal.Header>
@@ -94,12 +98,13 @@ function CartModal(props) {
             <div>
               <input placeholder="netid" type="text" value={groupInfo.netID} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} />
               <input placeholder="groupid" type="number" value={groupInfo.groupID} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} />
+              {!valid() && <h4>Input valid NetID and GroupID</h4>}
             </div>}
-          {!valid() && <h4>Input valid NetID and GroupID</h4>}
+
         </Modal.Body>
         <Modal.Footer>
           {error ? <h3>Invalid Quantity Field</h3> : <h3>Total : {total}</h3>}
-          <Button variant="secondary" onClick={props.handleClose}>
+          <Button variant="secondary" onClick={() => { setCartShow(false) }}>
             {" "}
             Cancel{" "}
           </Button>
@@ -108,7 +113,7 @@ function CartModal(props) {
             disabled={groupInfo.netID.length !== 9 || !(groupInfo.groupID > 0) || error}
             onClick={() => {
               checkOut();
-              props.handleClose();
+              setCartShow(false);
             }}
           >
             {" "}

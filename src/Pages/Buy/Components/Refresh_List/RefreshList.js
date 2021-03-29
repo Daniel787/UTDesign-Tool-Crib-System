@@ -9,8 +9,7 @@ function RefreshList(props) {
         props.refreshList();
       }}
     >
-      {" "}
-      Refresh List{" "}
+      Refresh List
     </Button>
   );
 }

@@ -3,10 +3,9 @@ import styles from "./Buy.module.css";
 import axios from "axios";
 import DataTable from "./Components/Tables/Table";
 import Search from "./Components/Search/Search";
-import CartModal from "./Components/Modal/Cart_Modal";
+import CartModal from "./Components/Cart/Cart_Modal";
 import CSVDownload from "./Components/Download_CSV/CSVDownload";
 import RefreshList from "./Components/Refresh_List/RefreshList";
-import AddToCart from "./Components/GoToCart/GoToCart";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
@@ -16,15 +15,6 @@ export default function Buy() {
   // const url = host + port;
   console.log(url);
   const [list, setList] = useState([]);
-
-  const [cartShow, setCartShow] = useState(false);
-
-  const handleClose = () => {
-    setCartShow(false);
-  };
-  const handleShow = () => {
-    setCartShow(true);
-  };
 
   function refreshList() {
     axios.get(url).then((response) => {
@@ -74,16 +64,15 @@ export default function Buy() {
       />
       <div className={styles.Parent}>
         <RefreshList styles={styles} refreshList={refreshList} />
-        <AddToCart styles={styles} handleShow={handleShow} />
+        <CartModal
+          cart={cart}
+          styles={styles}
+          setCart={setCart}
+          refreshList={refreshList}
+        />
         <CSVDownload styles={styles} />
       </div>
-      <CartModal
-        cart={cart}
-        setCart={setCart}
-        cartShow={cartShow}
-        handleClose={handleClose}
-        refreshList={refreshList}
-      />
+
     </div>
   );
 }

@@ -4,13 +4,6 @@ import { Modal, Button } from "react-bootstrap";
 function Confirmation_Deltete(props) {
   const [show, setShow] = useState(false);
   const [row, setRow] = useState({ part_id: 0, name: '', quantity_available: 0, current_cost: 0 })
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow = () => {
-    setShow(true);
-
-  };
 
   function validID() {
     return row.part_id > 0 && row.part_id % 1 === 0
@@ -28,11 +21,11 @@ function Confirmation_Deltete(props) {
 
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={() => { setShow(true) }}>
         Insert One
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={() => { setShow(false) }}>
         <Modal.Header closeButton>
           <Modal.Title> Insert </Modal.Title>
         </Modal.Header>
@@ -57,7 +50,7 @@ function Confirmation_Deltete(props) {
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => { setShow(false) }}>
             {" "}
             Cancel{" "}
           </Button>
@@ -67,7 +60,7 @@ function Confirmation_Deltete(props) {
             onClick={() => {
               props.addPart(row)
               setRow({ part_id: 0, name: '', quantity_available: 0, current_cost: 0 })
-              handleClose();
+              setShow(false);
             }}
           >
             Confirm
