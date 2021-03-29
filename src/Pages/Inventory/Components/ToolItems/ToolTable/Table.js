@@ -6,7 +6,6 @@ import Row from "./Row";
 
 function DataTable(props) {
 
-
   return (
     <div>
       <Table responsive hover>
@@ -14,6 +13,7 @@ function DataTable(props) {
           <tr>
             <th>ID</th>
             <th>Name</th>
+            <th>Status</th>
             <th>Remove</th>
             <th>Modify</th>
           </tr>

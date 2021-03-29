@@ -8,6 +8,7 @@ function DataRow(props) {
     <tr>
       <td> {props.item.tool_id} </td>
       <td> {props.item.name} </td>
+      <td> {props.item.status} </td>
       <td>
         <ConfirmationDeltete
           item={props.item}
