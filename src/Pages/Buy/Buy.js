@@ -9,11 +9,12 @@ import RefreshList from "./Components/Refresh_List/RefreshList";
 
 export default function Buy() {
   const [cart, setCart] = React.useState([]);
-  const url = "http://localhost:5000/inventory";
+  // const url = "http://localhost:5000/inventory";
   const host = process.env.REACT_APP_SERVER_SITE;
   const port = process.env.REACT_APP_INVENTORY;
-  // const url = host + port;
-  console.log(url);
+  const port2 = process.env.REACT_APP_PARTS;
+  const url = host + port + port2;
+  console.log(port2);
   const [list, setList] = useState([]);
 
   function refreshList() {
@@ -64,10 +65,14 @@ export default function Buy() {
       />
       <div className={styles.Parent}>
         <RefreshList styles={styles} refreshList={refreshList} />
-        <CartModal styles={styles} cart={cart} setCart={setCart} refreshList={refreshList} />
+        <CartModal
+          styles={styles}
+          cart={cart}
+          setCart={setCart}
+          refreshList={refreshList}
+        />
         <CSVDownload styles={styles} />
       </div>
-
     </div>
   );
 }
