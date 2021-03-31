@@ -13,7 +13,11 @@ function Confirmation_Deltete(props) {
     return row.quantity_available > 0 && row.quantity_available % 1 === 0
   }
   function validCost() {
-    return row.current_cost > 0 && ((row.current_cost * 100) % 1) === 0
+    const dec = row.current_cost.toString().indexOf(".")
+    if (dec !== -1) {
+      return row.current_cost > 0 && (row.current_cost.toString().length - dec) <= 3
+    }
+    return row.current_cost > 0
   }
   function valid(params) {
     return (validID()) && row.name.length > 0 && (validQuantity()) && (validCost())
@@ -43,7 +47,7 @@ function Confirmation_Deltete(props) {
             {!validQuantity() && <h5>Enter Valid Quantity</h5>}
           </div>
           <div>
-            <label>Cost:</label> <input type="number" value={row.current_cost} onChange={e => setRow(prev => ({ ...prev, current_cost: (e.target.value) }))}></input>
+            <label>Cost:</label> <input type="number" value={row.current_cost} onChange={e => setRow(prev => ({ ...prev, current_cost: e.target.value }))}></input>
             {!validCost() && <h5>Enter Valid Cost</h5>}
           </div>
 
