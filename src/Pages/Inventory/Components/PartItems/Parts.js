@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
@@ -34,6 +35,11 @@ export default function Parts() {
     console.log(row);
   }
 
+  function addParts(sheet) {
+    //Axios.post('http://localhost:5000/inventory/insert', row)
+    console.log(sheet);
+  }
+
   useEffect(() => {
     refreshList();
   }, []);
@@ -43,7 +49,7 @@ export default function Parts() {
       <h2>Part List</h2>
       <Button onClick={() => refreshList()}>Refresh</Button>
       <SingleModal addPart={addPart} />
-      <MultiModal />
+      <MultiModal addParts={addParts} />
       <Search url={url} refreshList={refreshList} setList={setList} />
       <DataTable
         list={list}

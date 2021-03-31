@@ -35,6 +35,11 @@ export default function Tools() {
     console.log(row);
   }
 
+  function addTools(sheet) {
+    //Axios.post('http://localhost:5000/inventory/insert', row)
+    console.log(sheet);
+  }
+
   useEffect(() => {
     refreshList();
   }, []);
@@ -44,7 +49,7 @@ export default function Tools() {
       <h2>Tool List</h2>
       <Button onClick={() => refreshList()}>Refresh</Button>
       <SingleModal addPart={addTool} />
-      <MultiModal />
+      <MultiModal addTools={addTools} />
       <Search url={url} refreshList={refreshList} setList={setList} />
 
       <DataTable

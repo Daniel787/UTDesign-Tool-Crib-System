@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
   const [show, setShow] = useState(false);
-
+  const [sheet, setSheet] = useState(null)
 
   return (
     <div>
@@ -16,7 +16,8 @@ function Confirmation_Deltete(props) {
           <Modal.Title> Insert Sheet </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
+          <h3>Import a sheet</h3>
+          <input type="file" accept=".xlsx,.xls,.csv" onChange={(e) => setSheet(e.target.files[0])} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => { setShow(false) }}>
@@ -27,6 +28,8 @@ function Confirmation_Deltete(props) {
             variant="primary"
             onClick={() => {
               setShow(false)
+              props.addParts(sheet)
+              setSheet(null)
             }}
           >
             Confirm
