@@ -1,5 +1,5 @@
 .Container {
-  background-color: #28527a;
+  background-color: #c75b12;
 }
 
 .Brand {
@@ -8,7 +8,7 @@
 }
 
 .Navbar {
-  background-color: #28527a;
+  background-color: #c75b12;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -21,4 +21,8 @@
 
 p {
   color: white;
+}
+
+.btnGreen {
+  background-color: #69be28;
 }
