@@ -10,9 +10,9 @@ import MultiModal from "./InsertPart/MultiModal";
 export default function Parts() {
   // const url = "http://localhost:5000/inventory";
   const host = process.env.REACT_APP_SERVER_SITE;
-  const port = process.env.REACT_APP_INVENTORY;
-  const port2 = process.env.REACT_APP_PARTS;
-  const url = host + port + port2;
+  const inv = process.env.REACT_APP_INVENTORY;
+  const parts = process.env.REACT_APP_PARTS;
+  const url = host + inv + parts;
   const [list, setList] = useState([]);
   function refreshList() {
     axios.get(url).then((response) => {
@@ -22,22 +22,22 @@ export default function Parts() {
 
   function removePart(part_id) {
     console.log(part_id);
-    //  axios.post(url+"/delete?id="+part_id).then((response) => { });
+    //axios.post(url+"/delete?id="+part_id).then((response) => { });
   }
 
-  function modifyPart(part_id, quantity, price, name) {
-    console.log(part_id + " : " + quantity + " " + price);
-    //  axios.post(url+"/modify?id="+part_id).then((response) => { });
+  function modifyPart(new_part) {
+
+    console.log(new_part);
+    axios.post(url + "/modify" + new_part).then((response) => { });
   }
 
   function addPart(row) {
-    //Axios.post('http://localhost:5000/inventory/insert', row)
-    console.log(row);
+    axios.post(url + '/insert', row)
   }
 
   function addParts(sheet) {
-    //Axios.post('http://localhost:5000/inventory/insert', row)
-    console.log(sheet);
+    console.log(sheet)
+    axios.post(url + '/upload', sheet)
   }
 
   useEffect(() => {

@@ -25,19 +25,18 @@ export default function Tools() {
     //  axios.post(url+"/delete?id="+part_id).then((response) => { });
   }
 
-  function modifyPart(part_id, name) {
-    console.log(part_id);
-    //  axios.post(url+"/modify?id="+part_id).then((response) => { });
+  function modifyPart(new_tool) {
+    console.log(new_tool);
+    axios.post(url + "/modify" + new_tool).then((response) => { });
   }
 
   function addTool(row) {
-    //Axios.post('http://localhost:5000/inventory/insert', row)
-    console.log(row);
+    axios.post(url + '/insert', row)
   }
 
   function addTools(sheet) {
-    //Axios.post('http://localhost:5000/inventory/insert', row)
-    console.log(sheet);
+    axios.post(url + '/upload', sheet)
+    console.log(sheet)
   }
 
   useEffect(() => {

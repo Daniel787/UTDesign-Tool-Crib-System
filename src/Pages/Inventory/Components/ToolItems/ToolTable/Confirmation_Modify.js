@@ -35,7 +35,7 @@ function Confirmation_Deltete(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.modifyPart(props.item.tool_id, name);
+              props.modifyPart({ parrt_id: props.item.tool_id, name: name });
               handleClose();
             }}
           >
