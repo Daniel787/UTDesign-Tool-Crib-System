@@ -11,11 +11,23 @@ function Footer(props) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse>
         <Nav className={styles.links}>
-          <Button onClick={() => props.setToken(false)}>Made with React</Button>
+          <>
+            <style type="text/css">
+              {`
+          .btn-green {
+            background-color : #008542;
+            color : white;
+          }
+          `}
+            </style>
+            <Button variant="green" onClick={() => props.setToken(false)}>
+              Made with React
+            </Button>
+          </>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
   );
 }
 
-export default Footer; 
+export default Footer;
