@@ -9,11 +9,11 @@ import RefreshList from "./Components/Refresh_List/RefreshList";
 
 export default function Rent() {
   const [cart, setCart] = React.useState([]);
-  const Host = process.env.REACT_APP_SERVER_SITE;
+  const host = process.env.REACT_APP_SERVER_SITE;
   const inventoryPort = process.env.REACT_APP_INVENTORY;
   const toolPort = process.env.REACT_APP_RENT;
   //const url = "http://localhost:5000/tools";
-  const url = Host + inventoryPort + toolPort;
+  const url = host + inventoryPort + toolPort;
   const [list, setList] = useState([]);
 
   function refreshList() {

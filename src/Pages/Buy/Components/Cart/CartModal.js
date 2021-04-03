@@ -5,9 +5,12 @@ import CartTable from './CartTable'
 
 function CartModal(props) {
   const [total, setTotal] = useState(0);
+  const host = process.env.REACT_APP_SERVER_SITE;
+  const port = process.env.REACT_APP_INVENTORY;
+  const port2 = process.env.REACT_APP_PARTS;
   const [groupInfo, setgroupInfo] = useState({
-    groupID: 0,
-    netID: "",
+    group_id: 0,
+    net_id: "",
   });
   const [cartShow, setCartShow] = useState(false);
   const [error, setError] = useState(false);
@@ -47,14 +50,14 @@ function CartModal(props) {
   }
 
   function valid() {
-    return groupInfo.netID.length === 9 && (groupInfo.groupID > 0 && groupInfo.groupID % 1 === 0)
+    return groupInfo.net_id.length === 9 && (groupInfo.group_id > 0 && groupInfo.group_id % 1 === 0)
   }
 
   function checkOut() {
     const newObj = { cart: props.cart, customer: groupInfo };
     console.log(newObj);
 
-    Axios.post("http://localhost:5000/inventory/buy/", newObj).then(
+    Axios.post(host + port + port2 + "/buy", newObj).then(
       (response) => {
         console.log(response);
       },
@@ -64,7 +67,7 @@ function CartModal(props) {
     );
 
     props.setCart([]);
-    setgroupInfo({ groupID: 0, netID: "" });
+    setgroupInfo({ group_id: 0, net_id: "" });
     setError(false);
     props.refreshList();
   }
@@ -82,9 +85,9 @@ function CartModal(props) {
           <CartTable cart={props.cart} removeFromCart={removeFromCart} changeQuantity={changeQuantity} />
           {props.cart.length > 0 &&
             <div>
-              <input placeholder="netid" type="text" value={groupInfo.netID} onChange={e => setgroupInfo(prev => ({ ...prev, netID: e.target.value }))} />
-              <input placeholder="groupid" type="number" value={groupInfo.groupID} onChange={e => setgroupInfo(prev => ({ ...prev, groupID: e.target.value }))} />
-              {!valid() && <h4>Input valid NetID and GroupID</h4>}
+              <input placeholder="net_id" type="text" value={groupInfo.net_id} onChange={e => setgroupInfo(prev => ({ ...prev, net_id: e.target.value }))} />
+              <input placeholder="group_id" type="number" value={groupInfo.group_id} onChange={e => setgroupInfo(prev => ({ ...prev, group_id: e.target.value }))} />
+              {!valid() && <h4>Input valid net_id and group_id</h4>}
             </div>}
 
         </Modal.Body>
@@ -96,7 +99,7 @@ function CartModal(props) {
           </Button>
           <Button
             variant="primary"
-            disabled={groupInfo.netID.length !== 9 || !(groupInfo.groupID > 0) || error}
+            disabled={groupInfo.net_id.length !== 9 || !(groupInfo.group_id > 0) || error}
             onClick={() => {
               checkOut();
               setCartShow(false);
