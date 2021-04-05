@@ -6,18 +6,13 @@ import Row from "./Row";
 
 function DataTable(props) {
 
-
+  const head = ["ID", "Name", "Stock", "Cost", "Remove", "Modify"]
   return (
     <div>
       <Table responsive hover>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Stock</th>
-            <th>Cost</th>
-            <th>Remove</th>
-            <th>Modify</th>
+            {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
           </tr>
         </thead>
         <tbody>{

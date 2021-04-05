@@ -16,7 +16,7 @@ export default function SearchName(props) {
             <Button
                 disabled={namesearch.length === 0}
                 onClick={() => {
-                    props.search("/searchname?name=", namesearch);
+                    props.search("/search?name=", namesearch);
                     setNamesearch("")
                 }}
             >
