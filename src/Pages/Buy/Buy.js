@@ -14,7 +14,6 @@ export default function Buy() {
   const port = process.env.REACT_APP_INVENTORY;
   const port2 = process.env.REACT_APP_PARTS;
   const url = host + port + port2;
-  console.log(port2);
   const [list, setList] = useState([]);
 
   function refreshList() {

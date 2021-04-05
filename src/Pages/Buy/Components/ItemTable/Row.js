@@ -13,9 +13,7 @@ function DataRow(props) {
       <td>
         <Form>
           <Form.Control
-            style={{
-              width: "100%",
-            }}
+            style={{ "width": "3rem" }}
             value={amount}
             onChange={(e) => {
               setAmount(e.target.value);
