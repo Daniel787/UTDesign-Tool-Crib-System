@@ -13,6 +13,10 @@ export default function Parts() {
   const inv = process.env.REACT_APP_INVENTORY;
   const parts = process.env.REACT_APP_PARTS;
   const url = host + inv + parts;
+
+  const [showSingle, setShowSingle] = useState(false);
+  const [showMulti, setShowMulti] = useState(false);
+
   const [list, setList] = useState([]);
   function refreshList() {
     axios.get(url).then((response) => {
@@ -26,18 +30,17 @@ export default function Parts() {
   }
 
   function modifyPart(new_part) {
-
     console.log(new_part);
-    axios.post(url + "/modify" + new_part).then((response) => { });
+    axios.post(url + "/modify" + new_part).then((response) => {});
   }
 
   function addPart(row) {
-    axios.post(url + '/insert', row)
+    axios.post(url + "/insert", row);
   }
 
   function addParts(sheet) {
-    axios.post(url + '/upload', sheet)
-    console.log(sheet)
+    axios.post(url + "/upload", sheet);
+    console.log(sheet);
   }
 
   useEffect(() => {
@@ -47,9 +50,13 @@ export default function Parts() {
   return (
     <div>
       <h2>Part List</h2>
-      <Button onClick={() => refreshList()}>Refresh</Button>
-      <SingleModal addPart={addPart} />
-      <MultiModal addParts={addParts} />
+
+      <SingleModal
+        addPart={addPart}
+        show={showSingle}
+        setShow={setShowSingle}
+      />
+      <MultiModal addParts={addParts} show={showMulti} setShow={setShowMulti} />
       <Search url={url} refreshList={refreshList} setList={setList} />
       <DataTable
         list={list}
@@ -57,6 +64,7 @@ export default function Parts() {
         removePart={removePart}
         modifyPart={modifyPart}
       />
+      <Button onClick={() => refreshList()}>Refresh</Button>
     </div>
   );
 }
