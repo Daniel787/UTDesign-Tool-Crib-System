@@ -7,7 +7,6 @@ function Image(props) {
     <figure>
       <Link to={props.to}>
         <img className={styles.image} src={props.url} />
-        <figcaption> {props.cap} </figcaption>
       </Link>
     </figure>
   );

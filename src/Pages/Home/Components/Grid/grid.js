@@ -1,10 +1,12 @@
 import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 import Holds from "../../../Holds/Holds.js";
 import Image from "./image.js";
-import buy from "./Images/buy.jpg";
-import rent from "./Images/rent.jpeg";
-import holds from "./Images/holds.jpg";
-import { Container, Row, Col } from "react-bootstrap";
+import buy from "./Images/buy.png";
+import rent from "./Images/rent.png";
+import holds from "./Images/holds.png";
+import expenses from "./Images/expenses.png";
+import inventory from "./Images/inventory.png";
 
 function grid() {
   return (
@@ -12,15 +14,23 @@ function grid() {
       <Container>
         <Row>
           <Col>
-            <Image url={buy} to="/buy" cap="buy" />
+            <Image url={buy} to="/buy" />
           </Col>
           <Col>
-            <Image url={rent} to="/rent" cap="rent" />
+            <Image url={rent} to="/rent" />
+          </Col>
+          <Col>
+            <Image url={holds} to="/holds" />
           </Col>
         </Row>
         <Row>
+          <Col md={1}> </Col>
           <Col>
-            <Image url={holds} to="/holds" cap="holds" />
+            <Image url={expenses} to="/expenses" />
+          </Col>
+          <Col md={1}></Col>
+          <Col>
+            <Image url={inventory} to="/inventory" />
           </Col>
         </Row>
       </Container>

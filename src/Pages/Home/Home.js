@@ -7,6 +7,7 @@ function home() {
   return (
     <div className={styles.Body}>
       <h1>Home Page</h1>
+      {/*
       <ul>
         <li>
           <Link to={"/buy"}>Buy Page</Link>
@@ -27,6 +28,7 @@ function home() {
           <Link to={"/prints"}>Print Page</Link>
         </li>
       </ul>
+      */}
       <Grid />
     </div>
   );
