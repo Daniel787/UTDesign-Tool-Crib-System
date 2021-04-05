@@ -4,13 +4,6 @@ import { Modal, Button } from "react-bootstrap";
 function Confirmation_Deltete(props) {
   const [show, setShow] = useState(false);
   const [row, setRow] = useState({ tool_id: 0, name: '' })
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow = () => {
-    setShow(true);
-
-  };
 
   function validID() {
     return row.tool_id > 0 && row.tool_id % 1 === 0
