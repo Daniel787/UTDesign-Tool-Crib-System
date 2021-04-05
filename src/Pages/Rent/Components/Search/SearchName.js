@@ -12,12 +12,12 @@ export default function SearchName(props) {
                 placeholder="By Name"
                 value={namesearch}
                 onChange={(e) => setNamesearch(e.target.value)}
+                onFocus={e => e.target.select()}
             ></input>
             <Button
                 disabled={namesearch.length === 0}
                 onClick={() => {
                     props.search("/search?name=", namesearch);
-                    setNamesearch("")
                 }}
             >
                 Search

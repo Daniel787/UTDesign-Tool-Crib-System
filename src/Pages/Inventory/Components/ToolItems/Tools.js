@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import DataTable from "./ToolTable/Table";
-import Search from "../Search/Search";
+import Search from "./Search/Search";
 import SingleModal from "./InsertTool/SingleModal";
 import MultiModal from "./InsertTool/MultiModal";
 
@@ -36,7 +36,6 @@ export default function Tools() {
 
   function addTools(sheet) {
     axios.post(url + '/upload', sheet)
-    console.log(sheet)
   }
 
   useEffect(() => {

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Button } from "react-bootstrap";
 import DataTable from "./PartTable/Table";
-import Search from "../Search/Search";
+import Search from "./Search/Search";
 import SingleModal from "./InsertPart/SingleModal";
 import MultiModal from "./InsertPart/MultiModal";
 
@@ -36,7 +36,6 @@ export default function Parts() {
   }
 
   function addParts(sheet) {
-    console.log(sheet)
     axios.post(url + '/upload', sheet)
   }
 

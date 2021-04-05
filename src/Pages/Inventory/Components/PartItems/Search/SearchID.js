@@ -11,7 +11,7 @@ export default function SearchID(props) {
             <input
                 type="number"
                 placeholder="By Part ID"
-                value={idsearch}
+                value={idsearch ? idsearch : null}
                 onChange={(e) => setIdsearch(e.target.value)}
                 onFocus={e => e.target.select()}
             ></input>
@@ -22,7 +22,7 @@ export default function SearchID(props) {
                 }}
             >
                 Search
-        </Button>
+            </Button>
         </div>
     )
 }
