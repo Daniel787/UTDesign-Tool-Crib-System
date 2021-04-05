@@ -43,15 +43,6 @@ function Confirmation_Deltete(props) {
 
   return (
     <div>
-      <Button
-        variant="primary"
-        onClick={() => {
-          props.setShow(true);
-        }}
-      >
-        Insert Sheet
-      </Button>
-
       <Modal
         show={props.show}
         onHide={() => {

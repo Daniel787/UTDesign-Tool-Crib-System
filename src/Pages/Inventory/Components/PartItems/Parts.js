@@ -6,6 +6,7 @@ import DataTable from "./PartTable/Table";
 import Search from "./Search/Search";
 import SingleModal from "./InsertPart/SingleModal";
 import MultiModal from "./InsertPart/MultiModal";
+import styles from "./parts.module.css";
 
 export default function Parts() {
   // const url = "http://localhost:5000/inventory";
@@ -49,8 +50,6 @@ export default function Parts() {
 
   return (
     <div>
-      <h2>Part List</h2>
-
       <SingleModal
         addPart={addPart}
         show={showSingle}
@@ -64,7 +63,29 @@ export default function Parts() {
         removePart={removePart}
         modifyPart={modifyPart}
       />
-      <Button onClick={() => refreshList()}>Refresh</Button>
+      <div className={styles.Parent}>
+        <Button className={styles.Container} onClick={() => refreshList()}>
+          Refresh
+        </Button>
+        <Button
+          variant="primary"
+          className={styles.Container}
+          onClick={() => {
+            setShowMulti(true);
+          }}
+        >
+          Insert Sheet
+        </Button>
+        <Button
+          variant="primary"
+          className={styles.Container}
+          onClick={() => {
+            setShowSingle(true);
+          }}
+        >
+          Insert One
+        </Button>
+      </div>
     </div>
   );
 }
