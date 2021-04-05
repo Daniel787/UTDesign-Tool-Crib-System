@@ -4,38 +4,33 @@ import { Modal, Button } from "react-bootstrap";
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => {
-    setShow(false);
-  };
-  const handleShow = () => {
-    setShow(true);
-  };
-
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" onClick={() => { setShow(true) }}>
         Add To Cart
       </Button>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={() => { setShow(false) }}>
         <Modal.Header closeButton>
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {" "}
-          ID : {props.item.tool_id} <br /> Name : {props.item.name} <br />
+          ID : {props.item.net_id} <br />
+          Name : {props.item.name} <br />
+          {/* {props.item.map((el, i) => { return <div key={i}>Tool ID : {el.tool_id}</div> })} */}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => { setShow(false) }}>
             {" "}
             Cancel{" "}
           </Button>
           <Button
             variant="primary"
             onClick={() => {
-              props.addToCart(props.item, props.amount);
-              props.reset();
-              handleClose();
+
+              // props.removeHold(props.item.net_id)
+              setShow(false)
             }}
           >
             {" "}

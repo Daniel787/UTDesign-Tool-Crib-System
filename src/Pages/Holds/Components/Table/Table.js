@@ -1,33 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 
-import React, { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import React from "react";
+import { Table } from "react-bootstrap";
 import Row from "./Row";
 
 function DataTable(props) {
-  const [displayList, setDisplayList] = useState([]);
-
-  useEffect(() => {
-    setDisplayList(() =>
-      props.list.map((item) => {
-        return (
-          <Row key={item.net_id} item={item} addToCart={props.addToCart} />
-        );
-      })
-    );
-  }, [props.list, props.cart]);
-
+  const head = ["Net ID", "Name", "Email", "UTD ID", "Rentals", "Hold"]
   return (
     <div>
       <Table responsive hover>
         <thead>
           <tr>
-            <th>NetID</th>
-            <th>Email</th>
-            <th> Manually Remove Hold</th>
+            {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
           </tr>
         </thead>
-        <tbody>{displayList}</tbody>
+        <tbody>
+          {props.list.map((item) => {
+            return (
+              <Row key={item.net_id} item={item} removeHold={props.removeHold} />
+            );
+          })}</tbody>
       </Table>
     </div>
   );

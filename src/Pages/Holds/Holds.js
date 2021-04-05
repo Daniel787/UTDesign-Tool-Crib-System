@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Holds.module.css";
@@ -16,9 +17,13 @@ export default function Holds() {
   function refreshList() {
     axios.get(url).then((response) => {
       setList(response.data);
+      console.log(response.data)
     });
   }
 
+  function removeHold(id) {
+    console.log(id)
+  }
   useEffect(() => {
     refreshList();
   }, []);
@@ -26,7 +31,7 @@ export default function Holds() {
   return (
     <div className={styles.Body}>
       <h1>Holds Page</h1>
-      <DataTable list={list} refreshList={refreshList} />
+      <DataTable list={list} refreshList={refreshList} removeHold={removeHold} />
       <RefreshList styles={styles} refreshList={refreshList} />
     </div>
   );
