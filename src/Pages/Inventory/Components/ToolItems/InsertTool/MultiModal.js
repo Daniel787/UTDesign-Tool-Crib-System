@@ -19,7 +19,7 @@ function Confirmation_Deltete(props) {
       /* Convert array of arrays */
       const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
       /* Update state */
-      props.addParts(convertToJson(data))
+      props.addTools(convertToJson(data))
     };
     reader.readAsBinaryString(file);
   }
@@ -28,7 +28,7 @@ function Confirmation_Deltete(props) {
     // skips empty lines
     var lines = csv.split("\n").filter((el) => el);
     var result = [];
-    var headers = lines[0].split(",");
+    var headers = ["tool_id", "name"];
     for (var i = 1; i < lines.length; i++) {
       var obj = {};
       var currentline = lines[i].split(",");

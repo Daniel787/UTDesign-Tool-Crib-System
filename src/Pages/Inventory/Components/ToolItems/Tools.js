@@ -47,7 +47,7 @@ export default function Tools() {
     <div>
       <h2>Tool List</h2>
       <Button onClick={() => refreshList()}>Refresh</Button>
-      <SingleModal addPart={addTool} />
+      <SingleModal addTool={addTool} />
       <MultiModal addTools={addTools} />
       <Search url={url} refreshList={refreshList} setList={setList} />
 

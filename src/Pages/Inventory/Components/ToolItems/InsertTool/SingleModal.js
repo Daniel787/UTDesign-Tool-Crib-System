@@ -51,7 +51,7 @@ function Confirmation_Deltete(props) {
             variant="primary"
             disabled={!valid()}
             onClick={() => {
-              props.addPart(row)
+              props.addTool(row)
               setRow({ tool_id: 0, name: '' })
               setShow(false)
             }}
