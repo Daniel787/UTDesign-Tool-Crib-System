@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import styles from "./grid.module.css";
 import Holds from "../../../Holds/Holds.js";
 import Image from "./image.js";
 import buy from "./Images/buy.png";
@@ -11,7 +12,7 @@ import inventory from "./Images/inventory.png";
 function grid() {
   return (
     <div>
-      <Container>
+      <Container className={styles.grid}>
         <Row>
           <Col>
             <Image url={buy} to="/buy" />
