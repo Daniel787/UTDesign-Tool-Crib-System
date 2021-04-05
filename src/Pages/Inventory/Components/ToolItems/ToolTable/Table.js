@@ -5,7 +5,7 @@ import { Table } from "react-bootstrap";
 import Row from "./Row";
 
 function DataTable(props) {
-  const head = ["ID", "Name", "Status", "Group ID", "Net ID", "Student", "Date Info", "Remove", "Modify"]
+  const head = ["ID", "Name", "Status", "Student", "Date Info", "Remove", "Modify"]
   return (
     <div>
       <Table responsive hover>

@@ -3,7 +3,7 @@ import styles from "./Search.module.css";
 import { Button } from "react-bootstrap";
 
 export default function SearchID(props) {
-    const [idsearch, setIdsearch] = useState(0);
+    const [idsearch, setIdsearch] = useState(null);
 
     return (
         <div className={styles.container}>
@@ -13,13 +13,12 @@ export default function SearchID(props) {
                 placeholder="By Part ID"
                 value={idsearch}
                 onChange={(e) => setIdsearch(e.target.value)}
+                onFocus={e => e.target.select()}
             ></input>
             <Button
                 disabled={idsearch === 0 || !idsearch || idsearch % 1 > 0}
                 onClick={() => {
-                    props.search("/search?id=", idsearch);
-                    setIdsearch(0)
-
+                    props.search("/search?tool_id=", idsearch);
                 }}
             >
                 Search

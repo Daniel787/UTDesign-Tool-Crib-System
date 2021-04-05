@@ -19,7 +19,7 @@ function DataRow(props) {
       <td>{props.item.status === "Available" ?
         <> - </> :
         <>
-          Checkout Date: {props.item.checkout_date} <br />
+          Out Date: {props.item.checkout_date} <br />
           Due Date: {props.item.due_date}
         </>}
       </td>
