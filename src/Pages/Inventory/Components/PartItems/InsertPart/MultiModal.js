@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 
 function Confirmation_Deltete(props) {
   const [show, setShow] = useState(false);
-  const [file, setFile] = useState(null)
+  const [file, setFile] = useState(null);
 
   function readFile() {
     const reader = new FileReader();
@@ -19,7 +19,7 @@ function Confirmation_Deltete(props) {
       /* Convert array of arrays */
       const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
       /* Update state */
-      props.addParts(convertToJson(data))
+      props.addParts(convertToJson(data));
     };
     reader.readAsBinaryString(file);
   }
@@ -43,38 +43,40 @@ function Confirmation_Deltete(props) {
 
   return (
     <div>
-      <Button variant="primary" onClick={() => { setShow(true) }}>
-        Insert Sheet
-      </Button>
-
-      <Modal show={show} onHide={() => { setShow(false) }}>
+      <Modal
+        show={props.show}
+        onHide={() => {
+          props.setShow(false);
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title> Insert Sheet </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <h3>Import a sheet</h3>
-          <input
-            type="file"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
+          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => { setShow(false) }}>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              props.setShow(false);
+            }}
+          >
             {" "}
             Cancel{" "}
           </Button>
           <Button
             variant="primary"
             onClick={() => {
-              setShow(false)
-              readFile()
+              props.setShow(false);
+              readFile();
             }}
           >
             Confirm
           </Button>
         </Modal.Footer>
       </Modal>
-
     </div>
   );
 }

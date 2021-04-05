@@ -29,6 +29,8 @@ function home() {
         </li>
       </ul>
       */}
+      <br />
+      <br />
       <Grid />
     </div>
   );
