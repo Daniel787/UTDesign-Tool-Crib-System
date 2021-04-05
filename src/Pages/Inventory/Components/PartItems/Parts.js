@@ -37,6 +37,7 @@ export default function Parts() {
 
   function addParts(sheet) {
     axios.post(url + '/upload', sheet)
+    console.log(sheet)
   }
 
   useEffect(() => {

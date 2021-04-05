@@ -3,15 +3,14 @@ import styles from "./Search.module.css";
 import { Button } from "react-bootstrap";
 
 export default function SearchID(props) {
-    const [idsearch, setIdsearch] = useState(null);
+    const [idsearch, setIdsearch] = useState(undefined);
 
     return (
         <div className={styles.container}>
-            {/*  <label>By Part ID: </label>{" "} */}
             <input
                 type="number"
                 placeholder="By Part ID"
-                value={idsearch ? idsearch : null}
+                value={idsearch}
                 onChange={(e) => setIdsearch(e.target.value)}
                 onFocus={e => e.target.select()}
             ></input>
