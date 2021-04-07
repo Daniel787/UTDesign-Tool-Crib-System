@@ -2,41 +2,58 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
-  const [show, setShow] = useState(false);
-  const [row, setRow] = useState({ tool_id: 0, name: '' })
+  const [row, setRow] = useState({ tool_id: 0, name: "" });
 
   function validID() {
-    return row.tool_id > 0 && row.tool_id % 1 === 0
+    return row.tool_id > 0 && row.tool_id % 1 === 0;
   }
 
-
   function valid(params) {
-    return (validID()) && row.name.length > 0
+    return validID() && row.name.length > 0;
   }
 
   return (
     <div>
-      <Button variant="primary" onClick={() => { setShow(true) }}>
-        Insert One
-      </Button>
-
-      <Modal show={show} onHide={() => { setShow(false) }}>
+      <Modal
+        show={props.show}
+        onHide={() => {
+          props.setShow(false);
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title> Insert </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
-            <label>Tool ID:</label> <input type="number" value={row.tool_id} onChange={e => setRow(prev => ({ ...prev, tool_id: (e.target.value) }))}></input>
+            <label>Tool ID:</label>{" "}
+            <input
+              type="number"
+              value={row.tool_id}
+              onChange={(e) =>
+                setRow((prev) => ({ ...prev, tool_id: e.target.value }))
+              }
+            ></input>
             {!validID() && <h5>Enter Valid ID</h5>}
           </div>
           <div>
-            <label>Name:</label> <input type="text" value={row.name} onChange={e => setRow(prev => ({ ...prev, name: e.target.value }))}></input>
+            <label>Name:</label>{" "}
+            <input
+              type="text"
+              value={row.name}
+              onChange={(e) =>
+                setRow((prev) => ({ ...prev, name: e.target.value }))
+              }
+            ></input>
             {!row.name.length > 0 && <h5>Enter Valid Name</h5>}
           </div>
-
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => { setShow(false) }}>
+          <Button
+            variant="secondary"
+            onClick={() => {
+              props.setShow(false);
+            }}
+          >
             {" "}
             Cancel{" "}
           </Button>
@@ -44,9 +61,9 @@ function Confirmation_Deltete(props) {
             variant="primary"
             disabled={!valid()}
             onClick={() => {
-              props.addTool(row)
-              setRow({ tool_id: 0, name: '' })
-              setShow(false)
+              props.addTool(row);
+              setRow({ tool_id: 0, name: "" });
+              props.setShow(false);
             }}
           >
             Confirm

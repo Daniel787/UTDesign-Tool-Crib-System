@@ -6,6 +6,7 @@ import DataTable from "./ToolTable/Table";
 import Search from "./Search/Search";
 import SingleModal from "./InsertTool/SingleModal";
 import MultiModal from "./InsertTool/MultiModal";
+import styles from "./tools.module.css";
 
 export default function Tools() {
   // const url = "http://localhost:5000/tools";
@@ -15,6 +16,10 @@ export default function Tools() {
 
   const url = serverSite + inventoryRoute + toolRoute;
   const [list, setList] = useState([]);
+
+  const [showSingle, setShowSingle] = useState(false);
+  const [showMulti, setShowMulti] = useState(false);
+
   function refreshList() {
     axios.get(url).then((response) => {
       setList(response.data);
@@ -28,15 +33,15 @@ export default function Tools() {
 
   function modifyPart(new_tool) {
     console.log(new_tool);
-    axios.post(url + "/modify" + new_tool).then((response) => { });
+    axios.post(url + "/modify" + new_tool).then((response) => {});
   }
 
   function addTool(row) {
-    axios.post(url + '/insert', row)
+    axios.post(url + "/insert", row);
   }
 
   function addTools(sheet) {
-    axios.post(url + '/upload', sheet)
+    axios.post(url + "/upload", sheet);
   }
 
   useEffect(() => {
@@ -46,9 +51,13 @@ export default function Tools() {
   return (
     <div>
       <h2>Tool List</h2>
-      <Button onClick={() => refreshList()}>Refresh</Button>
-      <SingleModal addTool={addTool} />
-      <MultiModal addTools={addTools} />
+
+      <SingleModal
+        addTool={addTool}
+        show={showSingle}
+        setShow={setShowSingle}
+      />
+      <MultiModal addTools={addTools} show={showMulti} setShow={setShowMulti} />
       <Search url={url} refreshList={refreshList} setList={setList} />
 
       <DataTable
@@ -57,6 +66,29 @@ export default function Tools() {
         removePart={removePart}
         modifyPart={modifyPart}
       />
+      <div className={styles.Parent}>
+        <Button className={styles.Container} onClick={() => refreshList()}>
+          Refresh
+        </Button>
+        <Button
+          className={styles.Container}
+          variant="primary"
+          onClick={() => {
+            setShowMulti(true);
+          }}
+        >
+          Insert Sheet
+        </Button>
+        <Button
+          className={styles.Container}
+          variant="primary"
+          onClick={() => {
+            setShowSingle(true);
+          }}
+        >
+          Insert One
+        </Button>
+      </div>
     </div>
   );
 }
