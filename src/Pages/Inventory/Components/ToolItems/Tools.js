@@ -50,8 +50,6 @@ export default function Tools() {
 
   return (
     <div>
-      <h2>Tool List</h2>
-
       <SingleModal
         addTool={addTool}
         show={showSingle}
