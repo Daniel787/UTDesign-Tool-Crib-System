@@ -33,7 +33,7 @@ export default function Tools() {
 
   function modifyPart(new_tool) {
     console.log(new_tool);
-    axios.post(url + "/modify" + new_tool).then((response) => {});
+    axios.post(url + "/modify", new_tool).then((response) => { });
   }
 
   function addTool(row) {

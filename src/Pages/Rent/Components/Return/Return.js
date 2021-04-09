@@ -13,7 +13,7 @@ function Return(props) {
   };
 
   function returnItem(item) {
-    axios.post(props.url + "return/?id=" + parseInt(item)).then((result) => { })
+    axios.post(props.url + "/return?tool_id=" + parseInt(item)).then((result) => { })
   }
 
   return (
@@ -29,7 +29,6 @@ function Return(props) {
         </Modal.Header>
         <Modal.Body>
           Item ID : <input type="number" onChange={(e) => setid(e.target.value)} />
-          <Button disabled={!(id > 0)} onClick={() => returnItem()}>Return</Button>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -37,8 +36,10 @@ function Return(props) {
           </Button>
           <Button
             variant="primary"
+            disabled={!(id > 0)}
             onClick={() => {
               handleClose();
+              returnItem(id)
               setid(null)
             }}
           >
