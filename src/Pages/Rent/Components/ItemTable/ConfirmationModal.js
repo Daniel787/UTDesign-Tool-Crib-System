@@ -14,7 +14,7 @@ function Confirmation_Modal(props) {
   return (
     <div>
       <Button variant="primary"
-        // disabled={!props.item.staus}
+        disabled={props.item.status !== "Available"}
         onClick={handleShow}>
         Add To Cart
       </Button>
@@ -35,6 +35,7 @@ function Confirmation_Modal(props) {
           </Button>
           <Button
             variant="primary"
+
             onClick={() => {
               props.addToCart(props.item);
               handleClose();

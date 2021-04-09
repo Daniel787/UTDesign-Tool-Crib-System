@@ -3,7 +3,6 @@ import { Modal, Button } from "react-bootstrap";
 import * as XLSX from "xlsx";
 
 function Confirmation_Deltete(props) {
-  const [show, setShow] = useState(false);
   const [file, setFile] = useState(null);
 
   function readFile() {
@@ -28,14 +27,16 @@ function Confirmation_Deltete(props) {
     // skips empty lines
     var lines = csv.split("\n").filter((el) => el);
     var result = [];
-    var headers = ["part_id", "name", "quantity_available", "current_cost"];
+    var headers = ["part_id", "name", "current_cost", "quantity_available"];
     for (var i = 1; i < lines.length; i++) {
       var obj = {};
       var currentline = lines[i].split(",");
-      for (var j = 0; j < headers.length; j++) {
-        obj[headers[j]] = currentline[j];
+      if (currentline[0].length > 0) {
+        for (var j = 0; j < headers.length; j++) {
+          obj[headers[j]] = currentline[j];
+        }
+        result.push(obj);
       }
-      result.push(obj);
     }
     //return result; //JavaScript object
     return JSON.stringify(result); //JSON

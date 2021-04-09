@@ -31,10 +31,12 @@ function Confirmation_Deltete(props) {
     for (var i = 1; i < lines.length; i++) {
       var obj = {};
       var currentline = lines[i].split(",");
-      for (var j = 0; j < headers.length; j++) {
-        obj[headers[j]] = currentline[j];
+      if (currentline[0].length > 0) {
+        for (var j = 0; j < headers.length; j++) {
+          obj[headers[j]] = currentline[j];
+        }
+        result.push(obj);
       }
-      result.push(obj);
     }
     //return result; //JavaScript object
     return JSON.stringify(result); //JSON

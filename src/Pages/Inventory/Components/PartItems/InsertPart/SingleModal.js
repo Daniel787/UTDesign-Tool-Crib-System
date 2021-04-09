@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
-  const [show, setShow] = useState(false);
   const [row, setRow] = useState({
     part_id: 0,
     name: "",
