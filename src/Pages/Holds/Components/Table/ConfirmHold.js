@@ -7,7 +7,7 @@ function Confirmation_Modal(props) {
   return (
     <div>
       <Button variant="primary" onClick={() => { setShow(true) }}>
-        Add To Cart
+        Change
       </Button>
 
       <Modal show={show} onHide={() => { setShow(false) }}>

@@ -32,7 +32,7 @@ export default function Parts() {
 
   function modifyPart(new_part) {
     console.log(new_part);
-    axios.post(url + "/modify" + new_part).then((response) => {});
+    axios.post(url + "/modify", new_part).then((response) => { });
   }
 
   function addPart(row) {

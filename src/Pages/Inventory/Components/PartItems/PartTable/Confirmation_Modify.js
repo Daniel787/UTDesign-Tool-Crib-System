@@ -47,7 +47,7 @@ function Confirmation_Deltete(props) {
             variant="primary"
             disabled={!(valid()) || name.length === 0}
             onClick={() => {
-              props.modifyPart({ part_id: props.item.part_id, name: name, new_quantity: quantity, new_price: price });
+              props.modifyPart({ part_id: props.item.part_id, name: name, quantity_available: quantity, current_cost: price });
               handleClose();
             }}
           >

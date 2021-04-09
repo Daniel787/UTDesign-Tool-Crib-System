@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
 
-function Confirmation_Modal(props) {
+function Return(props) {
   const [show, setShow] = useState(false);
-
+  const [id, setid] = useState(null)
   const handleClose = () => {
     setShow(false);
   };
@@ -11,12 +12,15 @@ function Confirmation_Modal(props) {
     setShow(true);
   };
 
+  function returnItem(item) {
+    axios.post(props.url + "/return?tool_id=" + parseInt(item)).then((result) => { })
+  }
+
   return (
     <div>
       <Button variant="primary"
-        disabled={props.item.status !== "Available"}
         onClick={handleShow}>
-        Add To Cart
+        Return Item
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -24,21 +28,19 @@ function Confirmation_Modal(props) {
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {" "}
-          ID : {props.item.tool_id} <br />
-          Name : {props.item.name} <br />{" "}
+          Item ID : <input type="number" onChange={(e) => setid(e.target.value)} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            {" "}
-            Cancel{" "}
+            Cancel
           </Button>
           <Button
             variant="primary"
-
+            disabled={!(id > 0)}
             onClick={() => {
-              props.addToCart(props.item);
               handleClose();
+              returnItem(id)
+              setid(null)
             }}
           >
             {" "}
@@ -50,4 +52,4 @@ function Confirmation_Modal(props) {
   );
 }
 
-export default Confirmation_Modal;
+export default Return;

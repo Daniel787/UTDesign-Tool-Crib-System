@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import styles from "./Rent.module.css";
 import axios from "axios";
@@ -6,6 +7,7 @@ import Search from "./Components/Search/Search";
 import CartModal from "./Components/Cart/CartModal";
 import CSVDownload from "./Components/Download_CSV/CSVDownload";
 import RefreshList from "./Components/Refresh_List/RefreshList";
+import Return from './Components/Return/Return'
 
 export default function Rent() {
   const [cart, setCart] = React.useState([]);
@@ -45,6 +47,7 @@ export default function Rent() {
     <div className={styles.Body}>
       <h1>Rent Page</h1>
       <Search url={url} refreshList={refreshList} setList={setList} />
+      <Return url={url} />
       <DataTable
         addToCart={addToCart}
         cart={cart}
