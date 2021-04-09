@@ -18,10 +18,10 @@ function Btn(props) {
       "&csv=true";
     console.log(obj);
     Axios.get(props.url + obj).then((response) => {
+      console.log(response.headers["content-disposition"]);
       DownloadJS(
         response.data,
-        response.headers.Date.getFullYear().toString() +
-          props.startDate.getFullYear().toString() +
+        props.startDate.getFullYear().toString() +
           "_" +
           props.endDate.getFullYear().toString() +
           ".csv"
