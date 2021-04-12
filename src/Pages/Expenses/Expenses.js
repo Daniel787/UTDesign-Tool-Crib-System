@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Expenses.module.css";
-import Downloadbtn from "./Components/Button/DownloadButtonSimple.js";
+import Downloadbtn from "./Components/Button/DownloadButton.js";
+import Axios from "axios";
+import TableTab from "./Components/Tab/Tab.js";
 export default function Expenses() {
   const [dateStart, setDateStart] = useState(null);
   const [dateEnd, setDateEnd] = useState(null);
@@ -9,6 +11,12 @@ export default function Expenses() {
 
   const simpleCSVURL = "/simple";
   const simpleDownload = baseURL + expenseURL + simpleCSVURL;
+
+  const mediumCSVURL = "/medium";
+  const mediumDownload = baseURL + expenseURL + mediumCSVURL;
+
+  const fullCSVURL = "/full";
+  const fullDownload = baseURL + expenseURL + fullCSVURL;
 
   function handleStart(event) {
     let d = new Date(event.target.value);
@@ -19,12 +27,29 @@ export default function Expenses() {
     let d = new Date(event.target.value);
     setDateEnd(d);
   }
+
+  function CondTable() {
+    if (dateStart && dateEnd) {
+      return (
+        <TableTab
+          simpleURL={simpleDownload}
+          mediumURL={mediumDownload}
+          fullURL={fullDownload}
+          startDate={dateStart}
+          endDate={dateEnd}
+        />
+      );
+    } else {
+      return <div> </div>;
+    }
+  }
+
   return (
     <div className={styles.Body}>
       <h1>Expenses Page</h1>
-
       <input type="date" name="date-start" onChange={handleStart} />
-      <input type="date" name="date-end" onChange={handleEnd} />
+      <input type="date" name="date-end" onChange={handleEnd} /> {}
+      <CondTable />
       <div>
         <Downloadbtn
           url={simpleDownload}
@@ -32,8 +57,18 @@ export default function Expenses() {
           endDate={dateEnd}
           display="Simple"
         />
-        <Downloadbtn url="" display="Medium" />
-        <Downloadbtn url="" display="Full" />
+        <Downloadbtn
+          url={mediumDownload}
+          startDate={dateStart}
+          endDate={dateEnd}
+          display="Medium"
+        />
+        <Downloadbtn
+          url={fullDownload}
+          startDate={dateStart}
+          endDate={dateEnd}
+          display="Full"
+        />
       </div>
     </div>
   );
