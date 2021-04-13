@@ -25,11 +25,12 @@ function grid() {
           </Col>
         </Row>
         <Row>
-          <Col md={1}> </Col>
           <Col>
             <Image url={expenses} to="/expenses" />
           </Col>
-          <Col md={1}></Col>
+          <Col>
+            <Image url={expenses} to="/groups" />
+          </Col>
           <Col>
             <Image url={inventory} to="/inventory" />
           </Col>
