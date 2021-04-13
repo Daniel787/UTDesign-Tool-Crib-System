@@ -33,7 +33,7 @@ function DataRow(props) {
       <td>
         <ConfirmationModify
           item={props.item}
-          modifyPart={props.modifyPart}
+          modifyTool={props.modifyTool}
         />
       </td>
     </tr>

@@ -6,7 +6,7 @@ import FailInsert from './FailInsert'
 export default function ErrorSheet(props) {
     function handleDup(index, overwrite) {
         if (overwrite) {
-            props.modifyPart(props.status.conflictinserts.new[index])
+            props.modifyTool(props.status.conflictinserts.new[index])
         }
         let removeNew = [...props.status.conflictinserts.new]
         removeNew.splice(index, 1)
@@ -21,7 +21,7 @@ export default function ErrorSheet(props) {
     }
     function handleFail(index, row) {
         if (row) {
-            props.addPart(row)
+            props.addTool(row)
         }
         let fails = [...props.status.failedinserts]
         fails.splice(index, 1)
