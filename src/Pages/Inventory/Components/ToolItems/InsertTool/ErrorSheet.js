@@ -12,7 +12,7 @@ export default function ErrorSheet(props) {
         removeNew.splice(index, 1)
         let removeOld = [...props.status.conflictinserts.old]
         removeOld.splice(index, 1)
-        if (removeNew.length === 0 && props.status.failedinserts.length === 0 && props.status.numduplicate > 0) {
+        if (removeNew.length === 0 && props.status.failedinserts.length === 0 && props.status.numduplicate === 0) {
             props.setStatus(null)
         } else {
             props.setStatus(prev => ({ ...prev, conflictinserts: { new: removeNew, old: removeOld } }))
@@ -42,7 +42,7 @@ export default function ErrorSheet(props) {
                 </Modal.Header>
                 {props.status && <div>
                     <Modal.Body>
-                        <h3>There were {props.status.numduplicate} rows that were duplicates</h3>
+                        {props.status.numduplicate > 0 && <h3>There were {props.status.numduplicate} rows that were duplicates</h3>}
                         <DupInsert status={props.status} handleDup={handleDup} />
                         <FailInsert status={props.status} handleFail={handleFail} />
                     </Modal.Body>

@@ -8,6 +8,12 @@ export default function FailRow(props) {
         quantity_available: props.item.quantity_available,
         current_cost: props.item.current_cost,
     });
+    function validID(input) {
+        if (!isNaN(input)) {
+            return parseInt(input) > 0 && input.indexOf(".") === -1;
+        }
+        else return false
+    }
 
     function validQuantity(input) {
         if (!isNaN(input)) {
@@ -29,12 +35,16 @@ export default function FailRow(props) {
     }
     function validName(input) {
         return input.length > 0
-
     }
 
     return (
         <tr>
-            <td>{row.part_id}</td>
+            <td><input
+                value={row.part_id}
+                onFocus={e => e.target.select()}
+                style={{ "width": "4rem" }}
+                onChange={(e) => setRow((prev) => ({ ...prev, part_id: e.target.value }))} />
+                {!validID(row.part_id) && <h5>Invalid</h5>}</td>
             <td><input
                 value={row.name}
                 onFocus={e => e.target.select()}
@@ -49,11 +59,13 @@ export default function FailRow(props) {
             <td><input
                 value={row.current_cost}
                 onFocus={e => e.target.select()}
-                style={{ "width": "3rem" }}
+                style={{ "width": "4rem" }}
                 onChange={(e) => setRow((prev) => ({ ...prev, current_cost: e.target.value }))} />
                 {!validCost(row.current_cost) && <h5>Invalid</h5>}</td>
             <td>
-                <Button onClick={() => props.handleFail(props.index, row)}>Reprocess</Button> <br />
+                <Button
+                    disabled={!validID(row.part_id) || !validName(row.name) || !validQuantity(row.quantity_available) || !validCost(row.current_cost)}
+                    onClick={() => props.handleFail(props.index, row)}>Reprocess</Button>
                 <Button onClick={() => props.handleFail(props.index)}>Remove</Button></td>
         </tr>
     )
