@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from "react-bootstrap";
 
 export default function FailRow(props) {
@@ -6,6 +6,13 @@ export default function FailRow(props) {
         tool_id: props.item.tool_id,
         name: props.item.name,
     });
+
+    useEffect(() => {
+        setRow({
+            tool_id: props.item.tool_id,
+            name: props.item.name,
+        })
+    }, [props.item])
 
     function validID(input) {
         if (!isNaN(input)) {

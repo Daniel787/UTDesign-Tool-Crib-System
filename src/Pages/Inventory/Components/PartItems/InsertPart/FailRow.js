@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from "react-bootstrap";
 
 export default function FailRow(props) {
@@ -8,6 +8,16 @@ export default function FailRow(props) {
         quantity_available: props.item.quantity_available,
         current_cost: props.item.current_cost,
     });
+
+    useEffect(() => {
+        setRow({
+            part_id: props.item.part_id,
+            name: props.item.name,
+            quantity_available: props.item.quantity_available,
+            current_cost: props.item.current_cost,
+        })
+    }, [props.item])
+
     function validID(input) {
         if (!isNaN(input)) {
             return parseInt(input) > 0 && input.indexOf(".") === -1;

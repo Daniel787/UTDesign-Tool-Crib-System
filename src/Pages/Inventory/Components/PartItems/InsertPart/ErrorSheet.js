@@ -17,21 +17,19 @@ export default function ErrorSheet(props) {
         } else {
             props.setStatus(prev => ({ ...prev, conflictinserts: { new: removeNew, old: removeOld } }))
         }
-
     }
+
     function handleFail(index, row) {
         if (row) {
             props.addPart(row)
         }
         let fails = [...props.status.failedinserts]
         fails.splice(index, 1)
-        if (fails.length === 0 && props.status.conflictinserts.new.length === 0) {
+        if (fails.length === 0 && props.status.conflictinserts.new.length === 0 && props.status.numduplicate === 0) {
             props.setStatus(null)
         } else {
             props.setStatus(prev => ({ ...prev, failedinserts: fails }))
         }
-
-
     }
 
     return (

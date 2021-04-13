@@ -25,13 +25,11 @@ export default function ErrorSheet(props) {
         }
         let fails = [...props.status.failedinserts]
         fails.splice(index, 1)
-        if (fails.length === 0 && props.status.conflictinserts.new.length === 0) {
+        if (fails.length === 0 && props.status.conflictinserts.new.length === 0 && props.status.numduplicate === 0) {
             props.setStatus(null)
         } else {
             props.setStatus(prev => ({ ...prev, failedinserts: fails }))
         }
-
-
     }
 
     return (
