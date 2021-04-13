@@ -39,7 +39,7 @@ function Confirmation_Deltete(props) {
       }
     }
     //return result; //JavaScript object
-    return JSON.stringify(result); //JSON
+    return (result); //JSON
   }
 
   return (

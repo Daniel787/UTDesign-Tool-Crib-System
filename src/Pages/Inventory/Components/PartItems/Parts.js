@@ -7,6 +7,7 @@ import Search from "./Search/Search";
 import SingleModal from "./InsertPart/SingleModal";
 import MultiModal from "./InsertPart/MultiModal";
 import styles from "./parts.module.css";
+import ErrorSheet from './InsertPart/ErrorSheet'
 
 export default function Parts() {
   // const url = "http://localhost:5000/inventory";
@@ -17,6 +18,7 @@ export default function Parts() {
 
   const [showSingle, setShowSingle] = useState(false);
   const [showMulti, setShowMulti] = useState(false);
+  const [status, setStatus] = useState(null)
 
   const [list, setList] = useState([]);
   function refreshList() {
@@ -27,21 +29,32 @@ export default function Parts() {
 
   function removePart(part_id) {
     console.log(part_id);
-    //axios.post(url+"/delete?id="+part_id).then((response) => { });
+    axios.post(url + "/delete?part_id=" + part_id).then((response) => { });
   }
 
   function modifyPart(new_part) {
     console.log(new_part);
-    axios.post(url + "/modify", new_part).then((response) => { });
+    axios.post(url + "/modify", new_part).then((response) => {
+
+    });
   }
 
   function addPart(row) {
+    console.log(row)
     axios.post(url + "/insert", row);
   }
 
   function addParts(sheet) {
-    axios.post(url + "/upload", sheet);
-    console.log(sheet);
+    axios.post(url + "/upload", sheet).then(response => {
+      console.log(response.data)
+      if (response.data === "SUCCESS") {
+        setStatus(null)
+      }
+      else {
+        setStatus(response.data)
+      }
+
+    });
   }
 
   useEffect(() => {
@@ -50,6 +63,7 @@ export default function Parts() {
 
   return (
     <div>
+      <ErrorSheet status={status} setStatus={setStatus} addPart={addPart} modifyPart={modifyPart} />
       <SingleModal
         addPart={addPart}
         show={showSingle}

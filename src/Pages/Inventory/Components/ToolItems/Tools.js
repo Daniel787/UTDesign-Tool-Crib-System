@@ -26,9 +26,9 @@ export default function Tools() {
     });
   }
 
-  function removePart(part_id) {
-    console.log(part_id);
-    //  axios.post(url+"/delete?id="+part_id).then((response) => { });
+  function removePart(tool_id) {
+    console.log(tool_id);
+    axios.post(url + "/delete?tool_id=" + tool_id).then((response) => { });
   }
 
   function modifyPart(new_tool) {
