@@ -43,6 +43,18 @@ export default function Expenses() {
       return <div> </div>;
     }
   }
+  function CondButton(props) {
+    if (dateStart && dateEnd) {
+      return (
+        <Downloadbtn
+          url={simpleDownload}
+          startDate={dateStart}
+          endDate={dateEnd}
+          display={props.type}
+        />
+      );
+    } else return <div> </div>;
+  }
 
   return (
     <div className={styles.Body}>
@@ -51,24 +63,9 @@ export default function Expenses() {
       <input type="date" name="date-end" onChange={handleEnd} /> {}
       <CondTable />
       <div>
-        <Downloadbtn
-          url={simpleDownload}
-          startDate={dateStart}
-          endDate={dateEnd}
-          display="Simple"
-        />
-        <Downloadbtn
-          url={mediumDownload}
-          startDate={dateStart}
-          endDate={dateEnd}
-          display="Medium"
-        />
-        <Downloadbtn
-          url={fullDownload}
-          startDate={dateStart}
-          endDate={dateEnd}
-          display="Full"
-        />
+        <CondButton type="Simple" />
+        <CondButton type="Medium" />
+        <CondButton type="Full" />
       </div>
     </div>
   );
