@@ -51,7 +51,7 @@ export default function Tools() {
 
   return (
     <div>
-      <ErrorSheet status={status} setStatus={setStatus} addTool={addTool} modifyTool={modifyTool} />
+      <ErrorSheet status={status} setStatus={setStatus} addTools={addTools} modifyTool={modifyTool} />
       <SingleModal
         addTool={addTool}
         show={showSingle}

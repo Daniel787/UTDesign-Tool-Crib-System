@@ -1,22 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Button } from "react-bootstrap";
 
 export default function FailRow(props) {
-    const [row, setRow] = useState({
-        part_id: props.item.part_id,
-        name: props.item.name,
-        quantity_available: props.item.quantity_available,
-        current_cost: props.item.current_cost,
-    });
-
-    useEffect(() => {
-        setRow({
-            part_id: props.item.part_id,
-            name: props.item.name,
-            quantity_available: props.item.quantity_available,
-            current_cost: props.item.current_cost,
-        })
-    }, [props.item])
 
     function validID(input) {
         if (!isNaN(input)) {
@@ -50,32 +35,32 @@ export default function FailRow(props) {
     return (
         <tr>
             <td><input
-                value={row.part_id}
+                value={props.item.part_id}
                 onFocus={e => e.target.select()}
                 style={{ "width": "4rem" }}
-                onChange={(e) => setRow((prev) => ({ ...prev, part_id: e.target.value }))} />
-                {!validID(row.part_id) && <h5>Invalid</h5>}</td>
+                onChange={e => { props.handleFail(props.index, { ...props.item, part_id: e.target.value }) }} />
+                {!validID(props.item.part_id) && <h5>Invalid</h5>}</td>
             <td><input
-                value={row.name}
+                value={props.item.name}
                 onFocus={e => e.target.select()}
-                onChange={(e) => setRow((prev) => ({ ...prev, name: e.target.value }))} />
-                {!validName(row.name) && <h5>Enter Valid Name</h5>}</td>
+                onChange={e => { props.handleFail(props.index, { ...props.item, name: e.target.value }) }}
+            />
+                {!validName(props.item.name) && <h5>Enter Valid Name</h5>}</td>
             <td><input
-                value={row.quantity_available}
+                value={props.item.quantity_available}
                 onFocus={e => e.target.select()}
                 style={{ "width": "3rem" }}
-                onChange={(e) => setRow((prev) => ({ ...prev, quantity_available: e.target.value, }))} />
-                {!validQuantity(row.quantity_available) && <h5>Invalid</h5>}</td>
+                onChange={e => { props.handleFail(props.index, { ...props.item, quantity_available: e.target.value }) }}
+            />
+                {!validQuantity(props.item.quantity_available) && <h5>Invalid</h5>}</td>
             <td><input
-                value={row.current_cost}
+                value={props.item.current_cost}
                 onFocus={e => e.target.select()}
                 style={{ "width": "4rem" }}
-                onChange={(e) => setRow((prev) => ({ ...prev, current_cost: e.target.value }))} />
-                {!validCost(row.current_cost) && <h5>Invalid</h5>}</td>
+                onChange={e => { props.handleFail(props.index, { ...props.item, current_cost: e.target.value }) }}
+            />
+                {!validCost(props.item.current_cost) && <h5>Invalid</h5>}</td>
             <td>
-                <Button
-                    disabled={!validID(row.part_id) || !validName(row.name) || !validQuantity(row.quantity_available) || !validCost(row.current_cost)}
-                    onClick={() => props.handleFail(props.index, row)}>Reprocess</Button>
                 <Button onClick={() => props.handleFail(props.index)}>Remove</Button></td>
         </tr>
     )

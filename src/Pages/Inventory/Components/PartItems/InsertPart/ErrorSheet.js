@@ -20,15 +20,17 @@ export default function ErrorSheet(props) {
     }
 
     function handleFail(index, row) {
-        if (row) {
-            props.addPart(row)
-        }
         let fails = [...props.status.failedinserts]
-        fails.splice(index, 1)
-        if (fails.length === 0 && props.status.conflictinserts.new.length === 0 && props.status.numduplicate === 0) {
-            props.setStatus(null)
-        } else {
+        if (row !== null) {
+            fails[index] = row
             props.setStatus(prev => ({ ...prev, failedinserts: fails }))
+        } else {
+            fails.splice(index, 1)
+            if (fails.length === 0 && props.status.conflictinserts.new.length === 0 && props.status.numduplicate === 0) {
+                props.setStatus(null)
+            } else {
+                props.setStatus(prev => ({ ...prev, failedinserts: fails }))
+            }
         }
     }
 
@@ -40,13 +42,20 @@ export default function ErrorSheet(props) {
                 </Modal.Header>
                 {props.status && <div>
                     <Modal.Body>
-                        {props.status.numduplicate > 0 && <h3>There were {props.status.numduplicate} rows that were duplicates</h3>}
+                        {props.status.numduplicate > 0 && <h3>{props.status.numduplicate} duplicates rows <br />
+                            <Button onClick={() => (props.setStatus({ ...props.status, numduplicate: 0 }))}>OK</Button></h3>}
                         <DupInsert status={props.status} handleDup={handleDup} />
                         <FailInsert status={props.status} handleFail={handleFail} />
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => props.setStatus(null)}>
                             Ignore Errors
+                        </Button>
+                        <Button
+                            variant="primary"
+                            disabled={props.status.conflictinserts.new.length > 0}
+                            onClick={() => { props.addParts(props.status.failedinserts); props.setStatus(null) }}>
+                            Reprocess
                         </Button>
                     </Modal.Footer>
                 </div>}

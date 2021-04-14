@@ -28,25 +28,21 @@ export default function Parts() {
   }
 
   function removePart(part_id) {
-    console.log(part_id);
     axios.post(url + "/delete?part_id=" + part_id).then((response) => { });
   }
 
   function modifyPart(new_part) {
-    console.log(new_part);
     axios.post(url + "/modify", new_part).then((response) => {
 
     });
   }
 
   function addPart(row) {
-    console.log(row)
     axios.post(url + "/insert", row);
   }
 
   function addParts(sheet) {
     axios.post(url + "/upload", sheet).then(response => {
-      console.log(response.data)
       if (response.data === "SUCCESS") {
         setStatus(null)
       }
@@ -63,7 +59,7 @@ export default function Parts() {
 
   return (
     <div>
-      <ErrorSheet status={status} setStatus={setStatus} addPart={addPart} modifyPart={modifyPart} />
+      <ErrorSheet status={status} setStatus={setStatus} addParts={addParts} modifyPart={modifyPart} />
       <SingleModal
         addPart={addPart}
         show={showSingle}
