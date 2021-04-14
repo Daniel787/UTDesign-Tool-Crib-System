@@ -3,7 +3,7 @@ import FailRow from './FailRow'
 import { Table } from "react-bootstrap";
 
 export default function FailInsert(props) {
-    const head = ["ID", "Name", "Reprocess"]
+    const head = ["ID", "Name", "Remove"]
     return (
         <div>
             <h3>Failed Inserts</h3>
