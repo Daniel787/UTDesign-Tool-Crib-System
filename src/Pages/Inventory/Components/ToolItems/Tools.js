@@ -6,6 +6,7 @@ import DataTable from "./ToolTable/Table";
 import Search from "./Search/Search";
 import SingleModal from "./InsertTool/SingleModal";
 import MultiModal from "./InsertTool/MultiModal";
+import ErrorSheet from './InsertTool/ErrorSheet'
 import styles from "./tools.module.css";
 
 export default function Tools() {
@@ -16,7 +17,7 @@ export default function Tools() {
 
   const url = serverSite + inventoryRoute + toolRoute;
   const [list, setList] = useState([]);
-
+  const [status, setStatus] = useState(null)
   const [showSingle, setShowSingle] = useState(false);
   const [showMulti, setShowMulti] = useState(false);
 
@@ -26,12 +27,12 @@ export default function Tools() {
     });
   }
 
-  function removePart(part_id) {
-    console.log(part_id);
-    //  axios.post(url+"/delete?id="+part_id).then((response) => { });
+  function removePart(tool_id) {
+    console.log(tool_id);
+    axios.post(url + "/delete?tool_id=" + tool_id).then((response) => { });
   }
 
-  function modifyPart(new_tool) {
+  function modifyTool(new_tool) {
     console.log(new_tool);
     axios.post(url + "/modify", new_tool).then((response) => { });
   }
@@ -50,6 +51,7 @@ export default function Tools() {
 
   return (
     <div>
+      <ErrorSheet status={status} setStatus={setStatus} addTools={addTools} modifyTool={modifyTool} />
       <SingleModal
         addTool={addTool}
         show={showSingle}
@@ -62,7 +64,7 @@ export default function Tools() {
         list={list}
         refreshList={refreshList}
         removePart={removePart}
-        modifyPart={modifyPart}
+        modifyTool={modifyTool}
       />
       <div className={styles.Parent}>
         <Button className={styles.Container} onClick={() => refreshList()}>

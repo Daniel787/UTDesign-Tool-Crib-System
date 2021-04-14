@@ -17,7 +17,7 @@ function DataTable(props) {
         <tbody>{
           props.list.map((item) => {
             return (
-              <Row key={item.tool_id} removePart={props.removePart} modifyPart={props.modifyPart} item={item} />
+              <Row key={item.tool_id} removePart={props.removePart} modifyTool={props.modifyTool} item={item} />
             );
           })
         }</tbody>
