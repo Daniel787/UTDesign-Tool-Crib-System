@@ -6,13 +6,14 @@ import FailInsert from './FailInsert'
 export default function ErrorSheet(props) {
     function handleDup(index, overwrite) {
         if (overwrite) {
-            props.modifyTool(props.status.conflictinserts.new[index])
+            const item = { ...props.status.conflictinserts.new[index] }
+            props.modifyTool(item)
         }
         let removeNew = [...props.status.conflictinserts.new]
         removeNew.splice(index, 1)
         let removeOld = [...props.status.conflictinserts.old]
         removeOld.splice(index, 1)
-        if (removeNew.length === 0 && props.status.failedinserts.length === 0 && props.status.numduplicate === 0) {
+        if (removeNew.length === 0 && props.status.failedinserts.length === 0) {
             props.setStatus(null)
         } else {
             props.setStatus(prev => ({ ...prev, conflictinserts: { new: removeNew, old: removeOld } }))
@@ -26,7 +27,7 @@ export default function ErrorSheet(props) {
             props.setStatus(prev => ({ ...prev, failedinserts: fails }))
         } else {
             fails.splice(index, 1)
-            if (fails.length === 0 && props.status.conflictinserts.new.length === 0 && props.status.numduplicate === 0) {
+            if (fails.length === 0 && props.status.conflictinserts.new.length === 0) {
                 props.setStatus(null)
             } else {
                 props.setStatus(prev => ({ ...prev, failedinserts: fails }))
@@ -42,8 +43,6 @@ export default function ErrorSheet(props) {
                 </Modal.Header>
                 {props.status && <div>
                     <Modal.Body>
-                        {props.status.numduplicate > 0 && <h3>{props.status.numduplicate} duplicates rows <br />
-                            <Button onClick={() => (props.setStatus({ ...props.status, numduplicate: 0 }))}>OK</Button></h3>}
                         {props.status.conflictinserts.new.length > 0 && <DupInsert status={props.status} handleDup={handleDup} />}
                         {props.status.failedinserts.length > 0 && <FailInsert status={props.status} handleFail={handleFail} />}
                     </Modal.Body>
@@ -54,7 +53,7 @@ export default function ErrorSheet(props) {
                         <Button
                             variant="primary"
                             disabled={props.status.conflictinserts.new.length > 0}
-                            onClick={() => { props.addTool(props.status.failedinserts); props.setStatus(null) }}>
+                            onClick={() => { props.addTools(props.status.failedinserts); props.setStatus(null) }}>
                             Reprocess
                         </Button>
                     </Modal.Footer>

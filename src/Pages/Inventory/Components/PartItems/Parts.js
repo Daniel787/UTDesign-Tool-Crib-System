@@ -38,7 +38,15 @@ export default function Parts() {
   }
 
   function addPart(row) {
-    axios.post(url + "/insert", row);
+    axios.post(url + "/insert", row).then(response => {
+      if (response.data === "SUCCESS") {
+        setStatus(null)
+      }
+      else {
+        setStatus(response.data)
+      }
+
+    });
   }
 
   function addParts(sheet) {

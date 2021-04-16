@@ -38,11 +38,29 @@ export default function Tools() {
   }
 
   function addTool(row) {
-    axios.post(url + "/insert", row);
+    axios.post(url + "/insert", row).then(response => {
+      if (response.data === "SUCCESS") {
+        setStatus(null)
+      }
+      else {
+        setStatus(response.data)
+      }
+
+    });
   }
 
   function addTools(sheet) {
-    axios.post(url + "/upload", sheet);
+    console.log(sheet)
+    axios.post(url + "/upload", sheet).then(response => {
+      console.log(response.data)
+      if (response.data === "SUCCESS") {
+        setStatus(null)
+      }
+      else {
+        setStatus(response.data)
+      }
+
+    });
   }
 
   useEffect(() => {

@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
 export default function DupInsert(props) {
-    const head = ["Current ID", "Current Name", "New ID", "New Name", "Overwrite"]
+    const head = ["ID", "Current Name", "New Name", "Overwrite"]
     return (
         <div>
             <h3>Conflict Inserts</h3>
@@ -19,11 +19,10 @@ export default function DupInsert(props) {
                             <tr key={i}>
                                 <td> {props.status.conflictinserts.old[i].tool_id}</td>
                                 <td> {props.status.conflictinserts.old[i].name}</td>
-                                <td> {props.status.conflictinserts.new[i].tool_id}</td>
                                 <td> {props.status.conflictinserts.new[i].name}</td>
                                 <td>
-                                    <Button onClick={() => props.handleDup(i, true)}>Yes</Button> <br />
-                                    <Button onClick={() => props.handleDup(i, false)}>No</Button>
+                                    <Button onClick={() => props.handleDup(i, true)}>Merge</Button> <br />
+                                    <Button onClick={() => props.handleDup(i, false)}>Remove</Button>
                                 </td>
                             </tr>
                         );
