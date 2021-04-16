@@ -2,7 +2,6 @@ import React from 'react'
 import { Button } from "react-bootstrap";
 
 export default function FailRow(props) {
-
     function validID(input) {
         if (!isNaN(input)) {
             return parseInt(input) > 0 && input.indexOf(".") === -1;
@@ -31,7 +30,6 @@ export default function FailRow(props) {
     function validName(input) {
         return input.length > 0
     }
-
     return (
         <tr>
             <td><input

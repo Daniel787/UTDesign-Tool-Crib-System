@@ -41,7 +41,7 @@ function CartModal(props) {
 
   function changeQuantity(event, index) {
     let newCart = [...props.cart];
-    const value = parseInt(event.target.value);
+    const value = event.target.value ? parseInt(event.target.value) : "";
     newCart[index].quantity = value;
     newCart[index].total = parseFloat(
       newCart[index].quantity * parseFloat(newCart[index].item.current_cost)

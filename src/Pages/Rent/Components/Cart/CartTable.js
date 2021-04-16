@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Table } from "react-bootstrap";
 
 export default function CartTable(props) {
-    const head = ["Name", "ID", "Remove"]
+    const head = ["Name", "ID", "Hours", "Remove"]
     return (
         <div>
             <Table responsive hover>
@@ -17,6 +17,13 @@ export default function CartTable(props) {
                             <tr key={i}>
                                 <td > {el.item.name} </td>
                                 <td>  {el.item.tool_id} </td>
+                                <td>  <input
+                                    type="number"
+                                    value={el.item.hours}
+                                    style={{ "width": "3rem" }}
+                                    onFocus={(e) => e.target.select()}
+                                    onChange={(e) => props.modifyCart(e, i)}
+                                /></td>
                                 <td> <Button onClick={() => props.removeFromCart(i)}>Remove</Button></td>
                             </tr>
                         );
@@ -26,3 +33,4 @@ export default function CartTable(props) {
         </div>
     );
 }
+//<CartRow key={i} el={el} index={i} removeFromCart={props.removeFromCart()} />

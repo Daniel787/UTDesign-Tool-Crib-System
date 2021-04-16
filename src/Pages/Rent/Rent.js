@@ -5,7 +5,6 @@ import axios from "axios";
 import DataTable from "./Components/ItemTable/Table";
 import Search from "./Components/Search/Search";
 import CartModal from "./Components/Cart/CartModal";
-import CSVDownload from "./Components/Download_CSV/CSVDownload";
 import RefreshList from "./Components/Refresh_List/RefreshList";
 import Return from './Components/Return/Return'
 
@@ -28,7 +27,7 @@ export default function Rent() {
     refreshList();
   }, []);
 
-  function addToCart(item) {
+  function addToCart(item, hours) {
     let exists = [...cart].map((el) => {
       return el.item.tool_id;
     });
@@ -36,11 +35,10 @@ export default function Rent() {
     let index = exists.indexOf(item.tool_id);
     if (index < 0) {
       newCart.push({
-        item: item,
+        item: Object.assign(item, { hours: hours })
       });
     }
     setCart(newCart);
-
     refreshList();
   }
   return (

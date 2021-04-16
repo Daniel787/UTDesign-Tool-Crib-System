@@ -21,7 +21,7 @@ export default function ErrorSheet(props) {
     }
     function handleFail(index, row) {
         let fails = [...props.status.failedinserts]
-        if (row) {
+        if (row !== undefined) {
             fails[index] = row
             props.setStatus(prev => ({ ...prev, failedinserts: fails }))
         } else {
@@ -44,8 +44,8 @@ export default function ErrorSheet(props) {
                     <Modal.Body>
                         {props.status.numduplicate > 0 && <h3>{props.status.numduplicate} duplicates rows <br />
                             <Button onClick={() => (props.setStatus({ ...props.status, numduplicate: 0 }))}>OK</Button></h3>}
-                        <DupInsert status={props.status} handleDup={handleDup} />
-                        <FailInsert status={props.status} handleFail={handleFail} />
+                        {props.status.conflictinserts.new.length > 0 && <DupInsert status={props.status} handleDup={handleDup} />}
+                        {props.status.failedinserts.length > 0 && <FailInsert status={props.status} handleFail={handleFail} />}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => props.setStatus(null)}>
