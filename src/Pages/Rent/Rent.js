@@ -3,17 +3,13 @@ import React, { useState, useEffect } from "react";
 import styles from "./Rent.module.css";
 import axios from "axios";
 import DataTable from "./Components/ItemTable/Table";
-import Search from "./Components/Search/Search";
-import CartModal from "./Components/Cart/CartModal";
-import RefreshList from "./Components/Refresh_List/RefreshList";
-import Return from './Components/Return/Return'
+import Head from './Components/Head/Head'
 
 export default function Rent() {
   const [cart, setCart] = React.useState([]);
   const host = process.env.REACT_APP_SERVER_SITE;
   const inventoryPort = process.env.REACT_APP_INVENTORY;
   const toolPort = process.env.REACT_APP_RENT;
-  //const url = "http://localhost:5000/tools";
   const url = host + inventoryPort + toolPort;
   const [list, setList] = useState([]);
 
@@ -27,40 +23,22 @@ export default function Rent() {
     refreshList();
   }, []);
 
-  function addToCart(item, hours) {
-    let exists = [...cart].map((el) => {
-      return el.item.tool_id;
-    });
-    let newCart = [...cart];
-    let index = exists.indexOf(item.tool_id);
-    if (index < 0) {
-      newCart.push({
-        item: Object.assign(item, { hours: hours })
-      });
-    }
-    setCart(newCart);
-    refreshList();
-  }
   return (
     <div className={styles.Body}>
       <h1>Rent Page</h1>
-      <Search url={url} refreshList={refreshList} setList={setList} />
-      <Return url={url} />
+      <Head
+        url={url}
+        refreshList={refreshList}
+        setList={setList}
+        cart={cart}
+        setCart={setCart} />
       <DataTable
-        addToCart={addToCart}
+        setCart={setCart}
         cart={cart}
         refreshList={refreshList}
         list={list}
       />
-      <div className={styles.Parent}>
-        <RefreshList refreshList={refreshList} styles={styles} />
-        <CartModal
-          cart={cart}
-          setCart={setCart}
-          styles={styles}
-          refreshList={refreshList}
-        />
-      </div>
+
     </div>
   );
 }

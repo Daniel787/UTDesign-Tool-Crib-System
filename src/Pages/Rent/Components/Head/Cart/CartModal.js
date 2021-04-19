@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Axios from "axios";
 import CartTable from './CartTable'
+import Info from './Info'
 
 function CartModal(props) {
   const [groupInfo, setgroupInfo] = useState({
@@ -33,10 +34,6 @@ function CartModal(props) {
     let newCart = [...props.cart];
     newCart.splice(index, 1);
     props.setCart(newCart);
-  }
-
-  function valid() {
-    return groupInfo.net_id.length === 9 && (groupInfo.group_id > 0 && groupInfo.group_id % 1 === 0)
   }
 
   function modifyCart(event, index) {
@@ -71,12 +68,7 @@ function CartModal(props) {
         </Modal.Header>
         <Modal.Body>
           <CartTable cart={props.cart} modifyCart={modifyCart} removeFromCart={removeFromCart} />
-          {props.cart.length > 0 &&
-            <div>
-              <input placeholder="net_id" type="text" value={groupInfo.net_id} onChange={e => setgroupInfo(prev => ({ ...prev, net_id: e.target.value }))} />
-              <input placeholder="group_id" type="number" value={groupInfo.group_id} onChange={e => setgroupInfo(prev => ({ ...prev, group_id: e.target.value }))} />
-              {!valid() && <h4>Input valid net_id and group_id</h4>}
-            </div>}
+          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} />}
 
         </Modal.Body>
         <Modal.Footer>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Axios from "axios";
+import Info from './Info'
 import CartTable from './CartTable'
 
 function CartModal(props) {
@@ -49,14 +50,9 @@ function CartModal(props) {
     props.setCart(newCart);
   }
 
-  function valid() {
-    return groupInfo.net_id.length === 9 && (groupInfo.group_id > 0 && groupInfo.group_id % 1 === 0)
-  }
-
   function checkOut() {
     const newObj = { cart: props.cart, customer: groupInfo };
     console.log(newObj);
-
     Axios.post(host + port + port2 + "/buy", newObj).then(
       (response) => {
         console.log(response);
@@ -83,18 +79,11 @@ function CartModal(props) {
         </Modal.Header>
         <Modal.Body>
           <CartTable cart={props.cart} removeFromCart={removeFromCart} changeQuantity={changeQuantity} />
-          {props.cart.length > 0 &&
-            <div>
-              <input placeholder="net_id" type="text" value={groupInfo.net_id} onChange={e => setgroupInfo(prev => ({ ...prev, net_id: e.target.value }))} />
-              <input placeholder="group_id" type="number" value={groupInfo.group_id} onChange={e => setgroupInfo(prev => ({ ...prev, group_id: e.target.value }))} />
-              {!valid() && <h4>Input valid net_id and group_id</h4>}
-            </div>}
-
+          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} />}
         </Modal.Body>
         <Modal.Footer>
           {error ? <h3>Invalid Quantity Field</h3> : <h3>Total : {total}</h3>}
           <Button variant="secondary" onClick={() => { setCartShow(false) }}>
-            {" "}
             Cancel{" "}
           </Button>
           <Button
@@ -105,7 +94,6 @@ function CartModal(props) {
               setCartShow(false);
             }}
           >
-            {" "}
             Check Out{" "}
           </Button>
         </Modal.Footer>

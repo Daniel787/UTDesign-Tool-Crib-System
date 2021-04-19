@@ -19,8 +19,9 @@ function Return(props) {
   return (
     <div>
       <Button variant="primary"
+        className={props.styles.Container}
         onClick={handleShow}>
-        Return Item
+        Return
       </Button>
 
       <Modal show={show} onHide={handleClose}>
