@@ -16,7 +16,9 @@ export default function Head(props) {
                 showSingle={showSingle} setShowSingle={setShowSingle}
                 showMulti={showMulti} setShowMulti={setShowMulti} />
             <div className={styles.Parent}>
-                <Button className={styles.Container} onClick={() => props.refreshList()} >
+                <Button
+                    className={styles.Container}
+                    onClick={() => props.refreshList()} >
                     Refresh
                 </Button>
                 <Button

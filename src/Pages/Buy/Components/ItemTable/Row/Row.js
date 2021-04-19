@@ -14,6 +14,7 @@ function DataRow(props) {
         <Form>
           <Form.Control
             style={{ "width": "3rem" }}
+            type="number"
             value={amount}
             onChange={(e) => {
               setAmount(e.target.value);
@@ -24,7 +25,7 @@ function DataRow(props) {
       <td>
         <ConfirmationModal
           item={props.item}
-          amount={parseInt(amount)}
+          amount={amount}
           addToCart={props.addToCart}
           reset={() => { setAmount(1) }}
         />

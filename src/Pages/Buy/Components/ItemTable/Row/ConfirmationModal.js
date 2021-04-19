@@ -11,9 +11,12 @@ function Confirmation_Modal(props) {
     setShow(true);
   };
 
+  function invalid() {
+    return props.item.quantity_available < 1 || props.amount < 1 || props.amount.toString().indexOf('.') > -1
+  }
   return (
     <div>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="primary" disabled={invalid()} onClick={handleShow}>
         Add To Cart
       </Button>
 
@@ -23,9 +26,10 @@ function Confirmation_Modal(props) {
         </Modal.Header>
         <Modal.Body>
           {" "}
-          ID : {props.item.part_id} <br /> Name : {props.item.name} <br />{" "}
-          Current Cost : {props.item.current_cost} <br /> Quantity Selected :{" "}
-          {props.amount}{" "}
+          ID : {props.item.part_id} <br />
+          Name : {props.item.name} <br />{" "}
+          Current Cost : {props.item.current_cost} <br />
+          Quantity Selected : {props.amount}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
