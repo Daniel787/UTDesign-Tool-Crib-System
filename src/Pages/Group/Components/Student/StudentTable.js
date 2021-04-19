@@ -16,11 +16,7 @@ export default function StudentTable(props) {
           <td> Hold </td>
         </tr>
       </thead>
-      <tbody>
-        {props.list.map((item) => {<StudentInfo item={item} />})}
-
-        <GroupSubTable list={props.list} />
-      </tbody>
+        {props.list.map((item, i) => {  return (<StudentInfo key={i} item={item} />); } ) }
     </Table>
   );
 }

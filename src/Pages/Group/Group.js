@@ -10,10 +10,10 @@ export default function Group() {
     const host = process.env.REACT_APP_SERVER_SITE;
     const route = process.env.REACT_APP_STUDENTS_MEMBERS;
 
-    const url = host + route + '?json="true"';
+    const url = host + route + '?json=true';
     Axios.get(url).then((response) => {
       setStudentList(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     });
   }
 
@@ -36,8 +36,7 @@ export default function Group() {
           getStudentInfo();
         }}
       >
-        {" "}
-        Refresh{" "}
+        Refresh
       </Button>
     </div>
   );

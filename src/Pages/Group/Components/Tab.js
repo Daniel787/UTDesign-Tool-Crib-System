@@ -3,17 +3,10 @@ import StudentTable from "./Student/StudentTable";
 import React from "react";
 
 export default function GroupTab(props) {
-  function ST() {
-    if (props.studentList) {
-      return <StudentTable list={props.studentList} />;
-    } else {
-      return <div> </div>;
-    }
-  }
   return (
-    <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+    <Tabs defaultActiveKey="Student" id="uncontrolled-tab-example">
       <Tab eventKey="Student" title="Student">
-        <ST />
+      <StudentTable list={props.studentList} />
       </Tab>
     </Tabs>
   );
