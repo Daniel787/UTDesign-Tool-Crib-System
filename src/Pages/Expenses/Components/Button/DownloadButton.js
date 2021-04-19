@@ -18,12 +18,15 @@ function Btn(props) {
       "&csv=true";
     console.log(obj);
     Axios.get(props.url + obj).then((response) => {
-      console.log(response.headers["content-disposition"]);
       DownloadJS(
         response.data,
-        props.startDate.getFullYear().toString() +
-          "_" +
-          props.endDate.getFullYear().toString() +
+        props.startDate.getFullYear().toString() + "_" +
+        ( "0"  + (props.startDate.getMonth() + 1)).slice(-2) + "_" +
+        ( "0" + props.startDate.getDate()).slice(-2) + 
+          "_" + "TO" + "_" + 
+          props.endDate.getFullYear().toString() + "_" +
+          ( "0"  + (props.endDate.getMonth() + 1)).slice(-2) + "_" + 
+          ( "0" + props.endDate.getDate()).slice(-2) +
           ".csv"
       );
     });
