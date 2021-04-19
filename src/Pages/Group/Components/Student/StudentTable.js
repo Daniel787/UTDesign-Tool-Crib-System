@@ -6,7 +6,7 @@ import GroupSubTable from "./GroupSubTable";
 
 export default function StudentTable(props) {
   return (
-    <Table striped bordered hover>
+    <Table bordered >
       <thead>
         <tr>
           <td> Name </td>
