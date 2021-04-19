@@ -7,6 +7,7 @@ import Rent from "./Pages/Rent/Rent";
 import Holds from "./Pages/Holds/Holds";
 import Expenses from "./Pages/Expenses/Expenses";
 import Inventory from "./Pages/Inventory/Inventory";
+import Group from "./Pages/Group/Group";
 import Prints from "./Pages/Prints/Prints";
 import Nav from "./Components/Nav/Nav.js";
 import Footer from "./Components/Footer/Footer.js";
@@ -46,7 +47,7 @@ function App() {
           <Route exact path="/prints">
             <Prints />
           </Route>
-          <Route exact path="/group">
+          <Route exact path="/groups">
             <Group/>
           </Route>
           <Route exact path="/">

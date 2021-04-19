@@ -4,7 +4,7 @@ import Axios from "axios";
 import StudentInfo from "./StudentInfo";
 import GroupSubTable from "./GroupSubTable";
 
-export default function StudentTable() {
+export default function StudentTable(props) {
   return (
     <Table striped bordered hover>
       <thead>
@@ -17,12 +17,9 @@ export default function StudentTable() {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <StudentInfo />
-        </tr>
-        <tr>
-          <GroupSubTable />
-        </tr>
+        {props.list.map((item) => {<StudentInfo item={item} />})}
+
+        <GroupSubTable list={props.list} />
       </tbody>
     </Table>
   );
