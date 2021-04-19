@@ -46,6 +46,9 @@ function App() {
           <Route exact path="/prints">
             <Prints />
           </Route>
+          <Route exact path="/group">
+            <Group/>
+          </Route>
           <Route exact path="/">
             <Home setToken={setToken} />
           </Route>
