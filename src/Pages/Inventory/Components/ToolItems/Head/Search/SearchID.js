@@ -3,7 +3,7 @@ import styles from "./Search.module.css";
 import { Button } from "react-bootstrap";
 
 export default function SearchID(props) {
-    const [idsearch, setIdsearch] = useState(undefined);
+    const [idsearch, setIdsearch] = useState("");
 
     return (
         <div className={styles.container}>

@@ -5,7 +5,7 @@ export default function FailRow(props) {
 
     function validID(input) {
         if (!isNaN(input)) {
-            return parseInt(input) > 0 && input.indexOf(".") === -1;
+            return parseInt(input) > 0 && input.toString().indexOf(".") === -1;
         }
         else return false
     }
@@ -20,7 +20,7 @@ export default function FailRow(props) {
                 value={props.item.tool_id}
                 onFocus={e => e.target.select()}
                 style={{ "width": "4rem" }}
-                onChange={e => { props.handleFail(props.index, { ...props.item, tool: e.target.value }) }} />
+                onChange={e => { props.handleFail(props.index, { ...props.item, tool_id: e.target.value }) }} />
                 {!validID(props.item.tool_id) && <h5>Invalid</h5>}</td>
             <td><input
                 value={props.item.name}

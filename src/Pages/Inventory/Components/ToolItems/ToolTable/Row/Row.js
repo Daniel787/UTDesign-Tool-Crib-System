@@ -1,6 +1,6 @@
 import React from "react";
-import ConfirmationDeltete from "./Confirmation_Delete";
-import ConfirmationModify from "./Confirmation_Modify";
+import ConfirmationDeltete from "./ConfirmationDelete";
+import ConfirmationModify from "./ConfirmationModify";
 
 function DataRow(props) {
 

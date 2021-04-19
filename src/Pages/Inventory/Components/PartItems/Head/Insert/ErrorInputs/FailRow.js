@@ -4,14 +4,14 @@ import { Button } from "react-bootstrap";
 export default function FailRow(props) {
     function validID(input) {
         if (!isNaN(input)) {
-            return parseInt(input) > 0 && input.indexOf(".") === -1;
+            return parseInt(input) > 0 && input.toString().indexOf(".") === -1;
         }
         else return false
     }
 
     function validQuantity(input) {
         if (!isNaN(input)) {
-            return parseInt(input) > 0 && input.indexOf(".") === -1;
+            return parseInt(input) > 0 && input.toString().indexOf(".") === -1;
         }
         else return false
     }
