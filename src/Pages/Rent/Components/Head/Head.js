@@ -17,7 +17,7 @@ export default function Head(props) {
                     setCart={props.setCart}
                     refreshList={props.refreshList}
                 />
-                <Return url={props.url} />
+                <Return url={props.url} styles={styles} />
             </div>
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />
         </div>
