@@ -3,10 +3,10 @@ import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
   const [row, setRow] = useState({
-    part_id: 0,
+    part_id: "",
     name: "",
-    quantity_available: 0,
-    current_cost: 0,
+    quantity_available: "",
+    current_cost: "",
   });
 
   function validID() {

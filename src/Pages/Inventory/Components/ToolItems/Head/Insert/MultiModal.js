@@ -47,6 +47,7 @@ function Confirmation_Deltete(props) {
       <Modal
         show={props.show}
         onHide={() => {
+          setFile(null)
           props.setShow(false);
         }}
       >
@@ -61,6 +62,7 @@ function Confirmation_Deltete(props) {
           <Button
             variant="secondary"
             onClick={() => {
+              setFile(null)
               props.setShow(false);
             }}
           >
@@ -69,8 +71,10 @@ function Confirmation_Deltete(props) {
           </Button>
           <Button
             variant="primary"
+            disabled={!file}
             onClick={() => {
               props.setShow(false);
+              setFile(null)
               readFile();
             }}
           >

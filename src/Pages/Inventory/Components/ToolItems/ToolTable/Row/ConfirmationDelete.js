@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-function Confirmation_Deltete(props) {
+function ConfirmationDeltete(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
@@ -46,4 +46,4 @@ function Confirmation_Deltete(props) {
   );
 }
 
-export default Confirmation_Deltete;
+export default ConfirmationDeltete;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
-  const [row, setRow] = useState({ tool_id: 0, name: "" });
+  const [row, setRow] = useState({ tool_id: "", name: "" });
 
   function validID() {
     return row.tool_id > 0 && row.tool_id % 1 === 0;
@@ -18,6 +18,7 @@ function Confirmation_Deltete(props) {
         show={props.show}
         onHide={() => {
           props.setShow(false);
+          setRow({ tool_id: "", name: "" })
         }}
       >
         <Modal.Header closeButton>
@@ -33,7 +34,7 @@ function Confirmation_Deltete(props) {
                 setRow((prev) => ({ ...prev, tool_id: e.target.value }))
               }
             ></input>
-            {!validID() && <h5>Enter Valid ID</h5>}
+            {!validID() && <h5>Invalid ID</h5>}
           </div>
           <div>
             <label>Name:</label>{" "}
@@ -44,13 +45,14 @@ function Confirmation_Deltete(props) {
                 setRow((prev) => ({ ...prev, name: e.target.value }))
               }
             ></input>
-            {!row.name.length > 0 && <h5>Enter Valid Name</h5>}
+            {!row.name.length > 0 && <h5>Invalid Name</h5>}
           </div>
         </Modal.Body>
         <Modal.Footer>
           <Button
             variant="secondary"
             onClick={() => {
+              setRow({ tool_id: "", name: "" })
               props.setShow(false);
             }}
           >

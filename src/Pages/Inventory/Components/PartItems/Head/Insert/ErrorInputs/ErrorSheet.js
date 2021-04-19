@@ -42,6 +42,7 @@ export default function ErrorSheet(props) {
                 <Modal.Header closeButton>
                     <Modal.Title> Errors in Input </Modal.Title>
                 </Modal.Header>
+
                 {props.status && <div>
                     <Modal.Body>
                         {props.status.conflictinserts.new.length > 0 && <DupInsert status={props.status} handleDup={handleDup} />}
@@ -59,6 +60,7 @@ export default function ErrorSheet(props) {
                         </Button>
                     </Modal.Footer>
                 </div>}
+
             </Modal>
         </div>
     );

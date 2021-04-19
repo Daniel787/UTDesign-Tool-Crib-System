@@ -1,22 +1,20 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-function Confirmation_Deltete(props) {
+function ConfirmationDeltete(props) {
   const [show, setShow] = useState(false);
-  const [name, setName] = useState("")
+
   const handleClose = () => {
     setShow(false);
   };
   const handleShow = () => {
     setShow(true);
-    setName(props.item.name)
-
   };
 
   return (
     <div>
       <Button variant="primary" onClick={handleShow}>
-        Modify
+        Remove
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -24,8 +22,8 @@ function Confirmation_Deltete(props) {
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Name : <input value={name} onChange={(e) => setName(e.target.value)} /><br />
-          ID : {props.item.tool_id} <br />
+          Name : {props.item.name} <br />
+          ID : {props.item.part_id}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -35,11 +33,12 @@ function Confirmation_Deltete(props) {
           <Button
             variant="primary"
             onClick={() => {
-              props.modifyTool({ tool_id: props.item.tool_id, name: name });
+              props.removePart(props.item.part_id);
               handleClose();
             }}
           >
-            Confirm
+            {" "}
+            Confirm{" "}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -47,4 +46,4 @@ function Confirmation_Deltete(props) {
   );
 }
 
-export default Confirmation_Deltete;
+export default ConfirmationDeltete;
