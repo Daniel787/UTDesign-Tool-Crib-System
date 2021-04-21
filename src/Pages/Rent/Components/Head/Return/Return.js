@@ -13,7 +13,9 @@ function Return(props) {
   };
 
   function returnItem(item) {
-    axios.post(props.url + "/return?tool_id=" + parseInt(item)).then((result) => { })
+    axios.post(props.url + "/return?tool_id=" + parseInt(item)).then((result) => {
+      console.log(result)
+    })
   }
 
   return (

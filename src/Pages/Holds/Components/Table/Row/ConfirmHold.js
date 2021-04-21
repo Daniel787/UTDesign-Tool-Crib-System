@@ -28,12 +28,10 @@ function Confirmation_Modal(props) {
           <Button
             variant="primary"
             onClick={() => {
-
-              // props.removeHold(props.item.net_id)
+              props.removeHold(props.item)
               setShow(false)
             }}
           >
-            {" "}
             Confirm{" "}
           </Button>
         </Modal.Footer>
