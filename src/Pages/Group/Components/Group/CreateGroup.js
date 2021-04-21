@@ -21,7 +21,12 @@ export default function CreateStudent() {
       utd_id: utdid,
       net_id: netid,
       email: email,
-    }).then((response) => {});
+    }).then((response) => {
+      if (response.body === "SUCCESS") {
+        createStudentOff();
+        console.log("works");
+      }
+    });
     event.preventDefault();
   }
   function createStudentOn() {
