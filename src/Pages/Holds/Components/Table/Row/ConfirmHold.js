@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Table } from "react-bootstrap";
 
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
+  const head = ["Tool ID", "Name"]
 
   return (
     <div>
@@ -16,13 +17,23 @@ function Confirmation_Modal(props) {
         </Modal.Header>
         <Modal.Body>
           {" "}
-          ID : {props.item.net_id} <br />
-          Name : {props.item.name} <br />
-          {/* {props.item.map((el, i) => { return <div key={i}>Tool ID : {el.tool_id}</div> })} */}
+          <h3>Net ID: {props.item.net_id}</h3>
+          <h4>Name: {props.item.name}</h4>
+          <h4>UTD ID: {props.item.utd_id}</h4>
+          <h4>Email: {props.item.email}</h4>
+          <Table responsive hover>
+            <thead>
+              <tr>
+                {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+              </tr>
+            </thead>
+            <tbody>
+              {props.item.tools.map((el, i) => { return <tr key={i}><td>{el.tool_id}</td><td>{el.tool_name}</td></tr> })}</tbody>
+          </Table>
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => { setShow(false) }}>
-            {" "}
             Cancel{" "}
           </Button>
           <Button
