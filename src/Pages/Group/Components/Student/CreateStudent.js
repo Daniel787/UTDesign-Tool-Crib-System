@@ -18,15 +18,14 @@ export default function CreateStudent() {
   function handleSubmit(event) {
     Axios.post(url, {
       name: name,
-      netid: netid,
-      utdid: utdid,
+      utd_id: utdid,
+      net_id: netid,
       email: email,
     }).then((response) => {
       console.log(response.data);
       console.log({
         name: name,
         netid: netid,
-        utdid: utdid,
         email: email,
       });
     });
