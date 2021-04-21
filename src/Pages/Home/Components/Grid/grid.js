@@ -8,6 +8,7 @@ import rent from "./Images/rent.png";
 import holds from "./Images/holds.png";
 import expenses from "./Images/expenses.png";
 import inventory from "./Images/inventory.png";
+import group from "./Images/group.png";
 
 function grid() {
   return (
@@ -29,7 +30,7 @@ function grid() {
             <Image url={expenses} to="/expenses" />
           </Col>
           <Col>
-            <Image url={expenses} to="/groups" />
+            <Image url={group} to="/groups" />
           </Col>
           <Col>
             <Image url={inventory} to="/inventory" />

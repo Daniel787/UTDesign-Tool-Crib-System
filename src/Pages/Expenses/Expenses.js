@@ -62,11 +62,6 @@ export default function Expenses() {
       <input type="date" name="date-start" onChange={handleStart} />
       <input type="date" name="date-end" onChange={handleEnd} /> {}
       <CondTable />
-      <div>
-        <CondButton type="Simple" />
-        <CondButton type="Medium" />
-        <CondButton type="Full" />
-      </div>
     </div>
   );
 }
