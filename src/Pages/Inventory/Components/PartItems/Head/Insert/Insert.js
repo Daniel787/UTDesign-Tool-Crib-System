@@ -20,7 +20,8 @@ export default function Insert(props) {
 
     function addParts(sheet) {
         axios.post(props.url + "/upload", sheet).then(response => {
-            if (response.data === "SUCCESS") {
+            console.log(response.data)
+            if (response.data.message === "SUCCESS") {
                 setStatus(null)
             }
             else {
