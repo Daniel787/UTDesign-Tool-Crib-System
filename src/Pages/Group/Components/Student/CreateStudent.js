@@ -16,14 +16,20 @@ export default function CreateStudent() {
   const url = host + route1 + route2;
 
   function handleSubmit(event) {
-    if (name && netid && utdid && email) {
-      Axios.post(url, {
+    Axios.post(url, {
+      name: name,
+      netid: netid,
+      utdid: utdid,
+      email: email,
+    }).then((response) => {
+      console.log(response.data);
+      console.log({
         name: name,
         netid: netid,
         utdid: utdid,
         email: email,
-      }).then();
-    }
+      });
+    });
     event.preventDefault();
   }
   function createStudentOn() {
@@ -50,31 +56,25 @@ export default function CreateStudent() {
             </Form.Group>
           </Form>
           <Form.Group>
-            <Form.Label
+            <Form.Label type="number"> Net ID </Form.Label>
+            <Form.Control
               onChange={(e) => setNetid(e.target.value)}
-              type="number"
-            >
-              {" "}
-              Net ID{" "}
-            </Form.Label>
-            <Form.Control placeholder="Enter NET ID" />
+              placeholder="Enter NET ID"
+            />
           </Form.Group>
           <Form.Group>
-            <Form.Label
+            <Form.Label type="number"> UTD ID </Form.Label>
+            <Form.Control
               onChange={(e) => setUtdid(e.target.value)}
-              type="number"
-            >
-              {" "}
-              UTD ID{" "}
-            </Form.Label>
-            <Form.Control placeholder="Enter UTD ID" />
+              placeholder="Enter UTD ID"
+            />
           </Form.Group>
           <Form.Group>
-            <Form.Label onChange={(e) => setEmail(e.target.value)} type="email">
-              {" "}
-              Email{" "}
-            </Form.Label>
-            <Form.Control placeholder="Enter email" />
+            <Form.Label type="email"> Email </Form.Label>
+            <Form.Control
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter email"
+            />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
@@ -82,7 +82,7 @@ export default function CreateStudent() {
             {" "}
             Close{"   "}
           </Button>
-          <Button variant="primary" type="submit">
+          <Button variant="primary" onClick={handleSubmit}>
             {" "}
             Insert{" "}
           </Button>

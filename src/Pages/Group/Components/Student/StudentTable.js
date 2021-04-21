@@ -2,7 +2,6 @@ import React, { createElement, useState } from "react";
 import { Table } from "react-bootstrap";
 import Axios from "axios";
 import StudentInfo from "./StudentInfo";
-import GroupSubTable from "./GroupSubTable";
 import CreateStudent from "./CreateStudent";
 
 export default function StudentTable(props) {
