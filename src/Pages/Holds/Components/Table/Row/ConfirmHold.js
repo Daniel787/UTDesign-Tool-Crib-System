@@ -3,7 +3,7 @@ import { Modal, Button, Table } from "react-bootstrap";
 
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
-  const head = ["Tool ID", "Name"]
+  const head = ["Tool ID", "Name", "Group ID", "Start Date", "Due Date"]
 
   return (
     <div>
@@ -28,7 +28,15 @@ function Confirmation_Modal(props) {
               </tr>
             </thead>
             <tbody>
-              {props.item.tools.map((el, i) => { return <tr key={i}><td>{el.tool_id}</td><td>{el.tool_name}</td></tr> })}</tbody>
+              {props.item.tools.map((el, i) => {
+                return <tr key={i}>
+                  <td>{el.tool_id}</td>
+                  <td>{el.tool_name}</td>
+                  <td>{el.group_id}</td>
+                  <td>{el.start_date} </td>
+                  <td>{el.start_date}</td>
+                </tr>
+              })}</tbody>
           </Table>
 
         </Modal.Body>
