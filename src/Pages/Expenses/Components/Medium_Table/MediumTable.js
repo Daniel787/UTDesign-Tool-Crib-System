@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { Table } from "react-bootstrap";
+import DownloadButton from "../Button/DownloadButton";
 import Row from "./Row";
 import Axios from "axios";
 
@@ -49,6 +50,7 @@ function DataTable(props) {
             })}
           </tbody>{" "}
         </Table>
+        <DownloadButton url={props.url} display="Download" startDate={props.startDate} endDate={props.endDate}/>
       </div>
     );
   } else {
