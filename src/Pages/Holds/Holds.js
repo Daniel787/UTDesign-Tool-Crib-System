@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Holds.module.css";
 import DataTable from "./Components/Table/Table";
+// import AddHold from './Components/AddHold/AddHold'
 import RefreshList from "./Components/Refresh_List/RefreshList";
 
 export default function Holds() {
@@ -10,20 +11,16 @@ export default function Holds() {
   const host = process.env.REACT_APP_SERVER_SITE;
   const StudentRoute = process.env.REACT_APP_STUDENTS;
   const HoldRoute = process.env.REACT_APP_HOLDS;
-  const url = host + StudentRoute + HoldRoute;
-  console.log(url);
+  const url = host + StudentRoute;
   const [list, setList] = useState([]);
 
   function refreshList() {
-    axios.get(url).then((response) => {
+    axios.get(url + HoldRoute).then((response) => {
       setList(response.data);
       console.log(response.data)
     });
   }
 
-  function removeHold(id) {
-    console.log(id)
-  }
   useEffect(() => {
     refreshList();
   }, []);
@@ -31,8 +28,10 @@ export default function Holds() {
   return (
     <div className={styles.Body}>
       <h1>Holds Page</h1>
-      <DataTable list={list} refreshList={refreshList} removeHold={removeHold} />
+      {/* <AddHold url={url} /> */}
       <RefreshList styles={styles} refreshList={refreshList} />
+      <DataTable list={list} refreshList={refreshList} url={url} />
+
     </div>
   );
 }
