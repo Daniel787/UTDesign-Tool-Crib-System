@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styles from "./Holds.module.css";
 import DataTable from "./Components/Table/Table";
-import AddHold from './Components/AddHold/AddHold'
+// import AddHold from './Components/AddHold/AddHold'
 import RefreshList from "./Components/Refresh_List/RefreshList";
 
 export default function Holds() {
