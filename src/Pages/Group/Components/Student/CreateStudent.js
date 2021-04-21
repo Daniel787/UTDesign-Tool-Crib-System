@@ -80,7 +80,7 @@ export default function CreateStudent() {
         <Modal.Footer>
           <Button variant="secondary" onClick={createStudentOff}>
             {" "}
-            Close{" "}
+            Close{"   "}
           </Button>
           <Button variant="primary" type="submit">
             {" "}

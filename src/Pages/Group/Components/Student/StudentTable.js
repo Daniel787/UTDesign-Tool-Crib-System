@@ -16,10 +16,10 @@ export default function StudentTable(props) {
     setShowStudentModal(false);
   }
   return (
-    <React.Fragment>
+    <React.Fragment key="table">
       <Table striped bordered hover>
         <thead>
-          <tr>
+          <tr key="header">
             <td> Name </td>
             <td> Net ID </td>
             <td> UTD ID </td>
@@ -32,6 +32,7 @@ export default function StudentTable(props) {
           return (
             <StudentInfo
               key={i}
+              liKey={i}
               item={item}
               show={showStudentModal}
               showOn={showStudent}
