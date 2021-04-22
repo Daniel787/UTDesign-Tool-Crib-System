@@ -8,8 +8,8 @@ function Confirmation_Modal(props) {
   const [result, setResult] = useState(null)
 
   function addHold() {
-    setResult(prev => ({ ...prev, student_hold: 1 }))
-    axios.post(props.url + "/modify", result).then((response) => {
+    let newStudent = { ...result, student_hold: 1 }
+    axios.post(props.url + "/modify", newStudent).then((response) => {
       console.log(response.data)
     });
   }
@@ -32,7 +32,7 @@ function Confirmation_Modal(props) {
           <Modal.Title> Add Student Hold By ID </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <input placeholder="Enter student id" onChange={(e) => setid(e.target.value)} />
+          <input placeholder="Enter net id" onChange={(e) => setid(e.target.value)} />
           <Button onClick={() => search()} disabled={id.length !== 9}>Search</Button>
           {result && <div>
             <h3>Net ID: {result.net_id}</h3>
