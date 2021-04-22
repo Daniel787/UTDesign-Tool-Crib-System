@@ -1,19 +1,9 @@
-import React, { createElement, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
-import Axios from "axios";
 import StudentInfo from "./StudentInfo";
 import CreateStudent from "./CreateStudent";
 
 export default function StudentTable(props) {
-  const [showStudentModal, setShowStudentModal] = useState(false);
-
-  function showStudent() {
-    setShowStudentModal(true);
-  }
-
-  function turnOffStudent() {
-    setShowStudentModal(false);
-  }
   return (
     <React.Fragment key="table">
       <Table striped bordered hover>
@@ -28,16 +18,7 @@ export default function StudentTable(props) {
           </tr>
         </thead>
         {props.list.map((item, i) => {
-          return (
-            <StudentInfo
-              key={i}
-              liKey={i}
-              item={item}
-              show={showStudentModal}
-              showOn={showStudent}
-              showOff={turnOffStudent}
-            />
-          );
+          return <StudentInfo key={i} liKey={i} item={item} />;
         })}
       </Table>
       <CreateStudent />

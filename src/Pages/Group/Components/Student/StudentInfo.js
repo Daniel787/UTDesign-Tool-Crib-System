@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import GroupInfo from "./GroupInfo";
 import { Button, Modal, Table } from "react-bootstrap";
 
 export default function StudentInfo(props) {
@@ -40,7 +39,10 @@ export default function StudentInfo(props) {
       </tbody>
       <Modal show={showStudentModal}>
         <Modal.Header>
-          <Modal.Title> {props.item.student.name} + "groups"</Modal.Title>
+          <Modal.Title>
+            {" "}
+            Groups that {props.item.student.name} is a part of{" "}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Table>
