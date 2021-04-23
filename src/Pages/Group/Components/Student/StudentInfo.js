@@ -55,13 +55,17 @@ export default function StudentInfo(props) {
             </thead>
             <tbody>
               {props.item.student.groups.map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <td> {item.group_id}</td>
-                    <td> {item.group_name} </td>
-                    <td> {item.group_sponsor} </td>
-                  </tr>
-                );
+                if (item.group_id != 0)
+                  return (
+                    <tr key={i}>
+                      <td> {item.group_id}</td>
+                      <td> {item.group_name} </td>
+                      <td> {item.group_sponsor} </td>
+                    </tr>
+                  );
+                else {
+                  return <div> </div>;
+                }
               })}
             </tbody>
           </Table>

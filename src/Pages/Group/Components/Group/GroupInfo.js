@@ -10,18 +10,36 @@ export default function GroupInfo(props) {
     setShowGroupModal(false);
   }
 
+  function TableContent(item, i) {
+    if (true) {
+      return (
+        <tr key={i}>
+          <td> {item.name} </td>
+          <td> {item.net_id} </td>
+          <td> {item.utd_id} </td>
+          <td> {item.email} </td>
+          <td> {item.hold} </td>
+        </tr>
+      );
+    } else {
+      return <div> asdas d</div>;
+    }
+  }
   return (
     <React.Fragment>
       <tbody>
         <tr>
-          <td key={props.item.group_id.toString()}> {props.item.group_id} </td>
-          <td key={props.item.group_name.toString()}>
+          <td key={props.item.group.group_id.toString()}>
             {" "}
-            {props.item.group_name}{" "}
+            {props.item.group.group_id}{" "}
           </td>
-          <td key={props.item.group_sponsor.toString()}>
+          <td key={props.item.group.group_name.toString()}>
             {" "}
-            {props.item.group}{" "}
+            {props.item.group.group_name}{" "}
+          </td>
+          <td key={props.item.group.group_sponsor.toString()}>
+            {" "}
+            {props.item.group.group_sponsor}{" "}
           </td>
           <td>
             <Button onClick={showGroup}> Show Student </Button>
@@ -32,7 +50,7 @@ export default function GroupInfo(props) {
         <Modal.Header>
           <Modal.Title>
             {" "}
-            Students that are a part of {props.item.group_name}{" "}
+            Students that are a part of {props.item.group.group_name}{" "}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -47,16 +65,20 @@ export default function GroupInfo(props) {
               </tr>
             </thead>
             <tbody>
-              {props.item.student.map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <td> {item.name} </td>
-                    <td> {item.net_id} </td>
-                    <td> {item.utd_id} </td>
-                    <td> {item.email} </td>
-                    <td> {item.hold} </td>
-                  </tr>
-                );
+              {props.item.group.students.map((item, i) => {
+                if (item.display == 1) {
+                  return (
+                    <tr key={i}>
+                      <td> {item.name} </td>
+                      <td> {item.net_id} </td>
+                      <td> {item.utd_id} </td>
+                      <td> {item.email} </td>
+                      <td> {item.hold} </td>
+                    </tr>
+                  );
+                } else {
+                  return <div> </div>;
+                }
               })}
             </tbody>
           </Table>
