@@ -5,11 +5,11 @@ import React, { useState, useEffect } from "react";
 
 export default function GroupTab(props) {
   return (
-    <Tabs defaultActiveKey="Student" id="uncontrolled-tab-example">
+    <Tabs defaultActiveKey="Group" id="uncontrolled-tab-example">
       <Tab eventKey="Student" title="Student">
         <StudentTable list={props.studentList} />
       </Tab>
-      <Tab eventkey="Group" title="Group">
+      <Tab eventKey="Group" title="Group">
         <GroupTable list={props.groupList} />
       </Tab>
     </Tabs>
