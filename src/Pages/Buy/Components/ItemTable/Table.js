@@ -15,19 +15,12 @@ function DataTable(props) {
     if (index < 0) {
       newCart.push({
         item: item,
-        quantity: amount > 0 ? amount : 1,
-        total: item.current_cost * (amount > 0 ? amount : 1),
+        quantity: amount,
+        total: Math.floor((item.current_cost * amount) * 100) / 100,
       });
     } else {
-      if (
-        newCart[index].quantity &&
-        newCart[index].quantity < newCart[index].item.quantity_available
-      ) {
-        newCart[index].quantity += amount > 0 ? amount : 1;
-        newCart[index].total = parseFloat(
-          newCart[index].quantity * parseFloat(newCart[index].item.current_cost)
-        );
-      }
+      newCart[index].quantity += amount
+      newCart[index].total = Math.floor((newCart[index].item.current_cost * newCart[index].quantity) * 100) / 100
     }
     props.setCart(newCart);
   }

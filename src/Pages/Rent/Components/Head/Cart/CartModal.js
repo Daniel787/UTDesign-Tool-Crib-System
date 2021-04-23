@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Axios from "axios";
 import CartTable from './CartTable'
@@ -9,26 +9,10 @@ function CartModal(props) {
     group_id: 0,
     net_id: "",
   });
-  const [error, setError] = useState(false)
   const host = process.env.REACT_APP_SERVER_SITE;
   const inventoryPort = process.env.REACT_APP_INVENTORY;
   const toolPort = process.env.REACT_APP_RENT;
   const [cartShow, setCartShow] = useState(false);
-
-  useEffect(() => {
-    for (let i = 0; i < props.cart.length; i++) {
-      if (
-        props.cart[i].item.hours < 0 ||
-        !props.cart[i].item.hours
-      ) {
-        setError(true);
-        break;
-      } else {
-        setError(false);
-      }
-    }
-
-  }, [props.cart])
 
   function removeFromCart(index) {
     let newCart = [...props.cart];
@@ -38,7 +22,6 @@ function CartModal(props) {
 
   function modifyCart(event, index) {
     let newCart = [...props.cart];
-    newCart[index].item.hours = event.target.value ? parseInt(event.target.value) : ""
     props.setCart(newCart);
   }
 
@@ -54,7 +37,13 @@ function CartModal(props) {
     );
     props.setCart([]);
     setgroupInfo({ group_id: 0, net_id: "" });
-    props.refreshList();
+  }
+
+  function validInfo() {
+    if (groupInfo.group_id > -1 && groupInfo.group_id % 1 === 0) {
+      return groupInfo.net_id.length === 9 && /^[a-zA-Z]+$/.test(groupInfo.net_id.substring(0, 3)) && /^[0-9]+$/.test(groupInfo.net_id.substring(4))
+    }
+    return false
   }
 
   return (
@@ -68,7 +57,7 @@ function CartModal(props) {
         </Modal.Header>
         <Modal.Body>
           <CartTable cart={props.cart} modifyCart={modifyCart} removeFromCart={removeFromCart} />
-          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} />}
+          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} valid={validInfo} />}
 
         </Modal.Body>
         <Modal.Footer>
@@ -78,13 +67,12 @@ function CartModal(props) {
           </Button>
           <Button
             variant="primary"
-            disabled={groupInfo.net_id.length !== 9 || !(groupInfo.group_id > 0) || error}
+            disabled={!validInfo()}
             onClick={() => {
               checkOut();
               setCartShow(false);
             }}
           >
-            {" "}
             Check Out{" "}
           </Button>
         </Modal.Footer>

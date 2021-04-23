@@ -21,7 +21,7 @@ export default function CartTable(props) {
                                 <td> <input
                                     type="number"
                                     value={el.quantity}
-                                    style={{ "width": "3rem" }}
+                                    style={{ "width": "4rem" }}
                                     onFocus={(e) => e.target.select()}
                                     onChange={(e) => props.changeQuantity(e, i)}
                                 /></td>

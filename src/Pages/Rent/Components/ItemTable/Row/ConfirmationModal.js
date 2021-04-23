@@ -3,15 +3,29 @@ import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
+  const [days, setDays] = useState(1)
   const [hours, setHours] = useState(2)
+  const [check, setCheck] = useState(false)
 
   const handleClose = () => {
     setHours(2)
+    setDays(0)
     setShow(false);
+    setCheck(false)
   };
   const handleShow = () => {
     setShow(true);
   };
+
+
+  function invalid() {
+    if (check) {
+      return days < 1
+    }
+    else {
+      return hours < 1 || hours > 23
+    }
+  }
 
   return (
     <div>
@@ -29,11 +43,21 @@ function Confirmation_Modal(props) {
           {" "}
           ID : {props.item.tool_id} <br />
           Name : {props.item.name} <br />{" "}
-          Hours for Rental : <input
+          Hours for Rental: <input
             type="number"
             onFocus={(e) => e.target.select()}
+            style={{ "width": "4rem" }}
+            disabled={check}
             value={hours}
-            onChange={(e) => setHours(e.target.value ? parseInt(e.target.value) : "")} />
+            onChange={(e) => setHours(e.target.value ? parseInt(e.target.value) : "")}
+          /> <input type="checkbox" onClick={(e) => setCheck(prev => !prev)} /> Days
+          {check && <div>Days for Rental: <input
+            type="number"
+            onFocus={(e) => e.target.select()}
+            style={{ "width": "4rem" }}
+            value={days}
+            onChange={(e) => setDays(e.target.value ? parseInt(e.target.value) : "")}
+          /></div>}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
@@ -41,9 +65,9 @@ function Confirmation_Modal(props) {
           </Button>
           <Button
             variant="primary"
-            disabled={hours < 1}
+            disabled={invalid()}
             onClick={() => {
-              props.addToCart(props.item, hours);
+              props.addToCart(props.item, check ? days * 24 : hours, check ? days : null);
               handleClose();
             }}
           >

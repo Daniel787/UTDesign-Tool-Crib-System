@@ -36,7 +36,6 @@ export default function Buy() {
       <DataTable
         setCart={setCart}
         cart={cart}
-        refreshList={refreshList}
         list={list}
       />
     </div>
