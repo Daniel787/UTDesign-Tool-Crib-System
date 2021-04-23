@@ -46,28 +46,29 @@ export default function CreateStudent() {
                 placeholder="Enter name"
               />
             </Form.Group>
+
+            <Form.Group>
+              <Form.Label type="number"> Net ID </Form.Label>
+              <Form.Control
+                onChange={(e) => setNetid(e.target.value)}
+                placeholder="Enter NET ID"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label type="number"> UTD ID </Form.Label>
+              <Form.Control
+                onChange={(e) => setUtdid(e.target.value)}
+                placeholder="Enter UTD ID"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label type="email"> Email </Form.Label>
+              <Form.Control
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter email"
+              />
+            </Form.Group>
           </Form>
-          <Form.Group>
-            <Form.Label type="number"> Net ID </Form.Label>
-            <Form.Control
-              onChange={(e) => setNetid(e.target.value)}
-              placeholder="Enter NET ID"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label type="number"> UTD ID </Form.Label>
-            <Form.Control
-              onChange={(e) => setUtdid(e.target.value)}
-              placeholder="Enter UTD ID"
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label type="email"> Email </Form.Label>
-            <Form.Control
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter email"
-            />
-          </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={createStudentOff}>
