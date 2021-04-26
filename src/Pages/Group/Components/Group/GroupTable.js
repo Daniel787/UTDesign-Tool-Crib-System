@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import GroupInfo from "./GroupInfo";
 import AddMember from "./AddMember";
+import AddGroup from "./AddGroup";
 
 export default function GroupTable(props) {
   return (
@@ -13,7 +14,6 @@ export default function GroupTable(props) {
             <td> Group Name </td>
             <td> Group Sponsor </td>
             <td> Students </td>
-            <td> Add member to this group</td>
           </tr>
         </thead>
         <tbody></tbody>
@@ -22,6 +22,7 @@ export default function GroupTable(props) {
         })}
       </Table>
       <AddMember />
+      <AddGroup />
     </React.Fragment>
   );
 }

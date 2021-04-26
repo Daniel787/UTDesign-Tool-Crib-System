@@ -1,0 +1,5 @@
+.MyModal {
+  width: 50vw !important; /* Occupy the 90% of the screen width */
+  max-width: 50vw !important;
+  min-width: 30vw !important;
+}
