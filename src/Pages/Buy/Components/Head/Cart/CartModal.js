@@ -15,11 +15,13 @@ function CartModal(props) {
   });
   const [cartShow, setCartShow] = useState(false);
   const [error, setError] = useState(false);
+
   function removeFromCart(index) {
     let newCart = [...props.cart];
     newCart.splice(index, 1);
     props.setCart(newCart);
   }
+
   useEffect(() => {
     let temp = 0;
     for (let i = 0; i < props.cart.length; i++) {
@@ -33,8 +35,8 @@ function CartModal(props) {
         break;
       } else {
         setError(false);
+        temp = Math.floor((temp + props.cart[i].total) * 100) / 100;
       }
-      temp += props.cart[i].total;
     }
     props.cart.length === 0 && setError(false)
     setTotal(temp);
@@ -44,9 +46,7 @@ function CartModal(props) {
     let newCart = [...props.cart];
     const value = event.target.value ? parseInt(event.target.value) : "";
     newCart[index].quantity = value;
-    newCart[index].total = parseFloat(
-      newCart[index].quantity * parseFloat(newCart[index].item.current_cost)
-    );
+    newCart[index].total = Math.floor((newCart[index].item.current_cost * newCart[index].quantity) * 100) / 100
     props.setCart(newCart);
   }
 
@@ -61,11 +61,16 @@ function CartModal(props) {
         console.log(error);
       }
     );
-
     props.setCart([]);
     setgroupInfo({ group_id: 0, net_id: "" });
     setError(false);
-    props.refreshList();
+  }
+
+  function validInfo() {
+    if (groupInfo.group_id > -1 && groupInfo.group_id % 1 === 0) {
+      return groupInfo.net_id.length === 9 && /^[a-zA-Z]+$/.test(groupInfo.net_id.substring(0, 3)) && /^[0-9]+$/.test(groupInfo.net_id.substring(4))
+    }
+    return false
   }
 
   return (
@@ -82,13 +87,13 @@ function CartModal(props) {
           {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} />}
         </Modal.Body>
         <Modal.Footer>
-          {error ? <h3>Invalid Quantity Field</h3> : <h3>Total : {total}</h3>}
+          <h3>Total : ${error ? 0 : total}</h3>
           <Button variant="secondary" onClick={() => { setCartShow(false) }}>
             Cancel{" "}
           </Button>
           <Button
             variant="primary"
-            disabled={groupInfo.net_id.length !== 9 || !(groupInfo.group_id > 0) || error}
+            disabled={!validInfo() || error}
             onClick={() => {
               checkOut();
               setCartShow(false);

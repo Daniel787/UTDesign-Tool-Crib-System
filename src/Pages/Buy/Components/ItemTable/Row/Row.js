@@ -13,9 +13,10 @@ function DataRow(props) {
       <td>
         <Form>
           <Form.Control
-            style={{ "width": "3rem" }}
+            style={{ "width": "4rem" }}
             type="number"
             value={amount}
+            onClick={(event) => event.target.select()}
             onChange={(e) => {
               setAmount(e.target.value);
             }}

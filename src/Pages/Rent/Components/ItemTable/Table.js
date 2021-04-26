@@ -6,7 +6,7 @@ import Row from "./Row/Row";
 function DataTable(props) {
   const head = ["ID", "Name", "Status", "Add To Cart"]
 
-  function addToCart(item, hours) {
+  function addToCart(item, hours, days) {
     let exists = [...props.cart].map((el) => {
       return el.item.tool_id;
     });
@@ -14,7 +14,7 @@ function DataTable(props) {
     let index = exists.indexOf(item.tool_id);
     if (index < 0) {
       newCart.push({
-        item: Object.assign(item, { hours: hours })
+        item: Object.assign(item, { hours: hours, days: days })
       });
     }
     props.setCart(newCart);

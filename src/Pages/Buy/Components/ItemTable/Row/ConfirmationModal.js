@@ -5,6 +5,7 @@ function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => {
+    props.reset();
     setShow(false);
   };
   const handleShow = () => {
@@ -12,7 +13,7 @@ function Confirmation_Modal(props) {
   };
 
   function invalid() {
-    return props.item.quantity_available < 1 || props.amount < 1 || props.amount.toString().indexOf('.') > -1
+    return props.item.quantity_available < 1 || props.amount < 1 || props.amount.toString().indexOf('.') > -1 || props.amount > props.item.quantity_available
   }
   return (
     <div>
@@ -28,8 +29,9 @@ function Confirmation_Modal(props) {
           {" "}
           ID : {props.item.part_id} <br />
           Name : {props.item.name} <br />{" "}
-          Current Cost : {props.item.current_cost} <br />
-          Quantity Selected : {props.amount}
+          Quantity Selected : {props.amount}<br />
+          Total : ${Math.floor(props.amount * props.item.current_cost * 100) / 100}
+
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

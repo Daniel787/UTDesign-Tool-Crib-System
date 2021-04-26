@@ -15,7 +15,6 @@ export default function Head(props) {
                     styles={styles}
                     cart={props.cart}
                     setCart={props.setCart}
-                    refreshList={props.refreshList}
                 />
                 <Return url={props.url} styles={styles} />
             </div>

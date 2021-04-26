@@ -4,7 +4,7 @@ import Search from "./Search/Search";
 import CartModal from "./Cart/CartModal";
 import RefreshList from "./RefreshList/RefreshList";
 
-//props: url refreshList setList cart setCart
+//props: url setList cart setCart
 export default function Head(props) {
     return (
         <div>
@@ -14,7 +14,6 @@ export default function Head(props) {
                     styles={styles}
                     cart={props.cart}
                     setCart={props.setCart}
-                    refreshList={props.refreshList}
                 />
             </div>
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />
