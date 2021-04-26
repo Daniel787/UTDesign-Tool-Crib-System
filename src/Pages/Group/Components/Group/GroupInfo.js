@@ -1,13 +1,23 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
+import AddGroupMember from "./AddMemberinGroup";
 
 export default function GroupInfo(props) {
   const [showGroupModal, setShowGroupModal] = useState(false);
+  const [showAddMember, setShowAddMember] = useState(false);
+
   function showGroup() {
     setShowGroupModal(true);
   }
   function turnOffGroup() {
     setShowGroupModal(false);
+  }
+
+  function showMember() {
+    setShowAddMember(true);
+  }
+  function turnOffMember() {
+    setShowAddMember(false);
   }
 
   function TableContent(item, i) {
@@ -22,7 +32,7 @@ export default function GroupInfo(props) {
         </tr>
       );
     } else {
-      return <div> asdas d</div>;
+      return <div> </div>;
     }
   }
   return (
@@ -43,6 +53,9 @@ export default function GroupInfo(props) {
           </td>
           <td>
             <Button onClick={showGroup}> Show Student </Button>
+          </td>
+          <td>
+            <AddGroupMember group_id={props.item.group.group_id} />
           </td>
         </tr>
       </tbody>
@@ -84,6 +97,10 @@ export default function GroupInfo(props) {
           </Table>
         </Modal.Body>
         <Modal.Footer>
+          <Button variant="secondary" onClick={setShowAddMember}>
+            {" "}
+            Add student to this group{" "}
+          </Button>
           <Button variant="primary" onClick={turnOffGroup}>
             Close
           </Button>
