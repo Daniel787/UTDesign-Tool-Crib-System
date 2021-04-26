@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from "../../Rent.module.css";
 import Search from "./Search/Search";
 import CartModal from "./Cart/CartModal";
 import RefreshList from "./RefreshList/RefreshList";
@@ -9,14 +8,14 @@ import Return from './Return/Return'
 export default function Head(props) {
     return (
         <div>
-            <div className={styles.Parent}>
-                <RefreshList styles={styles} refreshList={props.refreshList} />
+            <div className={props.styles.Parent}>
+                <RefreshList styles={props.styles} refreshList={props.refreshList} />
                 <CartModal
-                    styles={styles}
+                    styles={props.styles}
                     cart={props.cart}
                     setCart={props.setCart}
                 />
-                <Return url={props.url} styles={styles} />
+                <Return url={props.url} styles={props.styles} />
             </div>
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />
         </div>

@@ -31,6 +31,7 @@ export default function Rent() {
         refreshList={refreshList}
         setList={setList}
         cart={cart}
+        styles={styles}
         setCart={setCart} />
       <DataTable
         setCart={setCart}

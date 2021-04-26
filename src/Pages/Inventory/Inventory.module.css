@@ -4,3 +4,8 @@
 	margin-right: 10%;
 	margin-top: 2rem;
 }
+
+.MyModal {
+	width: 50vw !important;
+	max-width: 50vw !important;
+}

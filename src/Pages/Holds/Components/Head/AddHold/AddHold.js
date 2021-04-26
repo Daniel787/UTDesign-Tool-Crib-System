@@ -23,8 +23,8 @@ function Confirmation_Modal(props) {
   const hide = () => { setResult(null); setShow(false) }
   return (
     <div>
-      <Button variant="primary" onClick={() => { setShow(true) }}>
-        Add Hold
+      <Button variant="primary" onClick={() => { setShow(true) }} className={props.styles.Container}>
+        Add
       </Button>
 
       <Modal show={show} onHide={hide}>

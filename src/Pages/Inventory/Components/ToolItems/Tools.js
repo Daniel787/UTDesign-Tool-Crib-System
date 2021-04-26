@@ -4,7 +4,7 @@ import axios from "axios";
 import DataTable from "./ToolTable/Table";
 import Head from './Head/Head'
 
-export default function Tools() {
+export default function Tools(props) {
   const serverSite = process.env.REACT_APP_SERVER_SITE;
   const inventoryRoute = process.env.REACT_APP_INVENTORY;
   const toolRoute = process.env.REACT_APP_RENT;
@@ -24,7 +24,7 @@ export default function Tools() {
 
   return (
     <div>
-      <Head url={url} refreshList={refreshList} setList={setList} />
+      <Head url={url} refreshList={refreshList} setList={setList} styles={props.styles} />
       <DataTable url={url} list={list} refreshList={refreshList} />
     </div>
   );

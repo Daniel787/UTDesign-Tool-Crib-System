@@ -2,6 +2,7 @@ import React from "react";
 import { Modal, Button } from "react-bootstrap";
 import DupInsert from './DupInsert'
 import FailInsert from './FailInsert'
+import styles from '../../Head.module.css'
 
 export default function ErrorSheet(props) {
     function handleDup(index, overwrite) {
@@ -38,7 +39,7 @@ export default function ErrorSheet(props) {
 
     return (
         <div>
-            <Modal show={props.status !== null} onHide={() => props.setStatus(null)} keyboard={false} backdrop="static" >
+            <Modal show={props.status !== null} onHide={() => props.setStatus(null)} keyboard={false} backdrop="static" dialogClassName={styles.MyModal}>
                 <Modal.Header closeButton>
                     <Modal.Title> Errors in Input </Modal.Title>
                 </Modal.Header>

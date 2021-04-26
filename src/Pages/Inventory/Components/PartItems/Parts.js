@@ -4,7 +4,7 @@ import axios from "axios";
 import DataTable from "./PartTable/Table";
 import Head from './Head/Head'
 
-export default function Parts() {
+export default function Parts(props) {
   const host = process.env.REACT_APP_SERVER_SITE;
   const inv = process.env.REACT_APP_INVENTORY;
   const parts = process.env.REACT_APP_PARTS;
@@ -24,7 +24,7 @@ export default function Parts() {
 
   return (
     <div>
-      <Head url={url} refreshList={refreshList} setList={setList} />
+      <Head url={url} refreshList={refreshList} setList={setList} styles={props.styles} />
       <DataTable url={url} list={list} refreshList={refreshList} />
     </div>
   );

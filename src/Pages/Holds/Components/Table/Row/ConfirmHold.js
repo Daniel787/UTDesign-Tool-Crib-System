@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal, Button, Table } from "react-bootstrap";
-
+import styles from '../Table.module.css'
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
   const head = ["Tool ID", "Name", "Group ID", "Start Date", "Due Date"]
@@ -11,7 +11,7 @@ function Confirmation_Modal(props) {
         Change
       </Button>
 
-      <Modal show={show} onHide={() => { setShow(false) }}>
+      <Modal show={show} onHide={() => { setShow(false) }} dialogClassName={styles.MyModal}>
         <Modal.Header closeButton>
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>

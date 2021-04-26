@@ -27,7 +27,7 @@ export default function Holds() {
     <div className={styles.Body}>
       <h1>Holds Page</h1>
       <Head url={url} refreshList={refreshList} styles={styles} />
-      <DataTable list={list} refreshList={refreshList} url={url} />
+      <DataTable list={list} refreshList={refreshList} url={url} styles={styles} />
     </div>
   );
 }

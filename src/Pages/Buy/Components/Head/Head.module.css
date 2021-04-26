@@ -1,8 +1,6 @@
-.Body {
-	height: 100vh;
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-top: 2rem;
+.MyModal {
+	width: 50vw !important;
+	max-width: 50vw !important;
 }
 
 .Parent {
@@ -13,11 +11,7 @@
 	margin-top: 2%;
 	margin-right: 5%;
 }
+
 .Container {
 	margin-left: 3%;
-}
-
-.MyModal {
-	width: 50vw !important;
-	max-width: 50vw !important;
 }

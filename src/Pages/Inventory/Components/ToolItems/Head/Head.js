@@ -11,6 +11,7 @@ export default function Head(props) {
         <div>
             <Insert
                 url={props.url}
+                styles={props.styles}
                 showSingle={showSingle} setShowSingle={setShowSingle}
                 showMulti={showMulti} setShowMulti={setShowMulti} />
             <div className={styles.Parent}>

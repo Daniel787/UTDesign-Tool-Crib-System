@@ -3,6 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import Axios from "axios";
 import CartTable from './CartTable'
 import Info from './Info'
+import styles from '../Head.module.css'
 
 function CartModal(props) {
   const [groupInfo, setgroupInfo] = useState({
@@ -57,7 +58,7 @@ function CartModal(props) {
         </Modal.Header>
         <Modal.Body>
           <CartTable cart={props.cart} modifyCart={modifyCart} removeFromCart={removeFromCart} />
-          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} valid={validInfo} />}
+          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} validInfo={validInfo} dialogClassName={styles.MyModal} />}
 
         </Modal.Body>
         <Modal.Footer>

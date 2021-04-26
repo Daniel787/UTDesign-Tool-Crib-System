@@ -4,3 +4,8 @@
 	margin-right: 10%;
 	margin-top: 2rem;
 }
+
+.WideModal {
+	width: 60vw; /* Occupy the 90% of the screen width */
+	max-width: 60vw;
+}

@@ -31,11 +31,13 @@ export default function Buy() {
         url={url}
         refreshList={refreshList}
         setList={setList}
+        styles={styles}
         cart={cart}
         setCart={setCart} />
       <DataTable
         setCart={setCart}
         cart={cart}
+        styles={styles}
         list={list}
       />
     </div>

@@ -1,8 +1,8 @@
 import React from 'react'
-import styles from "../../Buy.module.css";
 import Search from "./Search/Search";
 import CartModal from "./Cart/CartModal";
 import RefreshList from "./RefreshList/RefreshList";
+import styles from './Head.module.css'
 
 //props: url setList cart setCart
 export default function Head(props) {

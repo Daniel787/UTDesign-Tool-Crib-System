@@ -10,7 +10,7 @@ function DataRow(props) {
       <td> {props.item.email} </td>
       <td> {props.item.utd_id} </td>
       <td> {props.item.tools.length}</td>
-      <td> <ConfirmationModal item={props.item} removeHold={props.removeHold} /> </td>
+      <td> <ConfirmationModal item={props.item} removeHold={props.removeHold} styles={props.styles} /> </td>
     </tr>
   );
 }

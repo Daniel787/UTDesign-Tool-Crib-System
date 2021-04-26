@@ -38,7 +38,7 @@ export default function Insert(props) {
 
     return (
         <div>
-            <ErrorSheet status={status} setStatus={setStatus} addParts={addParts} modifyPart={modifyPart} />
+            <ErrorSheet status={status} setStatus={setStatus} addParts={addParts} styles={props.styles} modifyPart={modifyPart} />
             <SingleModal addPart={addPart} show={props.showSingle} setShow={props.setShowSingle} />
             <MultiModal addParts={addParts} show={props.showMulti} setShow={props.setShowMulti} />
         </div>

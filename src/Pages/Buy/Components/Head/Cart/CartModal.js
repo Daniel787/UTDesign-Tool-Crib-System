@@ -3,6 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 import Axios from "axios";
 import Info from './Info'
 import CartTable from './CartTable'
+import styles from '../Head.module.css'
 
 function CartModal(props) {
   const [total, setTotal] = useState(0);
@@ -73,18 +74,19 @@ function CartModal(props) {
     return false
   }
 
+
   return (
     <div>
       <Button className={props.styles.Container} variant="primary" onClick={() => { setCartShow(true) }}>
         Cart
       </Button>
-      <Modal show={cartShow} onHide={() => { setCartShow(false) }}>
+      <Modal show={cartShow} onHide={() => { setCartShow(false) }} dialogClassName={styles.MyModal}>
         <Modal.Header closeButton>
           <Modal.Title> Cart </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <CartTable cart={props.cart} removeFromCart={removeFromCart} changeQuantity={changeQuantity} />
-          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} />}
+          {props.cart.length > 0 && <Info groupInfo={groupInfo} setgroupInfo={setgroupInfo} validInfo={validInfo} />}
         </Modal.Body>
         <Modal.Footer>
           <h3>Total : ${error ? 0 : total}</h3>

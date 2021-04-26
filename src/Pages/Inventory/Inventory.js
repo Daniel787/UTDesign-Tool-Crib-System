@@ -12,10 +12,10 @@ export default function Inventory() {
             <h1>Inventory Page</h1>
             <Tabs>
                 <Tab eventKey="buy" title="Parts" >
-                    <Parts />
+                    <Parts styles={styles} />
                 </Tab >
                 <Tab eventKey="rent" title="Tools">
-                    <Tools />
+                    <Tools styles={styles} />
                 </Tab>
             </Tabs>
 
