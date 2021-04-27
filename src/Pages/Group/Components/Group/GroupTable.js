@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import GroupInfo from "./GroupInfo";
 import AddMember from "./AddMember";
+import AddGroup from "./AddGroup";
 
 export default function GroupTable(props) {
   return (
@@ -21,6 +22,7 @@ export default function GroupTable(props) {
         })}
       </Table>
       <AddMember />
+      <AddGroup />
     </React.Fragment>
   );
 }

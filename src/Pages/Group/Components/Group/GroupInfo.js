@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
+import AddMemberinGroup from "./AddMemberinGroup";
+import RemoveGroupMember from "./RemoveMemberinGroup";
+import Styles from "./group_modal.module.css";
 
 export default function GroupInfo(props) {
   const [showGroupModal, setShowGroupModal] = useState(false);
+
   function showGroup() {
     setShowGroupModal(true);
   }
@@ -10,21 +14,6 @@ export default function GroupInfo(props) {
     setShowGroupModal(false);
   }
 
-  function TableContent(item, i) {
-    if (true) {
-      return (
-        <tr key={i}>
-          <td> {item.name} </td>
-          <td> {item.net_id} </td>
-          <td> {item.utd_id} </td>
-          <td> {item.email} </td>
-          <td> {item.hold} </td>
-        </tr>
-      );
-    } else {
-      return <div> asdas d</div>;
-    }
-  }
   return (
     <React.Fragment>
       <tbody>
@@ -46,7 +35,7 @@ export default function GroupInfo(props) {
           </td>
         </tr>
       </tbody>
-      <Modal show={showGroupModal}>
+      <Modal show={showGroupModal} dialogClassName={Styles.MyModal}>
         <Modal.Header>
           <Modal.Title>
             {" "}
@@ -62,6 +51,7 @@ export default function GroupInfo(props) {
                 <td> UTD ID</td>
                 <td> Email </td>
                 <td> Hold </td>
+                <td> Remove </td>
               </tr>
             </thead>
             <tbody>
@@ -74,6 +64,13 @@ export default function GroupInfo(props) {
                       <td> {item.utd_id} </td>
                       <td> {item.email} </td>
                       <td> {item.hold} </td>
+                      <td>
+                        {" "}
+                        <RemoveGroupMember
+                          group_id={props.item.group.group_id}
+                          net_id={item.net_id}
+                        />{" "}
+                      </td>
                     </tr>
                   );
                 } else {
@@ -84,9 +81,10 @@ export default function GroupInfo(props) {
           </Table>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={turnOffGroup}>
+          <Button variant="secondary" onClick={turnOffGroup}>
             Close
           </Button>
+          <AddMemberinGroup group_id={props.item.group.group_id} />
         </Modal.Footer>
       </Modal>
     </React.Fragment>
