@@ -29,20 +29,24 @@ function Confirmation_Modal(props) {
 
   return (
     <div>
+      {/* opens modal */}
       <Button variant="primary"
         disabled={props.item.status !== "Available"}
         onClick={handleShow}>
         Add To Cart
       </Button>
 
+      {/* modal */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
+        {/* main part */}
         <Modal.Body>
           {" "}
           ID : {props.item.tool_id} <br />
           Name : {props.item.name} <br />{" "}
+          {/* prompts hour input  */}
           Hours for Rental: <input
             type="number"
             onFocus={(e) => e.target.select()}
@@ -51,6 +55,7 @@ function Confirmation_Modal(props) {
             value={hours}
             onChange={(e) => setHours(e.target.value ? parseInt(e.target.value) : "")}
           /> <input type="checkbox" onClick={(e) => setCheck(prev => !prev)} /> Days
+          {/* if days checked it will ask for number of days instead */}
           {check && <div>Days for Rental: <input
             type="number"
             onFocus={(e) => e.target.select()}
@@ -59,13 +64,16 @@ function Confirmation_Modal(props) {
             onChange={(e) => setDays(e.target.value ? parseInt(e.target.value) : "")}
           /></div>}
         </Modal.Body>
+        {/* bottom options */}
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
+          {/* processes item to cart by calling add to cart function */}
           <Button
             variant="primary"
             disabled={invalid()}
+            // converts days to hours since server only works with hours
             onClick={() => {
               props.addToCart(props.item, check ? days * 24 : hours, check ? days : null);
               handleClose();

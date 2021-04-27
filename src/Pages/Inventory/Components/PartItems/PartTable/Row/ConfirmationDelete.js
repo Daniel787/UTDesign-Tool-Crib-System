@@ -13,23 +13,28 @@ function ConfirmationDeltete(props) {
 
   return (
     <div>
+      {/* opens modal */}
       <Button variant="primary" onClick={handleShow}>
         Remove
       </Button>
 
+      {/* modal */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
+        {/* main part */}
         <Modal.Body>
           Name : {props.item.name} <br />
           ID : {props.item.part_id}
         </Modal.Body>
+        {/* bottom options */}
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             {" "}
             Cancel{" "}
           </Button>
+          {/* processes removal by calling remove tool function with tool id */}
           <Button
             variant="primary"
             onClick={() => {

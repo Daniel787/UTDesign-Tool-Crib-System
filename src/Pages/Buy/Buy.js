@@ -14,12 +14,14 @@ export default function Buy() {
   const [list, setList] = useState([]);
   const [cart, setCart] = useState([]);
 
+  // grabs items to list
   function refreshList() {
     axios.get(url).then((response) => {
       setList(response.data);
     });
   }
 
+  // grabs list on first render
   useEffect(() => {
     refreshList();
   }, []);
@@ -27,6 +29,7 @@ export default function Buy() {
   return (
     <div className={styles.Body}>
       <h1>Buy Page</h1>
+      {/* options */}
       <Head
         url={url}
         refreshList={refreshList}
@@ -34,6 +37,7 @@ export default function Buy() {
         styles={styles}
         cart={cart}
         setCart={setCart} />
+      {/* table list */}
       <DataTable
         setCart={setCart}
         cart={cart}

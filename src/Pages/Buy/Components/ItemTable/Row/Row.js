@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import ConfirmationModal from "./ConfirmationModal";
 
+// displays current index item
 function DataRow(props) {
   const [amount, setAmount] = useState(1);
+
   return (
     <tr>
       <td> {props.item.part_id} </td>
@@ -11,6 +13,7 @@ function DataRow(props) {
       <td> {props.item.quantity_available} </td>
       <td> {props.item.current_cost} </td>
       <td>
+        {/* changes quantity of desired item with an input */}
         <Form>
           <Form.Control
             style={{ "width": "4rem" }}
@@ -24,6 +27,7 @@ function DataRow(props) {
         </Form>
       </td>
       <td>
+        {/* adds to cart with a modal confirmation */}
         <ConfirmationModal
           item={props.item}
           amount={amount}

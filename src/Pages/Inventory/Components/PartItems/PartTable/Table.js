@@ -7,10 +7,12 @@ import Row from "./Row/Row";
 
 //props: list refreshList url
 function DataTable(props) {
+  // removes object by posting part id to the server
   function removePart(part_id) {
     axios.post(props.url + "/delete?part_id=" + part_id).then((response) => { });
   }
 
+  // modifies by posting new part to the server
   function modifyPart(new_part) {
     axios.post(props.url + "/modify", new_part).then((response) => {
     });
@@ -20,11 +22,13 @@ function DataTable(props) {
   return (
     <div>
       <Table responsive hover>
+        {/* maps array of headers to table header  */}
         <thead>
           <tr>
             {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
           </tr>
         </thead>
+        {/* displays rows by mapping the list to row components */}
         <tbody>{
           props.list.map((item) => {
             return (

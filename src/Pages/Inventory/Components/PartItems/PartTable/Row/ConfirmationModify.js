@@ -8,6 +8,8 @@ function ConfirmationDeltete(props) {
   const handleClose = () => {
     setShow(false);
   };
+
+  // resets item when opened
   const handleShow = () => {
     setShow(true);
     setModItem({
@@ -18,37 +20,40 @@ function ConfirmationDeltete(props) {
     })
   };
 
+  // valid quantity is more than 0 and is not a float
   function validQuantity(input) {
     return parseInt(input) > 0 && input.toString().indexOf(".") === -1;
   }
+  // valid cost is more than 0 and in money format
   function validCost(input) {
     const dec = input.toString().indexOf(".");
     if (dec !== -1) {
-      parseFloat(input) > 0 && console.log(input + " Bi")
       return (
         parseFloat(input) > 0 && input.toString().length - dec <= 3
       );
     }
-
     return parseFloat(input) > 0;
-
   }
+  // valid names are nonempty
   function validName(input) {
     return input.length > 0
   }
 
   return (
     <div>
+      {/* opens modal */}
       <Button variant="primary" onClick={handleShow}>
         Modify
       </Button>
 
+      {/* modal */}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
-
+        {/* main part */}
         <Modal.Body>
+          {/* prompts user input for new values */}
           ID : {props.item.part_id} <br />
           Name : <input value={modItem.name} onChange={(e) => setModItem(prev => ({ ...prev, name: e.target.value }))} /> <br />
           {!validName(modItem.name) && <h3>Invalid Name</h3>}
@@ -57,11 +62,12 @@ function ConfirmationDeltete(props) {
           New Price : $<input value={modItem.current_cost} onChange={(e) => setModItem(prev => ({ ...prev, current_cost: e.target.value }))} />
           {!validCost(modItem.current_cost) && <h3>Invalid Cost</h3>}
         </Modal.Body>
-
+        {/* bottom options */}
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Cancel
           </Button>
+          {/* processes modification with modify part function */}
           <Button
             variant="primary"
             disabled={!validName(modItem.name) || !validQuantity(modItem.quantity_available) || !validCost(modItem.current_cost)}

@@ -2,6 +2,7 @@ import React from "react";
 import ConfirmationDeltete from "./ConfirmationDelete";
 import ConfirmationModify from "./ConfirmationModify";
 
+// displays current index item
 function DataRow(props) {
 
   return (
@@ -9,6 +10,7 @@ function DataRow(props) {
       <td> {props.item.tool_id} </td>
       <td> {props.item.name} </td>
       <td> {props.item.status} </td>
+      {/* if item is not availablr it wont have student info */}
       <td>{props.item.status === "Available" ?
         <> - </> :
         <>
@@ -16,6 +18,7 @@ function DataRow(props) {
           Group ID: {props.item.group_id}
         </>}
       </td>
+      {/* if item is not available it wont have return info */}
       <td>{props.item.status === "Available" ?
         <> - </> :
         <>
@@ -23,6 +26,7 @@ function DataRow(props) {
           Due Date: {props.item.due_date}
         </>}
       </td>
+      {/* removes item with a modal confirmation */}
       <td>
         <ConfirmationDeltete
           item={props.item}
@@ -30,6 +34,7 @@ function DataRow(props) {
         />
 
       </td>
+      {/* modifies item with a modal confirmation */}
       <td>
         <ConfirmationModify
           item={props.item}

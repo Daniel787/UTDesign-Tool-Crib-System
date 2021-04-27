@@ -12,19 +12,23 @@ export default function Parts(props) {
 
   const [list, setList] = useState([]);
 
+  // grabs items to list
   function refreshList() {
     axios.get(url).then((response) => {
       setList(response.data);
     });
   }
 
+  // grabs list on first render
   useEffect(() => {
     refreshList();
   }, []);
 
   return (
     <div>
+      {/* options */}
       <Head url={url} refreshList={refreshList} setList={setList} styles={props.styles} />
+      {/* table list */}
       <DataTable url={url} list={list} refreshList={refreshList} />
     </div>
   );

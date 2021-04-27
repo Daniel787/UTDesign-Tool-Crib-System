@@ -12,6 +12,7 @@ export default function Holds() {
   const url = host + StudentRoute;
   const [list, setList] = useState([]);
 
+  // grabs items to list
   function refreshList() {
     axios.get(url + HoldRoute + "/withtools/json").then((response) => {
       setList(response.data);
@@ -19,6 +20,7 @@ export default function Holds() {
     });
   }
 
+  // grabs list on first render
   useEffect(() => {
     refreshList();
   }, []);
@@ -26,7 +28,9 @@ export default function Holds() {
   return (
     <div className={styles.Body}>
       <h1>Holds Page</h1>
+      {/* options */}
       <Head url={url} refreshList={refreshList} styles={styles} />
+      {/* table list */}
       <DataTable list={list} refreshList={refreshList} url={url} styles={styles} />
     </div>
   );

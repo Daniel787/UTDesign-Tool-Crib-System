@@ -13,12 +13,14 @@ export default function Rent() {
   const url = host + inventoryPort + toolPort;
   const [list, setList] = useState([]);
 
+  // grabs items to list
   function refreshList() {
     axios.get(url).then((response) => {
       setList(response.data);
     });
   }
 
+  // grabs list on first render
   useEffect(() => {
     refreshList();
   }, []);
@@ -26,6 +28,7 @@ export default function Rent() {
   return (
     <div className={styles.Body}>
       <h1>Rent Page</h1>
+      {/* options */}
       <Head
         url={url}
         refreshList={refreshList}
@@ -33,6 +36,7 @@ export default function Rent() {
         cart={cart}
         styles={styles}
         setCart={setCart} />
+      {/* table list */}
       <DataTable
         setCart={setCart}
         cart={cart}

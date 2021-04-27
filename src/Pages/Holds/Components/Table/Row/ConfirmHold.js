@@ -7,26 +7,32 @@ function Confirmation_Modal(props) {
 
   return (
     <div>
+      {/* opens modal */}
       <Button variant="primary" onClick={() => { setShow(true) }}>
         Change
       </Button>
 
+      {/* modal */}
       <Modal show={show} onHide={() => { setShow(false) }} dialogClassName={styles.MyModal}>
         <Modal.Header closeButton>
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
+        {/* main part */}
         <Modal.Body>
           {" "}
           <h3>Net ID: {props.item.net_id}</h3>
           <h4>Name: {props.item.name}</h4>
           <h4>UTD ID: {props.item.utd_id}</h4>
           <h4>Email: {props.item.email}</h4>
+          {/* lists items currently rented out */}
           <Table responsive hover>
+            {/* maps header array to table header */}
             <thead>
               <tr>
                 {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
               </tr>
             </thead>
+            {/* displays rows by mapping list of tools  */}
             <tbody>
               {props.item.tools.map((el, i) => {
                 return <tr key={i}>
@@ -40,10 +46,12 @@ function Confirmation_Modal(props) {
           </Table>
 
         </Modal.Body>
+        {/* bottom options */}
         <Modal.Footer>
           <Button variant="secondary" onClick={() => { setShow(false) }}>
             Cancel{" "}
           </Button>
+          {/* processes hold removal by calling remove hold function */}
           <Button
             variant="primary"
             onClick={() => {
