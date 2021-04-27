@@ -56,7 +56,7 @@ function Confirmation_Deltete(props) {
         </Modal.Header>
         <Modal.Body>
           <h3>Import a sheet</h3>
-          <input type="file" onChange={(e) => setFile(e.target.files[0])} />
+          <input type="file" accept=".csv,.xls,.xlsx" onChange={(e) => setFile(e.target.files[0])} />
         </Modal.Body>
         <Modal.Footer>
           <Button

@@ -6,7 +6,6 @@ function ConfirmationDeltete(props) {
 
   const [modItem, setModItem] = useState({ part_id: 0, name: "", quantity_available: 0, current_cost: 0 })
   const handleClose = () => {
-    setModItem({ part_id: 0, name: "", quantity_available: 0, current_cost: 0 })
     setShow(false);
   };
   const handleShow = () => {
@@ -25,10 +24,12 @@ function ConfirmationDeltete(props) {
   function validCost(input) {
     const dec = input.toString().indexOf(".");
     if (dec !== -1) {
+      parseFloat(input) > 0 && console.log(input + " Bi")
       return (
-        parseFloat(input) > 0 && input.length - dec <= 3
+        parseFloat(input) > 0 && input.toString().length - dec <= 3
       );
     }
+
     return parseFloat(input) > 0;
 
   }

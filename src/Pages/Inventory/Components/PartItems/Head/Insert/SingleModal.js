@@ -29,13 +29,20 @@ function Confirmation_Deltete(props) {
     return validID() && row.name.length > 0 && validQuantity() && validCost();
   }
 
+  const handleClose = () => {
+    props.setShow(false);
+    setRow({
+      part_id: "",
+      name: "",
+      quantity_available: "",
+      current_cost: "",
+    });
+  }
   return (
     <div>
       <Modal
         show={props.show}
-        onHide={() => {
-          props.setShow(false);
-        }}
+        onHide={handleClose}
       >
         <Modal.Header closeButton>
           <Modal.Title> Insert </Modal.Title>
@@ -92,9 +99,7 @@ function Confirmation_Deltete(props) {
         <Modal.Footer>
           <Button
             variant="secondary"
-            onClick={() => {
-              props.setShow(false);
-            }}
+            onClick={handleClose}
           >
             {" "}
             Cancel{" "}
@@ -105,10 +110,10 @@ function Confirmation_Deltete(props) {
             onClick={() => {
               props.addPart(row);
               setRow({
-                part_id: 0,
+                part_id: "",
                 name: "",
-                quantity_available: 0,
-                current_cost: 0,
+                quantity_available: "",
+                current_cost: "",
               });
               props.setShow(false);
             }}

@@ -21,6 +21,7 @@ export default function ErrorSheet(props) {
         }
 
     }
+
     function handleFail(index, row) {
         let fails = [...props.status.failedinserts]
         if (row !== undefined) {
@@ -36,11 +37,30 @@ export default function ErrorSheet(props) {
         }
     }
 
+    function mergeAll() {
+        async function modify() {
+            if (props.status) {
+                let i = 0
+                while (props.status.conflictinserts.new.length > i) {
+                    await handleDup(i, true)
+                    await i++
+                }
+                if (props.status.failedinserts.length === 0) {
+                    props.setStatus(null)
+                } else {
+                    props.setStatus(prev => ({ ...prev, conflictinserts: { new: [], old: [] } }))
+                }
+            }
+
+        }
+        modify()
+    }
+
     return (
         <div>
             <Modal show={props.status !== null} onHide={() => props.setStatus(null)} keyboard={false} backdrop="static" dialogClassName={styles.MyModal}>
                 <Modal.Header closeButton>
-                    <Modal.Title> Errors in Input </Modal.Title>
+                    <Modal.Title> Confirmations </Modal.Title>
                 </Modal.Header>
                 {props.status && <div>
                     <Modal.Body>
@@ -50,6 +70,11 @@ export default function ErrorSheet(props) {
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => props.setStatus(null)}>
                             Ignore Errors
+                        </Button>
+                        <Button
+                            variant="primary"
+                            onClick={() => { mergeAll() }}>
+                            Merge All
                         </Button>
                         <Button
                             variant="primary"
