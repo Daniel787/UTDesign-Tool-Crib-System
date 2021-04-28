@@ -16,8 +16,20 @@ function DataTable(props) {
     let index = exists.indexOf(item.tool_id);
     // only adds to cart if its not in the cart
     if (index < 0) {
+      let totalHours = hours
+      let totalDays = 0
+      if (days) {
+        const yyyy = parseInt(days.substring(0, 4))
+        const mm = parseInt(days.substring(5, 7)) - 1
+        const dd = parseInt(days.substring(8, 10))
+        const today = new Date()
+        const returnDate = new Date(yyyy, mm, dd, 0, 0, 0, 0)
+        totalDays = parseInt((returnDate - today) / (1000 * 60 * 60 * 24), 10) + 1
+        totalHours = totalDays * 24
+
+      }
       newCart.push({
-        item: Object.assign(item, { hours: hours, days: days })
+        item: Object.assign(item, { hours: totalHours, days: totalDays, returnDate: days })
       });
     }
     props.setCart(newCart);

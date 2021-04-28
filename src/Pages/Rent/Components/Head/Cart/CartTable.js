@@ -20,7 +20,7 @@ export default function CartTable(props) {
                                 <td > {el.item.name} </td>
                                 <td>  {el.item.tool_id} </td>
                                 {/* displays rental time by checking if which type it is */}
-                                <td>  {el.item.days ? <div>{el.item.days} days</div> : <div>{el.item.hours} hours</div>}</td>
+                                <td>  {el.item.days ? <div>{el.item.returnDate} ({el.item.days} days)</div> : <div>{el.item.hours} hours</div>}</td>
                                 {/* removes from cart by calling remove from cart function */}
                                 <td> <Button onClick={() => props.removeFromCart(i)}>Remove</Button></td>
                             </tr>

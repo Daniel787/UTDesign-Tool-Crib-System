@@ -3,13 +3,13 @@ import { Modal, Button } from "react-bootstrap";
 
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
-  const [days, setDays] = useState(1)
+  const [days, setDays] = useState("")
   const [hours, setHours] = useState(2)
   const [check, setCheck] = useState(false)
 
   const handleClose = () => {
     setHours(2)
-    setDays(0)
+    setDays("")
     setShow(false);
     setCheck(false)
   };
@@ -17,10 +17,16 @@ function Confirmation_Modal(props) {
     setShow(true);
   };
 
+  var today = new Date();
+  var dd = today.getDate() < 10 ? '0' + today.getDate() : today.getDate();
+  var mm = today.getMonth() + 1 < 10 ? '0' + (today.getMonth() + 1) : (today.getMonth() + 1)
+  var yyyy = today.getFullYear();
+  today = yyyy + '-' + mm + '-' + dd;
 
   function invalid() {
-    if (check) {
-      return days < 1
+    // checks if todays date is not today
+    if (days) {
+      return today === days
     }
     else {
       return hours < 1 || hours > 23
@@ -57,11 +63,11 @@ function Confirmation_Modal(props) {
           /> <input type="checkbox" onClick={(e) => setCheck(prev => !prev)} /> Days
           {/* if days checked it will ask for number of days instead */}
           {check && <div>Days for Rental: <input
-            type="number"
-            onFocus={(e) => e.target.select()}
-            style={{ "width": "4rem" }}
+            type="date"
+            style={{ "width": "10rem" }}
+            min={today}
             value={days}
-            onChange={(e) => setDays(e.target.value ? parseInt(e.target.value) : "")}
+            onChange={(e) => setDays(e.target.value)}
           /></div>}
         </Modal.Body>
         {/* bottom options */}
@@ -75,7 +81,7 @@ function Confirmation_Modal(props) {
             disabled={invalid()}
             // converts days to hours since server only works with hours
             onClick={() => {
-              props.addToCart(props.item, check ? days * 24 : hours, check ? days : null);
+              props.addToCart(props.item, check ? 0 : hours, check ? days : null);
               handleClose();
             }}
           >
