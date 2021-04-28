@@ -9,7 +9,7 @@ export default function Insert(props) {
 
     function addPart(row) {
         axios.post(props.url + "/insert", row).then(response => {
-            if (response.data === "SUCCESS") {
+            if (response.data.message === "SUCCESS") {
                 setStatus(null)
             }
             else {

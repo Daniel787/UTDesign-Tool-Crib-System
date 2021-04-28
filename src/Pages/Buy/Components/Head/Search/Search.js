@@ -6,9 +6,10 @@ import SearchName from './SearchName'
 
 export default function Search(props) {
 
+  // post search request based on type
   function search(newurl, request) {
-    console.log(request)
     Axios.get(props.url + newurl + request).then((response) => {
+      // if search exists filter otherwise refresh
       response.data.length > 0
         ? props.setList(response.data)
         : props.refreshList();

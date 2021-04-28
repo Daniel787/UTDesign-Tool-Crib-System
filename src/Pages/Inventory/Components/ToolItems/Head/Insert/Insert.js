@@ -24,10 +24,8 @@ export default function Insert(props) {
     }
 
     function addTools(sheet) {
-        console.log(sheet)
         axios.post(props.url + "/upload", sheet).then(response => {
-            console.log(response.data)
-            if (response.data === "SUCCESS") {
+            if (response.data.message === "SUCCESS") {
                 setStatus(null)
             }
             else {

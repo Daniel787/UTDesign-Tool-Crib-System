@@ -7,7 +7,6 @@ export default function SearchID(props) {
 
     return (
         <div className={styles.container}>
-            {/*  <label>By Part ID: </label>{" "} */}
             <input
                 type="number"
                 placeholder="By Part ID"

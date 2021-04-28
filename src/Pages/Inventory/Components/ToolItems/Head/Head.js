@@ -9,12 +9,15 @@ export default function Head(props) {
     const [showMulti, setShowMulti] = useState(false);
     return (
         <div>
+            {/* Insertion modals */}
             <Insert
                 url={props.url}
                 styles={props.styles}
                 showSingle={showSingle} setShowSingle={setShowSingle}
                 showMulti={showMulti} setShowMulti={setShowMulti} />
+            {/* button options */}
             <div className={styles.Parent}>
+                {/* calls refresh list function */}
                 <Button className={styles.Container} onClick={() => props.refreshList()} >
                     Refresh
                 </Button>
@@ -35,6 +38,7 @@ export default function Head(props) {
                     Insert One
                 </Button>
             </div>
+            {/* filters */}
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />
         </div>
     )

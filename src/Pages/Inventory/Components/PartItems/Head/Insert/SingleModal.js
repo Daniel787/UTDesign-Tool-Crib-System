@@ -9,15 +9,20 @@ function Confirmation_Deltete(props) {
     current_cost: "",
   });
 
+  // validates id by seeing if its a positive int
   function validID() {
     return row.part_id > 0 && row.part_id % 1 === 0;
   }
 
+  // validates id by seeing if its a positive int
   function validQuantity() {
     return row.quantity_available > 0 && row.quantity_available % 1 === 0;
   }
+
+  // validates quantity by seeing if its a positive and in a money format
   function validCost() {
     const dec = row.current_cost.toString().indexOf(".");
+    // checks if its a float
     if (dec !== -1) {
       return (
         row.current_cost > 0 && row.current_cost.toString().length - dec <= 3
@@ -25,6 +30,8 @@ function Confirmation_Deltete(props) {
     }
     return row.current_cost > 0;
   }
+
+  // validates all by checking all validating functions
   function valid(params) {
     return validID() && row.name.length > 0 && validQuantity() && validCost();
   }
@@ -40,6 +47,7 @@ function Confirmation_Deltete(props) {
   }
   return (
     <div>
+      {/* modal */}
       <Modal
         show={props.show}
         onHide={handleClose}
@@ -47,9 +55,12 @@ function Confirmation_Deltete(props) {
         <Modal.Header closeButton>
           <Modal.Title> Insert </Modal.Title>
         </Modal.Header>
+        {/* main part */}
         <Modal.Body>
           <div>
+            {/* inputs id and validates */}
             <label>Part ID:</label>{" "}
+            {/* */}
             <input
               type="number"
               value={row.part_id}
@@ -59,6 +70,7 @@ function Confirmation_Deltete(props) {
             ></input>
             {!validID() && <h5>Enter Valid ID</h5>}
           </div>
+          {/* inputs name and validates */}
           <div>
             <label>Name:</label>{" "}
             <input
@@ -70,6 +82,7 @@ function Confirmation_Deltete(props) {
             ></input>
             {!row.name.length > 0 && <h5>Enter Valid Name</h5>}
           </div>
+          {/* inputs quantity and validates */}
           <div>
             <label>Quantity Available:</label>{" "}
             <input
@@ -84,6 +97,7 @@ function Confirmation_Deltete(props) {
             ></input>
             {!validQuantity() && <h5>Enter Valid Quantity</h5>}
           </div>
+          {/* inputs cost and validates */}
           <div>
             <label>Cost:</label>{" "}
             <input
@@ -96,6 +110,7 @@ function Confirmation_Deltete(props) {
             {!validCost() && <h5>Enter Valid Cost</h5>}
           </div>
         </Modal.Body>
+        {/* options */}
         <Modal.Footer>
           <Button
             variant="secondary"
@@ -104,6 +119,7 @@ function Confirmation_Deltete(props) {
             {" "}
             Cancel{" "}
           </Button>
+          {/* processes if its a valid part */}
           <Button
             variant="primary"
             disabled={!valid()}

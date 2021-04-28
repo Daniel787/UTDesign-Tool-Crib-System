@@ -8,6 +8,7 @@ import styles from './Head.module.css'
 export default function Head(props) {
     return (
         <div>
+            {/* button options */}
             <div className={styles.Parent}>
                 <RefreshList styles={styles} refreshList={props.refreshList} />
                 <CartModal
@@ -16,6 +17,7 @@ export default function Head(props) {
                     setCart={props.setCart}
                 />
             </div>
+            {/* filter options */}
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />
         </div>
     )

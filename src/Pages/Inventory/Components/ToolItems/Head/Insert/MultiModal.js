@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import * as XLSX from "xlsx";
 
-function Confirmation_Deltete(props) {
+function MultiModal(props) {
   const [file, setFile] = useState(null);
 
+  // opens file
   function readFile() {
     const reader = new FileReader();
     reader.onload = (evt) => {
-      // evt = on_file_select event
       /* Parse data */
       const bstr = evt.target.result;
       const wb = XLSX.read(bstr, { type: "binary" });
@@ -23,6 +23,7 @@ function Confirmation_Deltete(props) {
     reader.readAsBinaryString(file);
   }
 
+  // converts file to json
   function convertToJson(csv) {
     // skips empty lines
     var lines = csv.split("\n").filter((el) => el);
@@ -38,12 +39,12 @@ function Confirmation_Deltete(props) {
         result.push(obj);
       }
     }
-    //return result; //JavaScript object
     return (result); //JSON
   }
 
   return (
     <div>
+      {/* modal */}
       <Modal
         show={props.show}
         onHide={() => {
@@ -54,10 +55,13 @@ function Confirmation_Deltete(props) {
         <Modal.Header closeButton>
           <Modal.Title> Insert Sheet </Modal.Title>
         </Modal.Header>
+        {/* main part */}
         <Modal.Body>
           <h3>Import a sheet</h3>
+          {/* prompts user for excel sheet */}
           <input type="file" accept=".csv,.xls,.xlsx" onChange={(e) => setFile(e.target.files[0])} />
         </Modal.Body>
+        {/* options */}
         <Modal.Footer>
           <Button
             variant="secondary"
@@ -69,6 +73,7 @@ function Confirmation_Deltete(props) {
             {" "}
             Cancel{" "}
           </Button>
+          {/* processes file if its valid */}
           <Button
             variant="primary"
             disabled={!file}
@@ -86,4 +91,4 @@ function Confirmation_Deltete(props) {
   );
 }
 
-export default Confirmation_Deltete;
+export default MultiModal;

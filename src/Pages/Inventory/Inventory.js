@@ -10,6 +10,7 @@ export default function Inventory() {
     return (
         <div className={styles.Body}>
             <h1>Inventory Page</h1>
+            {/* tabs for tools and parts */}
             <Tabs>
                 <Tab eventKey="buy" title="Parts" >
                     <Parts styles={styles} />

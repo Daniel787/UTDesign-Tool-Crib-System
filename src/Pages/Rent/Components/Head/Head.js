@@ -8,6 +8,7 @@ import Return from './Return/Return'
 export default function Head(props) {
     return (
         <div>
+            {/* button options */}
             <div className={props.styles.Parent}>
                 <RefreshList styles={props.styles} refreshList={props.refreshList} />
                 <CartModal
@@ -17,6 +18,7 @@ export default function Head(props) {
                 />
                 <Return url={props.url} styles={props.styles} />
             </div>
+            {/* filters */}
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />
         </div>
     )

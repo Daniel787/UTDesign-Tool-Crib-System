@@ -11,12 +11,15 @@ export default function Head(props) {
 
     return (
         <div>
+            {/* Insertion Modals */}
             <Insert
                 url={props.url}
                 styles={props.styles}
                 showSingle={showSingle} setShowSingle={setShowSingle}
                 showMulti={showMulti} setShowMulti={setShowMulti} />
+            {/* button options */}
             <div className={styles.Parent}>
+                {/* calls refresh list function */}
                 <Button
                     className={styles.Container}
                     onClick={() => props.refreshList()} >
@@ -39,6 +42,7 @@ export default function Head(props) {
                     Insert One
                 </Button>
             </div>
+            {/* Filters */}
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />
         </div>
     )

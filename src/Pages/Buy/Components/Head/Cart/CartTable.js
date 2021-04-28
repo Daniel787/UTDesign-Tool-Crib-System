@@ -6,11 +6,13 @@ export default function CartTable(props) {
     return (
         <div>
             <Table responsive hover>
+                {/* displays header by mapping header array tp table head */}
                 <thead>
                     <tr>
                         {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
                     </tr>
                 </thead>
+                {/* displays cart by mapping cart to to a table row  */}
                 <tbody>{
                     props.cart.map((el, i) => {
                         return (
@@ -18,14 +20,19 @@ export default function CartTable(props) {
                                 <td > {el.item.name} </td>
                                 <td>  {el.item.part_id} </td>
                                 <td>{el.item.quantity_available}</td>
+                                {/* allows qunatity to be modified by calling change quantity */}
                                 <td> <input
                                     type="number"
                                     value={el.quantity}
                                     style={{ "width": "4rem" }}
                                     onFocus={(e) => e.target.select()}
                                     onChange={(e) => props.changeQuantity(e, i)}
-                                /></td>
-                                <td> {el.total > 0 ? (el.item.quantity_available < el.quantity ? 'too much' : el.total) : 'invalid quantity'} </td>
+                                />
+                                    {el.total <= 0 && 'Invalid Quantity'}
+                                </td>
+                                {/* displays total when it exists */}
+                                <td> {el.total > 0 ? el.total : 'ERROR'} </td>
+                                {/* removes from cart by calling remove from cart function */}
                                 <td> <Button onClick={() => props.removeFromCart(i)}>Remove</Button></td>
                             </tr>
                         );

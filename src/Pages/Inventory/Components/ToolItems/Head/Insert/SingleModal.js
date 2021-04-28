@@ -4,16 +4,19 @@ import { Modal, Button } from "react-bootstrap";
 function Confirmation_Deltete(props) {
   const [row, setRow] = useState({ tool_id: "", name: "" });
 
+  // validates id by seeing if its a positive int
   function validID() {
     return row.tool_id > 0 && row.tool_id % 1 === 0;
   }
 
+  // validates all by checking all validating functions
   function valid(params) {
     return validID() && row.name.length > 0;
   }
 
   return (
     <div>
+      {/* modal */}
       <Modal
         show={props.show}
         onHide={() => {
@@ -24,7 +27,9 @@ function Confirmation_Deltete(props) {
         <Modal.Header closeButton>
           <Modal.Title> Insert </Modal.Title>
         </Modal.Header>
+        {/* main part */}
         <Modal.Body>
+          {/* inputs id and validates */}
           <div>
             <label>Tool ID:</label>{" "}
             <input
@@ -36,6 +41,7 @@ function Confirmation_Deltete(props) {
             ></input>
             {!validID() && <h5>Invalid ID</h5>}
           </div>
+          {/* inputs name and validates */}
           <div>
             <label>Name:</label>{" "}
             <input
@@ -48,6 +54,7 @@ function Confirmation_Deltete(props) {
             {!row.name.length > 0 && <h5>Invalid Name</h5>}
           </div>
         </Modal.Body>
+        {/* options */}
         <Modal.Footer>
           <Button
             variant="secondary"
@@ -59,6 +66,7 @@ function Confirmation_Deltete(props) {
             {" "}
             Cancel{" "}
           </Button>
+          {/* processes if its a valid part */}
           <Button
             variant="primary"
             disabled={!valid()}
