@@ -20,7 +20,7 @@ export default function Group() {
 
   function getGroupInfo() {
     const host = process.env.REACT_APP_SERVER_SITE;
-    const route = process.env.REACT_APP_GROUP_MEMBERS_2;
+    const route = process.env.REACT_APP_GROUP_MEMBERS;
 
     // CREATE_REACT_APP was including strings around the route for some reason. Needs to work
     const modifiedRoute = route.replace(/^"(.*)"$/, "$1");
