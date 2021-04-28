@@ -64,7 +64,14 @@ function CartModal(props) {
     // posts object to server
     Axios.post(url + "/buy", newObj).then(
       (response) => {
-        console.log(response);
+        console.log(response)
+        if (response.data.message === "SUCESS") {
+
+          props.setFail(null)
+        }
+        else {
+          props.setFail(response.data.message)
+        }
       }
     );
     // resets info

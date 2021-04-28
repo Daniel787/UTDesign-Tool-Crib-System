@@ -34,7 +34,12 @@ function CartModal(props) {
     // posts object to server
     Axios.post(host + inventoryPort + toolPort + "/rent", newObj).then(
       (response) => {
-        console.log(response);
+        if (response.data.message === "SUCESS") {
+          props.setFail(null)
+        }
+        else {
+          props.setFail(response.data.message)
+        }
       }
     );
     // resets info

@@ -9,6 +9,7 @@ export default function Info(props) {
                 placeholder="net_id"
                 type="text"
                 value={props.groupInfo.net_id}
+                onFocus={(e) => e.target.select()}
                 onChange={e => props.setgroupInfo(prev => ({ ...prev, net_id: e.target.value }))} />
             {/* group id input */}
             <input placeholder="group_id"
