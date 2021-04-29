@@ -23,19 +23,18 @@ export default function AddMember(props) {
   }
 
   function handleSubmit() {
-    console.log(students)
-    // Axios.post(url, {
-    //   groups: [
-    //     {
-    //       group_id: groupId,
-    //       group_name: groupName,
-    //       group_sponsor: groupSponsor,
-    //       students: students,
-    //     },
-    //   ],
-    // }).then((response) => {
-    //   refresh();
-    // });
+    Axios.post(url, {
+      groups: [
+        {
+          group_id: groupId,
+          group_name: groupName,
+          group_sponsor: groupSponsor,
+          students: students,
+        },
+      ],
+    }).then((response) => {
+      refresh();
+    });
   }
 
   function showOff() {
