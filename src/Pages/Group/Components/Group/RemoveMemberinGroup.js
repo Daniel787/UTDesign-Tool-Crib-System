@@ -13,12 +13,18 @@ export default function AddMember(props) {
 
   const url = host + modifiedRoute;
 
+  function refresh() {
+    window.location.reload();
+  }
+
   function handleSubmit(event) {
     console.log(url);
     Axios.post(url, {
       net_id: props.net_id,
       group_id: props.group_id,
-    }).then((response) => {});
+    }).then((response) => {
+      refresh();
+    });
   }
 
   function showOff() {
