@@ -21,31 +21,16 @@ export default function Group() {
   function getGroupInfo() {
     const host = process.env.REACT_APP_SERVER_SITE;
     const route = process.env.REACT_APP_GROUP_MEMBERS;
-
     // CREATE_REACT_APP was including strings around the route for some reason. Needs to work
     const modifiedRoute = route.replace(/^"(.*)"$/, "$1");
-
     const url = host + modifiedRoute + "?json=true";
     // const url = "http://localhost:5000" + "/groups/withmembers" + "?json=true";
-
-    console.log(url);
     Axios.get(url)
       .then((response) => {
         setGroupList(response.data);
-        console.log(response.data);
       })
-      .catch((e) => {
-        console.log(e);
-      });
   }
 
-  function GT() {
-    if (studentList && groupList) {
-      return <GroupTab studentList={studentList} groupList={groupList} />;
-    } else {
-      return <div></div>;
-    }
-  }
 
   useEffect(() => {
     getStudentInfo();
@@ -53,7 +38,7 @@ export default function Group() {
   }, []);
   return (
     <div>
-      <GT />
+      <GroupTab studentList={studentList} groupList={groupList} />
       <Button
         onClick={() => {
           getStudentInfo();

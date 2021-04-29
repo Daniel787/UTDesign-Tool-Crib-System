@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "react-bootstrap";
 import GroupInfo from "./GroupInfo";
 import AddMember from "./AddMember";
@@ -18,7 +18,7 @@ export default function GroupTable(props) {
         </thead>
         <tbody></tbody>
         {props.list.map((item, i) => {
-          return <GroupInfo key={i} liKey={i} item={item} />;
+          return <GroupInfo key={i} item={item} />;
         })}
       </Table>
       <AddMember />

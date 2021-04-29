@@ -4,8 +4,8 @@ import Axios from "axios";
 
 export default function AddMember(props) {
   const [show, setShow] = useState(false);
-  const [netid, setNetid] = useState(null);
-  const [groupid, setGroupid] = useState(null);
+  const [netid, setStudent] = useState("");
+  const [groupid, setGroupid] = useState(props.group_id ? props.group_id : "");
 
   const host = process.env.REACT_APP_SERVER_SITE;
   const route = process.env.REACT_APP_GROUP_INSERT_MEMBER;
@@ -21,45 +21,59 @@ export default function AddMember(props) {
 
   function handleSubmit(event) {
     console.log(url);
-    Axios.post(url, {
-      net_id: netid,
+    const newStudent = {
       group_id: groupid,
-    }).then((response) => {
+      net_id: netid
+    }
+    Axios.post(url, newStudent).then((response) => {
       refresh();
     });
   }
 
   function showOff() {
+    setStudent("")
+    setGroupid(props.group_id ? props.group_id : "")
     setShow(false);
   }
 
   function showOn() {
     setShow(true);
   }
+  function invalid() {
+    return !(groupid > 0 && netid.length === 9)
+  }
 
   return (
     <React.Fragment>
       <Button onClick={showOn}> Add Member to Group </Button>
-      <Modal show={show}>
+      <Modal show={show} onHide={() => showOff()}>
         <Modal.Header>
           <Modal.Title> Add a member to a group </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>Net ID</Form.Label>
+              <Form.Label> Group ID</Form.Label>
               <Form.Control
+                placeholder="Enter group id"
+                disabled={props.group_id}
+                type="number"
+                onFocus={e => e.target.select()}
+                value={groupid}
                 onChange={(e) => {
-                  setNetid(e.target.value);
+                  setGroupid(e.target.value);
                 }}
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label> Group ID</Form.Label>
+              <Form.Label> Net ID</Form.Label>
               <Form.Control
+                value={netid}
+                onFocus={e => e.target.select()}
                 onChange={(e) => {
-                  setGroupid(e.target.value);
+                  setStudent(e.target.value);
                 }}
+                placeholder="Enter Net ID"
               />
             </Form.Group>
           </Form>
@@ -71,6 +85,8 @@ export default function AddMember(props) {
           </Button>
           <Button
             variant="primary"
+
+            disabled={invalid()}
             onClick={() => {
               handleSubmit();
               showOff();

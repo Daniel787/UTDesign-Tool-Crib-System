@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
-import AddMemberinGroup from "./AddMemberinGroup";
+import AddMember from "./AddMember";
 import RemoveGroupMember from "./RemoveMemberinGroup";
 import Styles from "./group_modal.module.css";
 
@@ -35,7 +35,7 @@ export default function GroupInfo(props) {
           </td>
         </tr>
       </tbody>
-      <Modal show={showGroupModal} dialogClassName={Styles.MyModal}>
+      <Modal show={showGroupModal} dialogClassName={Styles.MyModal} onHide={() => turnOffGroup()}>
         <Modal.Header>
           <Modal.Title>
             {" "}
@@ -48,34 +48,29 @@ export default function GroupInfo(props) {
               <tr>
                 <td>Name</td>
                 <td>Net ID</td>
-                <td> UTD ID</td>
                 <td> Email </td>
                 <td> Hold </td>
                 <td> Remove </td>
               </tr>
             </thead>
             <tbody>
-              {props.item.group.students.map((item, i) => {
-                if (item.display == 1) {
-                  return (
-                    <tr key={i}>
-                      <td> {item.name} </td>
-                      <td> {item.net_id} </td>
-                      <td> {item.utd_id} </td>
-                      <td> {item.email} </td>
-                      <td> {item.hold} </td>
-                      <td>
-                        {" "}
-                        <RemoveGroupMember
-                          group_id={props.item.group.group_id}
-                          net_id={item.net_id}
-                        />{" "}
-                      </td>
-                    </tr>
-                  );
-                } else {
-                  return <div> </div>;
-                }
+              {props.item.group.students.filter(item => item.display === 1).map((item, i) => {
+                return (
+                  <tr key={i}>
+                    <td> {item.name} </td>
+                    <td> {item.net_id} </td>
+                    <td> {item.email} </td>
+                    <td> {item.hold} </td>
+                    <td>
+                      {" "}
+                      <RemoveGroupMember
+                        group_id={props.item.group.group_id}
+                        net_id={item.net_id}
+                      />{" "}
+                    </td>
+                  </tr>
+                );
+
               })}
             </tbody>
           </Table>
@@ -84,7 +79,7 @@ export default function GroupInfo(props) {
           <Button variant="secondary" onClick={turnOffGroup}>
             Close
           </Button>
-          <AddMemberinGroup group_id={props.item.group.group_id} />
+          <AddMember group_id={props.item.group.group_id} />
         </Modal.Footer>
       </Modal>
     </React.Fragment>

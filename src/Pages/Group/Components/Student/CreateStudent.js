@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import Axios from "axios";
 
 export default function CreateStudent() {
-  const [name, setName] = useState(null);
-  const [netid, setNetid] = useState(null);
-  const [utdid, setUtdid] = useState(null);
-  const [email, setEmail] = useState(null);
+  const [name, setName] = useState("");
+  const [netid, setNetid] = useState("");
+  const [email, setEmail] = useState("");
 
   const [showCreateStudent, setShowCreateStudent] = useState(false);
 
@@ -22,7 +21,6 @@ export default function CreateStudent() {
   function handleSubmit(event) {
     Axios.post(url, {
       name: name,
-      utd_id: utdid,
       net_id: netid,
       email: email,
     }).then((response) => {
@@ -35,13 +33,20 @@ export default function CreateStudent() {
   }
 
   function createStudentOff() {
+    setName("")
+    setNetid("")
+    setEmail("")
     setShowCreateStudent(false);
+  }
+
+  function invalid() {
+    return (name.length === 0 || netid.length !== 9 || email.length === 0)
   }
 
   return (
     <React.Fragment>
       <Button onClick={createStudentOn}> Create Student </Button>
-      <Modal show={showCreateStudent}>
+      <Modal show={showCreateStudent} onHide={() => createStudentOff()}>
         <Modal.Title> Create Student </Modal.Title>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -61,13 +66,6 @@ export default function CreateStudent() {
               />
             </Form.Group>
             <Form.Group>
-              <Form.Label type="number"> UTD ID </Form.Label>
-              <Form.Control
-                onChange={(e) => setUtdid(e.target.value)}
-                placeholder="Enter UTD ID"
-              />
-            </Form.Group>
-            <Form.Group>
               <Form.Label type="email"> Email </Form.Label>
               <Form.Control
                 onChange={(e) => setEmail(e.target.value)}
@@ -81,7 +79,7 @@ export default function CreateStudent() {
             {" "}
             Close{"   "}
           </Button>
-          <Button variant="primary" onClick={handleSubmit}>
+          <Button variant="primary" onClick={handleSubmit} disabled={invalid()}>
             {" "}
             Insert{" "}
           </Button>

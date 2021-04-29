@@ -51,7 +51,7 @@ export default function AddMember(props) {
 
   function addSudent() {
     let newList = [...students]
-    const defaultSudent = { net_id: "", name: "", utd_id: "", email: "" }
+    const defaultSudent = { net_id: "", name: "", email: "" }
     newList.push(defaultSudent)
     setStudents(newList)
   }
@@ -86,7 +86,7 @@ export default function AddMember(props) {
                 onFocus={e => e.target.select()}
                 type="number"
                 onChange={(e) => {
-                  setGroupId(e.target.value);
+                  setGroupId(e.target.value ? parseInt(e.target.value) : "");
                 }}
               />
             </Form.Group>
@@ -133,16 +133,6 @@ export default function AddMember(props) {
                     setStudents(newList);
                   }}
                   placeholder="Enter Net ID"
-                />
-                <Form.Control
-                  value={current.utd_id}
-                  onFocus={e => e.target.select()}
-                  onChange={(e) => {
-                    let newList = [...students]
-                    newList[index].utd_id = e.target.value
-                    setStudents(newList);
-                  }}
-                  placeholder="Enter UTD ID"
                 />
                 <Form.Control
                   value={current.email}

@@ -37,7 +37,7 @@ export default function StudentInfo(props) {
           </td>
         </tr>
       </tbody>
-      <Modal show={showStudentModal}>
+      <Modal show={showStudentModal} onHide={() => setShowStudentModal()}>
         <Modal.Header>
           <Modal.Title>
             {" "}
@@ -72,7 +72,6 @@ export default function StudentInfo(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={turnOffStudent}>
-            {" "}
             Close{" "}
           </Button>
         </Modal.Footer>
