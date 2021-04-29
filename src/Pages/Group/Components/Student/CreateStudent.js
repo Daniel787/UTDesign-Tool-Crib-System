@@ -15,13 +15,19 @@ export default function CreateStudent() {
   const route2 = "/insert";
   const url = host + route1 + route2;
 
+  function refresh() {
+    window.location.reload();
+  }
+
   function handleSubmit(event) {
     Axios.post(url, {
       name: name,
       utd_id: utdid,
       net_id: netid,
       email: email,
-    }).then((response) => {});
+    }).then((response) => {
+      refresh();
+    });
     event.preventDefault();
   }
   function createStudentOn() {

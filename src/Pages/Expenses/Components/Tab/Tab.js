@@ -3,7 +3,7 @@ import { Tabs, Tab } from "react-bootstrap";
 import SimpleTable from "../Simple_Table/SimpleTable";
 import MediumTable from "../Medium_Table/MediumTable";
 import FullTable from "../FullTable/FullTable";
-import Tools from '../ToolExpense/Tools'
+import ToolTable from "../ToolStats/ToolStat";
 import Axios from "axios";
 
 function TableTab(props) {
@@ -31,8 +31,8 @@ function TableTab(props) {
         />
       </Tab>
       <Tab eventKey="Tool" title="Tool">
-        <Tools
-          url={props.fullURL}
+        <ToolTable
+          url={props.toolURL}
           startDate={props.startDate}
           endDate={props.endDate}
         />

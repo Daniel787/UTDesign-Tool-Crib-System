@@ -3,6 +3,7 @@ import styles from "./Expenses.module.css";
 import Downloadbtn from "./Components/Button/DownloadButton.js";
 import Axios from "axios";
 import TableTab from "./Components/Tab/Tab.js";
+
 export default function Expenses() {
   const [dateStart, setDateStart] = useState(null);
   const [dateEnd, setDateEnd] = useState(null);
@@ -17,6 +18,9 @@ export default function Expenses() {
 
   const fullCSVURL = "/full";
   const fullDownload = baseURL + expenseURL + fullCSVURL;
+
+  const toolCSVURL = "/toolstats";
+  const toolDownload = baseURL + expenseURL + toolCSVURL;
 
   function handleStart(event) {
     let d = new Date(event.target.value);
@@ -35,6 +39,7 @@ export default function Expenses() {
           simpleURL={simpleDownload}
           mediumURL={mediumDownload}
           fullURL={fullDownload}
+          toolURL={toolDownload}
           startDate={dateStart}
           endDate={dateEnd}
         />

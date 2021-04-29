@@ -40,6 +40,10 @@ export default function AddMember(props) {
 
   const url = host + modifiedRoute;
 
+  function refresh() {
+    window.location.reload();
+  }
+
   function handleSubmit(event) {
     console.log(url);
     console.log({
@@ -75,7 +79,9 @@ export default function AddMember(props) {
           ],
         },
       ],
-    }).then((response) => {});
+    }).then((response) => {
+      refresh();
+    });
   }
 
   function showOff() {
