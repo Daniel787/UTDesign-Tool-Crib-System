@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 
 function ConfirmationDeltete(props) {
   const [show, setShow] = useState(false);
@@ -54,13 +54,40 @@ function ConfirmationDeltete(props) {
         {/* main part */}
         <Modal.Body>
           {/* prompts user input for new values */}
-          ID : {props.item.part_id} <br />
-          Name : <input value={modItem.name} onChange={(e) => setModItem(prev => ({ ...prev, name: e.target.value }))} /> <br />
-          {!validName(modItem.name) && <h3>Invalid Name</h3>}
-          New Quantity : <input value={modItem.quantity_available} onChange={(e) => setModItem(prev => ({ ...prev, quantity_available: e.target.value }))} /><br />
-          {!validQuantity(modItem.quantity_available) && <h3>Invalid Quantity</h3>}
-          New Price : $<input value={modItem.current_cost} onChange={(e) => setModItem(prev => ({ ...prev, current_cost: e.target.value }))} />
-          {!validCost(modItem.current_cost) && <h3>Invalid Cost</h3>}
+          ID
+          <h5>{props.item.part_id}</h5>
+          <Form.Group>
+            <Form.Label>New Name</Form.Label>
+            <Form.Control
+              placeholder="Enter New Name"
+              value={modItem.name}
+              onFocus={e => e.target.select()}
+              onChange={(e) => setModItem(prev => ({ ...prev, name: e.target.value }))}
+            />
+          </Form.Group>
+          {!validName(modItem.name) && <h5>Invalid Name</h5>}
+          <Form.Group>
+            <Form.Label>New Quantity</Form.Label>
+            <Form.Control
+              placeholder="Enter New Quantity"
+              type="number"
+              onFocus={e => e.target.select()}
+              value={modItem.quantity_available}
+              onChange={(e) => setModItem(prev => ({ ...prev, quantity_available: e.target.value }))}
+            />
+          </Form.Group>
+          {!validQuantity(modItem.quantity_available) && <h5>Invalid Quantity</h5>}
+          <Form.Group>
+            <Form.Label>New Price</Form.Label>
+            <Form.Control
+              placeholder="Enter New Price"
+              type="number"
+              onFocus={e => e.target.select()}
+              value={modItem.current_cost}
+              onChange={(e) => setModItem(prev => ({ ...prev, current_cost: e.target.value }))}
+            />
+          </Form.Group>
+          {!validCost(modItem.current_cost) && <h5>Invalid Cost</h5>}
         </Modal.Body>
         {/* bottom options */}
         <Modal.Footer>

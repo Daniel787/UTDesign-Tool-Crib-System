@@ -1,24 +1,32 @@
 import React from 'react'
+import { Form } from "react-bootstrap";
 
 export default function Info(props) {
     // net id and group must exist before input
     return (
         <div>
             {/* net id input */}
-            <input
-                placeholder="net_id"
-                type="text"
-                value={props.groupInfo.net_id}
-                onFocus={(e) => e.target.select()}
-                onChange={e => props.setgroupInfo(prev => ({ ...prev, net_id: e.target.value }))} />
-            {/* group id input */}
-            <input
-                placeholder="group_id"
-                type="number"
-                value={props.groupInfo.group_id}
-                onFocus={(e) => e.target.select()}
-                onChange={e => props.setgroupInfo(prev => ({ ...prev, group_id: e.target.value }))} />
-            {!props.validInfo() && <h4>Input valid net_id and group_id</h4>}
+            <Form.Group>
+                <Form.Label>Net ID</Form.Label>
+                <Form.Control
+                    type="text"
+                    value={props.groupInfo.net_id}
+                    placeholder="net_id"
+                    onFocus={(e) => e.target.select()}
+                    onChange={e => props.setgroupInfo(prev => ({ ...prev, net_id: e.target.value }))}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Label>Group ID</Form.Label>
+                <Form.Control
+                    type="number"
+                    value={props.groupInfo.group_id}
+                    placeholder="net_id"
+                    onFocus={(e) => e.target.select()}
+                    onChange={e => props.setgroupInfo(prev => ({ ...prev, group_id: e.target.value }))}
+                />
+            </Form.Group>
+            {!props.validInfo() && <h4>Input valid Net ID and Group ID</h4>}
         </div>
     )
 }

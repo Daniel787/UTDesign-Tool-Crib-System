@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
   const [row, setRow] = useState({ tool_id: "", name: "" });
@@ -30,29 +30,31 @@ function Confirmation_Deltete(props) {
         {/* main part */}
         <Modal.Body>
           {/* inputs id and validates */}
-          <div>
-            <label>Tool ID:</label>{" "}
-            <input
+          <Form.Group>
+            <Form.Label>Tool ID</Form.Label>
+            <Form.Control
               type="number"
+              placeholder="Enter Tool ID"
               value={row.tool_id}
               onChange={(e) =>
                 setRow((prev) => ({ ...prev, tool_id: e.target.value }))
               }
-            ></input>
-            {!validID() && <h5>Invalid ID</h5>}
-          </div>
+            />
+          </Form.Group>
+          {!validID() && <h5>Enter Valid ID</h5>}
           {/* inputs name and validates */}
-          <div>
-            <label>Name:</label>{" "}
-            <input
+          <Form.Group>
+            <Form.Label>Name</Form.Label>
+            <Form.Control
               type="text"
+              placeholder="Enter Name"
               value={row.name}
               onChange={(e) =>
                 setRow((prev) => ({ ...prev, name: e.target.value }))
               }
-            ></input>
-            {!row.name.length > 0 && <h5>Invalid Name</h5>}
-          </div>
+            />
+          </Form.Group>
+          {!row.name.length > 0 && <h5>Enter Valid Name</h5>}
         </Modal.Body>
         {/* options */}
         <Modal.Footer>

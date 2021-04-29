@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 import axios from "axios";
 
 function Return(props) {
@@ -31,7 +31,16 @@ function Return(props) {
           <Modal.Title> Confirmation </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Item ID : <input type="number" onChange={(e) => setid(e.target.value)} />
+          <Form.Group>
+            <Form.Label>Tool ID</Form.Label>
+            <Form.Control
+              type="number"
+              value={id}
+              placeholder="Enter Tool ID"
+              onFocus={(e) => e.target.select()}
+              onChange={(e) => setid(e.target.value ? parseInt(e.target.value) : "")}
+            />
+          </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

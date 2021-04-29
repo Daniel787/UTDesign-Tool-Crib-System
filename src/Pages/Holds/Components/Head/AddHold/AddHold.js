@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Form, Table } from "react-bootstrap";
 import axios from "axios";
+import styles from '../Head.module.css'
 
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
@@ -21,7 +22,7 @@ function Confirmation_Modal(props) {
       setResult(response.data[0])
     });
   }
-
+  const head = ["Net ID", "Name", "UTD ID", "Email"]
   const hide = () => { setResult(null); setShow(false) }
   return (
     <div>
@@ -30,23 +31,43 @@ function Confirmation_Modal(props) {
         Add
       </Button>
       {/* modal */}
-      <Modal show={show} onHide={hide}>
+      <Modal show={show} onHide={hide} dialogClassName={styles.MyModal}>
         <Modal.Header closeButton>
           <Modal.Title> Add Student Hold By ID </Modal.Title>
         </Modal.Header>
         {/* main part */}
         <Modal.Body>
           {/* searches for student to add hold to */}
-          <input placeholder="Enter net id" onChange={(e) => setid(e.target.value)} />
+          <Form.Group>
+            <Form.Label>Net ID</Form.Label>
+            <Form.Control
+              value={id}
+              placeholder="Enter Net ID"
+              onFocus={(e) => e.target.select()}
+              onChange={(e) => setid(e.target.value)}
+            />
+          </Form.Group>
           {/* searches on click */}
           <Button onClick={() => search()} disabled={id.length !== 9}>Search</Button>
           {/* displays result if the student exists */}
-          {result && <div>
-            <h3>Net ID: {result.net_id}</h3>
-            <h4>Name: {result.name}</h4>
-            <h4>UTD ID: {result.utd_id}</h4>
-            <h4>Email: {result.email}</h4>
-          </div>}
+          {result &&
+            <Table responsive hover>
+              {/* maps array of headers to table header  */}
+              <thead>
+                <tr>
+                  {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+                </tr>
+              </thead>
+              {/* displays rows by mapping the list to row components */}
+              <tbody>
+                <tr>
+                  <td>{result.net_id}</td>
+                  <td>{result.name}</td>
+                  <td>{result.utd_id}</td>
+                  <td>{result.email}</td>
+                </tr>
+              </tbody>
+            </Table>}
         </Modal.Body>
         {/* options */}
         <Modal.Footer>

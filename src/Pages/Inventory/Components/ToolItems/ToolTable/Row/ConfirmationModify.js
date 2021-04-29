@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 
 function ConfirmationModify(props) {
   const [show, setShow] = useState(false);
@@ -33,10 +33,21 @@ function ConfirmationModify(props) {
         </Modal.Header>
         {/* main part */}
         <Modal.Body>
+          ID
+        <h5>{props.item.tool_id}</h5>
           {/* prompts user input for new values */}
-          Name : <input value={name} onChange={(e) => setName(e.target.value)} /><br />
-          {!validName(name) && <h3>Invalid Name</h3>}
-          ID : {props.item.tool_id} <br />
+          <Form.Group>
+            <Form.Label>New Name</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Enter New Name"
+              value={name}
+              onFocus={e => e.target.select()}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </Form.Group>
+          {!validName(name) && <h5>Invalid Name</h5>}
+
         </Modal.Body>
         {/* bottom options */}
         <Modal.Footer>

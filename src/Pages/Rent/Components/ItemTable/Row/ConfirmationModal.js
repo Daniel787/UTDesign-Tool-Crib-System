@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Button, Modal, Table } from "react-bootstrap";
 
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
   const [days, setDays] = useState("")
   const [hours, setHours] = useState(2)
   const [check, setCheck] = useState(false)
-
+  const head = ["ID", "Name", "Time For Rental"]
   const handleClose = () => {
     setHours(2)
     setDays("")
@@ -49,26 +49,42 @@ function Confirmation_Modal(props) {
         </Modal.Header>
         {/* main part */}
         <Modal.Body>
-          {" "}
-          ID : {props.item.tool_id} <br />
-          Name : {props.item.name} <br />{" "}
-          {/* prompts hour input  */}
-          Hours for Rental: <input
-            type="number"
-            onFocus={(e) => e.target.select()}
-            style={{ "width": "4rem" }}
-            disabled={check}
-            value={hours}
-            onChange={(e) => setHours(e.target.value ? parseInt(e.target.value) : "")}
-          /> <input type="checkbox" onClick={(e) => setCheck(prev => !prev)} /> Days
-          {/* if days checked it will ask for number of days instead */}
-          {check && <div>Days for Rental: <input
-            type="date"
-            style={{ "width": "10rem" }}
-            min={today}
-            value={days}
-            onChange={(e) => setDays(e.target.value)}
-          /></div>}
+          <Table responsive hover>
+            {/* maps array of headers to table header  */}
+            <thead>
+              <tr>
+                {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+              </tr>
+            </thead>
+            {/* displays rows by mapping the list to row components */}
+            <tbody>
+              <tr>
+                <td>{props.item.tool_id}</td>
+                <td>{props.item.name}</td>
+                <td>
+                  {/* prompts hour input  */}
+                    Hours: <input
+                    type="number"
+                    onFocus={(e) => e.target.select()}
+                    style={{ "width": "4rem" }}
+                    disabled={check}
+                    value={hours}
+                    onChange={(e) => setHours(e.target.value ? parseInt(e.target.value) : "")}
+                  /> <input type="checkbox" onClick={(e) => setCheck(prev => !prev)} /> Days
+                  {/* if days checked it will ask for number of days instead */}
+                  {check && <div>Days: <input
+                    type="date"
+                    style={{ "width": "10rem" }}
+                    min={today}
+                    value={days}
+                    onChange={(e) => setDays(e.target.value)}
+                  /></div>}
+                </td>
+              </tr>
+
+            </tbody>
+          </Table>
+
         </Modal.Body>
         {/* bottom options */}
         <Modal.Footer>

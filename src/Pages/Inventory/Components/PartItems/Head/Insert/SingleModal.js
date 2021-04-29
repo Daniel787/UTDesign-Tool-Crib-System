@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Form } from "react-bootstrap";
 
 function Confirmation_Deltete(props) {
   const [row, setRow] = useState({
@@ -57,35 +57,37 @@ function Confirmation_Deltete(props) {
         </Modal.Header>
         {/* main part */}
         <Modal.Body>
-          <div>
-            {/* inputs id and validates */}
-            <label>Part ID:</label>{" "}
-            {/* */}
-            <input
+          {/* inputs id and validates */}
+          <Form.Group>
+            <Form.Label>Part ID</Form.Label>
+            <Form.Control
               type="number"
+              placeholder="Enter Part ID"
               value={row.part_id}
               onChange={(e) =>
                 setRow((prev) => ({ ...prev, part_id: e.target.value }))
               }
-            ></input>
-            {!validID() && <h5>Enter Valid ID</h5>}
-          </div>
+            />
+          </Form.Group>
+          {!validID() && <h5>Enter Valid ID</h5>}
           {/* inputs name and validates */}
-          <div>
-            <label>Name:</label>{" "}
-            <input
+          <Form.Group>
+            <Form.Label>Name</Form.Label>
+            <Form.Control
               type="text"
+              placeholder="Enter Name"
               value={row.name}
               onChange={(e) =>
                 setRow((prev) => ({ ...prev, name: e.target.value }))
               }
-            ></input>
-            {!row.name.length > 0 && <h5>Enter Valid Name</h5>}
-          </div>
+            />
+          </Form.Group>
+          {!row.name.length > 0 && <h5>Enter Valid Name</h5>}
           {/* inputs quantity and validates */}
-          <div>
-            <label>Quantity Available:</label>{" "}
-            <input
+          <Form.Group>
+            <Form.Label>Quantity Available</Form.Label>
+            <Form.Control
+              placeholder="Enter Quantity Available"
               type="number"
               value={row.quantity_available}
               onChange={(e) =>
@@ -94,21 +96,22 @@ function Confirmation_Deltete(props) {
                   quantity_available: e.target.value,
                 }))
               }
-            ></input>
-            {!validQuantity() && <h5>Enter Valid Quantity</h5>}
-          </div>
+            />
+          </Form.Group>
+          {!validQuantity() && <h5>Enter Valid Quantity</h5>}
           {/* inputs cost and validates */}
-          <div>
-            <label>Cost:</label>{" "}
-            <input
+          <Form.Group>
+            <Form.Label>Cost</Form.Label>
+            <Form.Control
+              placeholder="Enter Cost"
               type="number"
               value={row.current_cost}
               onChange={(e) =>
                 setRow((prev) => ({ ...prev, current_cost: e.target.value }))
               }
-            ></input>
-            {!validCost() && <h5>Enter Valid Cost</h5>}
-          </div>
+            />
+          </Form.Group>
+          {!validCost() && <h5>Enter Valid Cost</h5>}
         </Modal.Body>
         {/* options */}
         <Modal.Footer>
