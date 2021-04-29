@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
-
+import { Button, Modal, Table } from "react-bootstrap";
 function Confirmation_Modal(props) {
   const [show, setShow] = useState(false);
+  const head = ["ID", "Name", "Quantity Selected", "Total"]
 
   const handleClose = () => {
     props.reset();
@@ -30,11 +30,25 @@ function Confirmation_Modal(props) {
         </Modal.Header>
         {/* main part */}
         <Modal.Body>
-          {" "}
-          ID : {props.item.part_id} <br />
-          Name : {props.item.name} <br />{" "}
-          Quantity Selected : {props.amount}<br />
-          Total : ${Math.floor(props.amount * props.item.current_cost * 100) / 100}
+
+          <Table responsive hover>
+            {/* maps array of headers to table header  */}
+            <thead>
+              <tr>
+                {head.map((el, i) => { return (<th key={i}>{el}</th>) })}
+              </tr>
+            </thead>
+            {/* displays rows by mapping the list to row components */}
+            <tbody>
+              <tr>
+                <td>{props.item.part_id}</td>
+                <td>{props.item.name}</td>
+                <td>{props.amount}</td>
+                <td>${Math.floor(props.amount * props.item.current_cost * 100) / 100}</td>
+              </tr>
+
+            </tbody>
+          </Table>
 
         </Modal.Body>
         {/* bottom options */}

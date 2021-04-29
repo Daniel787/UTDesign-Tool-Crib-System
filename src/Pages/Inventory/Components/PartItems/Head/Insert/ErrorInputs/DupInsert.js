@@ -26,7 +26,7 @@ export default function DupInsert(props) {
                                 <td> {dups.old[i].current_cost}</td>
                                 <td> {dups.new[i].current_cost}</td>
                                 <td><Button onClick={() => props.handleDup(i, true)}>Merge</Button></td>
-                                <td> <Button onClick={() => props.handleDup(i, false)}>Remove</Button> </td>
+                                <td> <Button onClick={() => props.handleDup(i, false)}>Ignore</Button> </td>
                             </tr>
                         );
                     })

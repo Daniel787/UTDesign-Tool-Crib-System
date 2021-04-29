@@ -73,6 +73,7 @@ export default function ErrorSheet(props) {
                         </Button>
                         <Button
                             variant="primary"
+                            disabled={props.status.conflictinserts.new.length === 0}
                             onClick={() => { mergeAll() }}>
                             Merge All
                         </Button>
