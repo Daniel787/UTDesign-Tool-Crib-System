@@ -31,13 +31,13 @@ function nav(props) {
           }
           `}
             </style>
-            <Button
+            {/* <Button
               className={styles.item}
               variant="green"
               onClick={() => props.setToken(false)}
             >
               Logout
-            </Button>
+            </Button> */}
           </>
         </Nav>
       </Navbar.Collapse>
