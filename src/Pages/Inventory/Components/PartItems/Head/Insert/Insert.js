@@ -11,6 +11,7 @@ export default function Insert(props) {
         axios.post(props.url + "/insert", row).then(response => {
             if (response.data.message === "SUCCESS") {
                 setStatus(null)
+                window.location.reload()
             }
             else {
                 setStatus(response.data)
@@ -23,6 +24,7 @@ export default function Insert(props) {
             console.log(response.data)
             if (response.data.message === "SUCCESS") {
                 setStatus(null)
+                window.location.reload()
             }
             else {
                 setStatus(response.data)
@@ -33,6 +35,7 @@ export default function Insert(props) {
 
     function modifyPart(new_part) {
         axios.post(props.url + "/modify", new_part).then((response) => {
+            window.location.reload()
         });
     }
 

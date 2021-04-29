@@ -9,12 +9,15 @@ import Row from "./Row/Row";
 function DataTable(props) {
   // removes object by posting part id to the server
   function removePart(part_id) {
-    axios.post(props.url + "/delete?part_id=" + part_id).then((response) => { });
+    axios.post(props.url + "/delete?part_id=" + part_id).then((response) => {
+      window.location.reload()
+    });
   }
 
   // modifies by posting new part to the server
   function modifyPart(new_part) {
     axios.post(props.url + "/modify", new_part).then((response) => {
+      window.location.reload()
     });
   }
 

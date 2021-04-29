@@ -14,7 +14,7 @@ function DataTable(props) {
     resultStudent.student_hold = 0
     // modifies the student object by posting new object to server
     axios.post(props.url + "/modify", resultStudent).then((response) => {
-      console.log(response.data)
+      window.location.reload()
     });
   }
 

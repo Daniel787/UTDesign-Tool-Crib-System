@@ -9,12 +9,16 @@ function DataTable(props) {
 
   // modifies tool by posting the tool id to the server
   function removePart(tool_id) {
-    axios.post(props.url + "/delete?tool_id=" + tool_id).then((response) => { });
+    axios.post(props.url + "/delete?tool_id=" + tool_id).then((response) => {
+      window.location.reload()
+    });
   }
 
   // modifies tool by posting the newobject to the server
   function modifyTool(new_tool) {
-    axios.post(props.url + "/modify", new_tool).then((response) => { });
+    axios.post(props.url + "/modify", new_tool).then((response) => {
+      window.location.reload()
+    });
   }
   return (
     <div>

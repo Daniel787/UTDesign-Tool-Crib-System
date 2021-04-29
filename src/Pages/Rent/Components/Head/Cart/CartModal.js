@@ -34,8 +34,9 @@ function CartModal(props) {
     // posts object to server
     Axios.post(host + inventoryPort + toolPort + "/rent", newObj).then(
       (response) => {
-        if (response.data.message === "SUCESS") {
+        if (response.data.message === "SUCCESS") {
           props.setFail(null)
+          window.location.reload()
         }
         else {
           props.setFail(response.data.message)

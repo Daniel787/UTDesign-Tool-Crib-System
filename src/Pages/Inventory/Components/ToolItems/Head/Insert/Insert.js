@@ -8,14 +8,16 @@ export default function Insert(props) {
     const [status, setStatus] = useState(null)
 
     function modifyTool(new_tool) {
-        console.log(new_tool);
-        axios.post(props.url + "/modify", new_tool).then((response) => { });
+        axios.post(props.url + "/modify", new_tool).then((response) => {
+            window.location.reload()
+        });
     }
 
     function addTool(row) {
         axios.post(props.url + "/insert", row).then(response => {
             if (response.data.message === "SUCCESS") {
                 setStatus(null)
+                window.location.reload()
             }
             else {
                 setStatus(response.data)
@@ -27,6 +29,7 @@ export default function Insert(props) {
         axios.post(props.url + "/upload", sheet).then(response => {
             if (response.data.message === "SUCCESS") {
                 setStatus(null)
+                window.location.reload()
             }
             else {
                 setStatus(response.data)

@@ -12,7 +12,7 @@ function Confirmation_Modal(props) {
   function addHold() {
     let newStudent = { ...result, student_hold: 1 }
     axios.post(props.url + "/modify", newStudent).then((response) => {
-      console.log(response.data)
+      window.location.reload()
     });
   }
 
