@@ -16,18 +16,17 @@ function Btn(props) {
       ("0" + (props.endDate.getMonth() + 1)).slice(-2) +
       ("0" + props.endDate.getDate()).slice(-2) +
       "&csv=true";
-    console.log(obj);
     Axios.get(props.url + obj).then((response) => {
       DownloadJS(
-        response.data,
-        props.startDate.getFullYear().toString() + "_" +
-        ("0" + (props.startDate.getMonth() + 1)).slice(-2) + "_" +
+        response.data, props.display +
+        props.startDate.getFullYear().toString() + "-" +
+        ("0" + (props.startDate.getMonth() + 1)).slice(-2) + "-" +
         ("0" + props.startDate.getDate()).slice(-2) +
         "_TO_" +
-        props.endDate.getFullYear().toString() + "_" +
-        ("0" + (props.endDate.getMonth() + 1)).slice(-2) + "_" +
+        props.endDate.getFullYear().toString() + "-" +
+        ("0" + (props.endDate.getMonth() + 1)).slice(-2) + "-" +
         ("0" + props.endDate.getDate()).slice(-2) +
-        ".csv"
+      ".csv"
       );
     });
   }
@@ -38,7 +37,7 @@ function Btn(props) {
       }}
     >
       {" "}
-      {props.display}{" "}
+      Download
     </Button>
   );
 }

@@ -58,7 +58,7 @@ function DataTable(props) {
             })}
           </tbody>
         </Table>
-        <DownloadButton url={props.url} display="Download" startDate={props.startDate} endDate={props.endDate} />
+        <DownloadButton url={props.url} display="Full_Expenses_" startDate={props.startDate} endDate={props.endDate} />
       </div>
 
     );
