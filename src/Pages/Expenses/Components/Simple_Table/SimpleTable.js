@@ -10,7 +10,6 @@ function DataTable(props) {
   const [simpleList, setSimpleList] = useState(null);
 
   function GetSimpleJSON() {
-    console.log(props.url);
     if (props.startDate & props.endDate) {
       let obj =
         "?start=" +
@@ -22,7 +21,6 @@ function DataTable(props) {
         ("0" + (props.endDate.getMonth() + 1)).slice(-2) +
         ("0" + props.endDate.getDate()).slice(-2) +
         "&csv=false";
-      console.log(props.url + obj);
       Axios.get(props.url + obj).then((response) => {
         setSimpleList(response.data);
       });
@@ -45,12 +43,12 @@ function DataTable(props) {
             </tr>
           </thead>
           <tbody>
-            {simpleList.map((item) => {
-              return <Row key={item.group_id} item={item} />;
+            {simpleList.map((item, i) => {
+              return <Row key={i} item={item} />;
             })}
-          </tbody>{" "}
+          </tbody>
         </Table>
-        <DownloadButton url={props.url} display="Download" startDate={props.startDate} endDate={props.endDate}/>
+        <DownloadButton url={props.url} display="Download" startDate={props.startDate} endDate={props.endDate} />
       </div>
     );
   } else {
