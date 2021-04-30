@@ -30,7 +30,7 @@ export default function InsertModal(props) {
         var lines = csv.split("\n").filter((el) => el);
         var result = [];
         var groupHeaders = ["group_id", "group_name", "group_sponsor", "students"];
-        var studentHeader = ["net_id", "name", "email"]
+        var studentHeader = ["name", "net_id", "email"]
         for (var i = 1; i < lines.length; i++) {
             var groupObj = {};
             var currentline = lines[i].split(",");

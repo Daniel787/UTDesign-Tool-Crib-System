@@ -16,7 +16,6 @@ export default function Holds() {
   function refreshList() {
     axios.get(url + HoldRoute + "/withtools/json").then((response) => {
       setList(response.data);
-      console.log(response.data)
     });
   }
 

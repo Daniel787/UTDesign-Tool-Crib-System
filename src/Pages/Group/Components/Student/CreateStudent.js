@@ -43,7 +43,7 @@ export default function CreateStudent() {
   }
 
   function invalid() {
-    return name.length === 0 || netid.length !== 9 || email.length === 0;
+    return name.length === 0 || !(netid.length > 3) || email.length === 0;
   }
 
   return (

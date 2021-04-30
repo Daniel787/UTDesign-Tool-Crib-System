@@ -12,15 +12,16 @@ export default function Insert(props) {
     const url = host + modifiedRoute;
 
     function addGroups(sheet) {
-        console.log(url)
         console.log(sheet)
         axios.post(url, sheet).then(response => {
+            console.log(response.data)
             if (response.data.message === "SUCCESS") {
                 setStatus(null)
-                window.location.reload()
+                // window.location.reload()
             }
             else {
                 setStatus(response.data)
+
             }
         });
     }
