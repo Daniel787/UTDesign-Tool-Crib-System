@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import Axios from "axios";
 
-export default function AddMember(props) {
+// Function for removing member from group
+export default function RemoveMember(props) {
   const [show, setShow] = useState(false);
 
   const host = process.env.REACT_APP_SERVER_SITE;
@@ -13,10 +14,12 @@ export default function AddMember(props) {
 
   const url = host + modifiedRoute;
 
+  // Function for refreshing on POST
   function refresh() {
     window.location.reload();
   }
 
+  // Function for making POST call
   function handleSubmit(event) {
     console.log(url);
     Axios.post(url, {
@@ -27,6 +30,7 @@ export default function AddMember(props) {
     });
   }
 
+  // Functions for modifying modal values
   function showOff() {
     setShow(false);
   }

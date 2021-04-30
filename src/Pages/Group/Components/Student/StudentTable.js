@@ -3,7 +3,7 @@ import { Table } from "react-bootstrap";
 import StudentInfo from "./StudentInfo";
 import CreateStudent from "./CreateStudent";
 
-
+// Student table where each row is a student info component
 export default function StudentTable(props) {
   return (
     <React.Fragment key="table">
@@ -23,7 +23,6 @@ export default function StudentTable(props) {
         })}
       </Table>
       <CreateStudent />
-
     </React.Fragment>
   );
 }

@@ -3,9 +3,11 @@ import { Button, Modal, Table } from "react-bootstrap";
 import AddMember from "./AddMember";
 import RemoveGroupMember from "./RemoveMemberinGroup";
 import Styles from "./group_modal.module.css";
-import ModifyGroup from './ModifyGroup'
+import ModifyGroup from "./ModifyGroup";
 
+// Function that contains group informtion for each row in the table
 export default function GroupInfo(props) {
+  // Modal variable for managing show
   const [showGroupModal, setShowGroupModal] = useState(false);
 
   function showGroup() {
@@ -19,18 +21,9 @@ export default function GroupInfo(props) {
     <React.Fragment>
       <tbody>
         <tr>
-          <td >
-            {" "}
-            {props.item.group.group_id}{" "}
-          </td>
-          <td >
-            {" "}
-            {props.item.group.group_name}{" "}
-          </td>
-          <td >
-            {" "}
-            {props.item.group.group_sponsor}{" "}
-          </td>
+          <td> {props.item.group.group_id} </td>
+          <td> {props.item.group.group_name} </td>
+          <td> {props.item.group.group_sponsor} </td>
           <td>
             <ModifyGroup group={props.item.group} />
           </td>
@@ -39,7 +32,11 @@ export default function GroupInfo(props) {
           </td>
         </tr>
       </tbody>
-      <Modal show={showGroupModal} dialogClassName={Styles.MyModal} onHide={() => turnOffGroup()}>
+      <Modal
+        show={showGroupModal}
+        dialogClassName={Styles.MyModal}
+        onHide={() => turnOffGroup()}
+      >
         <Modal.Header>
           <Modal.Title>
             {" "}
@@ -58,24 +55,25 @@ export default function GroupInfo(props) {
               </tr>
             </thead>
             <tbody>
-              {props.item.group.students.filter(item => item.display === 1).map((item, i) => {
-                return (
-                  <tr key={i}>
-                    <td> {item.name} </td>
-                    <td> {item.net_id} </td>
-                    <td> {item.email} </td>
-                    <td> {item.hold} </td>
-                    <td>
-                      {" "}
-                      <RemoveGroupMember
-                        group_id={props.item.group.group_id}
-                        net_id={item.net_id}
-                      />{" "}
-                    </td>
-                  </tr>
-                );
-
-              })}
+              {props.item.group.students
+                .filter((item) => item.display === 1)
+                .map((item, i) => {
+                  return (
+                    <tr key={i}>
+                      <td> {item.name} </td>
+                      <td> {item.net_id} </td>
+                      <td> {item.email} </td>
+                      <td> {item.hold} </td>
+                      <td>
+                        {" "}
+                        <RemoveGroupMember
+                          group_id={props.item.group.group_id}
+                          net_id={item.net_id}
+                        />{" "}
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </Table>
         </Modal.Body>

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import Axios from "axios";
 
-export default function AddMember(props) {
+// Function for modifying group information
+export default function ModifyMember(props) {
   const [show, setShow] = useState(false);
   const [groupName, setGroupName] = useState("");
   const [groupSponsor, setGroupSponsor] = useState("");
-
 
   const host = process.env.REACT_APP_SERVER_SITE;
   const route = process.env.REACT_APP_GROUP;
@@ -16,36 +16,38 @@ export default function AddMember(props) {
 
   const url = host + modifiedRoute;
 
+  // Function for refreshing on POST
   function refresh() {
     window.location.reload();
   }
 
+  // Function for sending the post call for modifying
   function handleSubmit() {
-    console.log(url + "/modify")
+    console.log(url + "/modify");
     const modGroup = {
       group_id: props.group.group_id,
       group_name: groupName,
       group_sponsor: groupSponsor,
-    }
-    Axios.post(url + "/modify", modGroup)
-      .then((response) => {
-        refresh();
-      });
+    };
+    Axios.post(url + "/modify", modGroup).then((response) => {
+      refresh();
+    });
   }
 
+  // Function for modifying modal show value
   function showOff() {
-
     setShow(false);
   }
 
   function showOn() {
-    setGroupName(props.group.group_name)
-    setGroupSponsor(props.group.group_sponsor)
+    setGroupName(props.group.group_name);
+    setGroupSponsor(props.group.group_sponsor);
     setShow(true);
   }
 
+  // Error checking
   function invalid() {
-    return !(groupSponsor.length > 0 && groupName.length > 0)
+    return !(groupSponsor.length > 0 && groupName.length > 0);
   }
 
   return (

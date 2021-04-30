@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import Axios from "axios";
 
+// Function for adding members to an existing group
 export default function AddMember(props) {
   const [show, setShow] = useState(false);
   const [netid, setStudent] = useState("");
@@ -15,32 +16,37 @@ export default function AddMember(props) {
 
   const url = host + modifiedRoute;
 
+  // Refresh that is called after information is sent in POST
   function refresh() {
     window.location.reload();
   }
 
+  // Function that handles form information and sends post
   function handleSubmit(event) {
     console.log(url);
     const newStudent = {
       group_id: groupid,
-      net_id: netid
-    }
+      net_id: netid,
+    };
     Axios.post(url, newStudent).then((response) => {
       refresh();
     });
   }
 
+  // Function for managing the show value of the modal
   function showOff() {
-    setStudent("")
-    setGroupid(props.group_id ? props.group_id : "")
+    setStudent("");
+    setGroupid(props.group_id ? props.group_id : "");
     setShow(false);
   }
 
   function showOn() {
     setShow(true);
   }
+
+  // Does error-checking
   function invalid() {
-    return !(groupid > 0 && netid.length === 9)
+    return !(groupid > 0 && netid.length === 9);
   }
 
   return (
@@ -58,7 +64,7 @@ export default function AddMember(props) {
                 placeholder="Enter group id"
                 disabled={props.group_id}
                 type="number"
-                onFocus={e => e.target.select()}
+                onFocus={(e) => e.target.select()}
                 value={groupid}
                 onChange={(e) => {
                   setGroupid(e.target.value);
@@ -69,7 +75,7 @@ export default function AddMember(props) {
               <Form.Label> Net ID</Form.Label>
               <Form.Control
                 value={netid}
-                onFocus={e => e.target.select()}
+                onFocus={(e) => e.target.select()}
                 onChange={(e) => {
                   setStudent(e.target.value);
                 }}
@@ -85,7 +91,6 @@ export default function AddMember(props) {
           </Button>
           <Button
             variant="primary"
-
             disabled={invalid()}
             onClick={() => {
               handleSubmit();

@@ -4,6 +4,7 @@ import GroupInfo from "./GroupInfo";
 import AddMember from "./AddMember";
 import AddGroup from "./AddGroup";
 
+// Group Table function that shows each row as a Group Info object.
 export default function GroupTable(props) {
   return (
     <React.Fragment>

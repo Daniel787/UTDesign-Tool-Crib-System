@@ -14,10 +14,12 @@ export default function CreateStudent() {
   const route2 = "/insert";
   const url = host + route1 + route2;
 
+  // Function for refreshing on POSt
   function refresh() {
     window.location.reload();
   }
 
+  // Function for making post call with form info
   function handleSubmit(event) {
     Axios.post(url, {
       name: name,
@@ -26,7 +28,7 @@ export default function CreateStudent() {
     }).then((response) => {
       refresh();
     });
-    createStudentOff()
+    createStudentOff();
     event.preventDefault();
   }
   function createStudentOn() {
@@ -34,14 +36,14 @@ export default function CreateStudent() {
   }
 
   function createStudentOff() {
-    setName("")
-    setNetid("")
-    setEmail("")
+    setName("");
+    setNetid("");
+    setEmail("");
     setShowCreateStudent(false);
   }
 
   function invalid() {
-    return (name.length === 0 || netid.length !== 9 || email.length === 0)
+    return name.length === 0 || netid.length !== 9 || email.length === 0;
   }
 
   return (

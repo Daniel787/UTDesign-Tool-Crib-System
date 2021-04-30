@@ -14,26 +14,28 @@ export default function ModifyStudent(props) {
   const route2 = "/modify";
   const url = host + route1 + route2;
 
+  // Function for refreshing after post
   function refresh() {
     window.location.reload();
   }
 
+  // Function for making POST with form information
   function handleSubmit(event) {
     const modStudent = {
       name: name,
       net_id: props.student.net_id,
       email: email,
-    }
+    };
     Axios.post(url, modStudent).then((response) => {
       refresh();
     });
-    createStudentOff()
+    createStudentOff();
     event.preventDefault();
   }
   function createStudentOn() {
     setShowCreateStudent(true);
-    setEmail(props.student.email)
-    setName(props.student.name)
+    setEmail(props.student.email);
+    setName(props.student.name);
   }
 
   function createStudentOff() {
@@ -41,18 +43,21 @@ export default function ModifyStudent(props) {
   }
 
   function invalid() {
-    return (name.length === 0 || email.length === 0)
+    return name.length === 0 || email.length === 0;
   }
 
   return (
     <React.Fragment>
-      <Button onClick={createStudentOn}>  Modify </Button>
+      <Button onClick={createStudentOn}> Modify </Button>
       <Modal show={showCreateStudent} onHide={() => createStudentOff()}>
         <Modal.Title> Modify Student </Modal.Title>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label type="number"> Net ID: {props.student.net_id} </Form.Label>
+              <Form.Label type="number">
+                {" "}
+                Net ID: {props.student.net_id}{" "}
+              </Form.Label>
             </Form.Group>
             <Form.Group>
               <Form.Label> Name </Form.Label>
