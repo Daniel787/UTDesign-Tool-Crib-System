@@ -28,7 +28,7 @@ function MultiModal(props) {
     // skips empty lines
     var lines = csv.split("\n").filter((el) => el);
     var result = [];
-    var headers = ["part_id", "name", "current_cost", "quantity_available"];
+    var headers = ["part_id", "name", "quantity_available", "current_cost"];
     for (var i = 1; i < lines.length; i++) {
       var obj = {};
       var currentline = lines[i].split(",");

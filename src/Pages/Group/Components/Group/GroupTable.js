@@ -13,6 +13,7 @@ export default function GroupTable(props) {
             <td> Group ID </td>
             <td> Group Name </td>
             <td> Group Sponsor </td>
+            <td> Modify </td>
             <td> Students </td>
           </tr>
         </thead>

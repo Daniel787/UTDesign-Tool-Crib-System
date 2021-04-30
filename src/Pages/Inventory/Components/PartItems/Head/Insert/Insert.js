@@ -21,7 +21,6 @@ export default function Insert(props) {
 
     function addParts(sheet) {
         axios.post(props.url + "/upload", sheet).then(response => {
-            console.log(response.data)
             if (response.data.message === "SUCCESS") {
                 setStatus(null)
                 window.location.reload()
@@ -35,7 +34,6 @@ export default function Insert(props) {
 
     function modifyPart(new_part) {
         axios.post(props.url + "/modify", new_part).then((response) => {
-            window.location.reload()
         });
     }
 

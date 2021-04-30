@@ -3,6 +3,7 @@ import { Button } from "react-bootstrap";
 import Search from "./Search/Search";
 import styles from "../tools.module.css";
 import Insert from './Insert/Insert'
+import DownloadButton from './DownloadButton'
 
 export default function Head(props) {
     const [showSingle, setShowSingle] = useState(false);
@@ -37,6 +38,7 @@ export default function Head(props) {
                     }}>
                     Insert One
                 </Button>
+                <DownloadButton url={props.url} />
             </div>
             {/* filters */}
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />

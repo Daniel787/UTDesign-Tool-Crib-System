@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Table } from "react-bootstrap";
+import ModifyStudent from './ModifyStudent'
 
 export default function StudentInfo(props) {
   const [showStudentModal, setShowStudentModal] = useState(false);
@@ -14,23 +15,22 @@ export default function StudentInfo(props) {
     <React.Fragment>
       <tbody>
         <tr>
-          <td key={props.item.student.name.toString()}>
+          <td >
             {" "}
             {props.item.student.name}{" "}
           </td>
-          <td key={props.item.student.net_id.toString()}>
+          <td >
             {" "}
             {props.item.student.net_id}{" "}
           </td>
-          <td key={props.item.student.utd_id.toString()}>
-            {" "}
-            {props.item.student.utd_id}{" "}
-          </td>
-          <td key={props.item.student.email.toString()}>
+          <td >
             {" "}
             {props.item.student.email}{" "}
           </td>
           <td> {props.item.student.hold} </td>
+          <td>
+            <ModifyStudent student={props.item.student} />
+          </td>
           <td>
             {" "}
             <Button onClick={showStudent}> Show Group</Button>{" "}

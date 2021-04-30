@@ -30,6 +30,7 @@ export default function Parts(props) {
       <Head url={url} refreshList={refreshList} setList={setList} styles={props.styles} />
       {/* table list */}
       <DataTable url={url} list={list} refreshList={refreshList} />
+
     </div>
   );
 }

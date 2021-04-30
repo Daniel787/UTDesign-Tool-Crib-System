@@ -32,6 +32,7 @@ export default function ErrorSheet(props) {
                 }
                 if (props.status.failedinserts.length === 0) {
                     props.setStatus(null)
+                    await window.location.reload()
                 } else {
                     props.setStatus(prev => ({ ...prev, conflictinserts: { new: [], old: [] } }))
                 }

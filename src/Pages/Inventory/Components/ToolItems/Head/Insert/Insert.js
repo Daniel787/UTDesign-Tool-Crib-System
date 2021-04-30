@@ -9,7 +9,6 @@ export default function Insert(props) {
 
     function modifyTool(new_tool) {
         axios.post(props.url + "/modify", new_tool).then((response) => {
-            window.location.reload()
         });
     }
 

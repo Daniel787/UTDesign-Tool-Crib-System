@@ -3,6 +3,7 @@ import { Button, Modal, Table } from "react-bootstrap";
 import AddMember from "./AddMember";
 import RemoveGroupMember from "./RemoveMemberinGroup";
 import Styles from "./group_modal.module.css";
+import ModifyGroup from './ModifyGroup'
 
 export default function GroupInfo(props) {
   const [showGroupModal, setShowGroupModal] = useState(false);
@@ -18,17 +19,20 @@ export default function GroupInfo(props) {
     <React.Fragment>
       <tbody>
         <tr>
-          <td key={props.item.group.group_id.toString()}>
+          <td >
             {" "}
             {props.item.group.group_id}{" "}
           </td>
-          <td key={props.item.group.group_name.toString()}>
+          <td >
             {" "}
             {props.item.group.group_name}{" "}
           </td>
-          <td key={props.item.group.group_sponsor.toString()}>
+          <td >
             {" "}
             {props.item.group.group_sponsor}{" "}
+          </td>
+          <td>
+            <ModifyGroup group={props.item.group} />
           </td>
           <td>
             <Button onClick={showGroup}> Show Student </Button>

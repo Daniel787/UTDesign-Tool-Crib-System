@@ -3,6 +3,8 @@ import { Button } from "react-bootstrap";
 import Search from "./Search/Search";
 import styles from "../parts.module.css";
 import Insert from './Insert/Insert'
+import DownloadButton from './DownloadButton'
+
 
 //props: refreshList setList
 export default function Head(props) {
@@ -41,6 +43,7 @@ export default function Head(props) {
                     }}>
                     Insert One
                 </Button>
+                <DownloadButton url={props.url} />
             </div>
             {/* Filters */}
             <Search url={props.url} refreshList={props.refreshList} setList={props.setList} />

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Table } from "react-bootstrap";
 import StudentInfo from "./StudentInfo";
 import CreateStudent from "./CreateStudent";
+
 
 export default function StudentTable(props) {
   return (
@@ -11,17 +12,18 @@ export default function StudentTable(props) {
           <tr key="header">
             <td> Name </td>
             <td> Net ID </td>
-            <td> UTD ID </td>
             <td> Email </td>
             <td> Hold </td>
+            <td> Modify </td>
             <td> Groups </td>
           </tr>
         </thead>
         {props.list.map((item, i) => {
-          return <StudentInfo key={i} liKey={i} item={item} />;
+          return <StudentInfo key={i} item={item} />;
         })}
       </Table>
       <CreateStudent />
+
     </React.Fragment>
   );
 }

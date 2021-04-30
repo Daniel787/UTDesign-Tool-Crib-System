@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Button } from "react-bootstrap";
 
 export default function DupInsert(props) {
-    const head = ["ID", "Current Name", "New Name", "Current Quantity", "New Quantity", "Current Cost", "New Cost", "Merge", "Remove"]
+    const head = ["ID", "Current Name", "New Name", "Current Quantity", "New Quantity", "Current Cost", "New Cost", "Remove"]
     return (
         <div>
             <h3>Conflict Inserts</h3>
@@ -25,7 +25,6 @@ export default function DupInsert(props) {
                                 <td> {dups.new[i].quantity_available + dups.old[i].quantity_available}</td>
                                 <td> {dups.old[i].current_cost}</td>
                                 <td> {dups.new[i].current_cost}</td>
-                                <td><Button onClick={() => props.handleDup(i, true)}>Merge</Button></td>
                                 <td> <Button onClick={() => props.handleDup(i, false)}>Ignore</Button> </td>
                             </tr>
                         );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import Axios from "axios";
 import DownloadJS from "downloadjs";
@@ -21,13 +21,13 @@ function Btn(props) {
       DownloadJS(
         response.data,
         props.startDate.getFullYear().toString() + "_" +
-        ( "0"  + (props.startDate.getMonth() + 1)).slice(-2) + "_" +
-        ( "0" + props.startDate.getDate()).slice(-2) + 
-          "_" + "TO" + "_" + 
-          props.endDate.getFullYear().toString() + "_" +
-          ( "0"  + (props.endDate.getMonth() + 1)).slice(-2) + "_" + 
-          ( "0" + props.endDate.getDate()).slice(-2) +
-          ".csv"
+        ("0" + (props.startDate.getMonth() + 1)).slice(-2) + "_" +
+        ("0" + props.startDate.getDate()).slice(-2) +
+        "_TO_" +
+        props.endDate.getFullYear().toString() + "_" +
+        ("0" + (props.endDate.getMonth() + 1)).slice(-2) + "_" +
+        ("0" + props.endDate.getDate()).slice(-2) +
+        ".csv"
       );
     });
   }
