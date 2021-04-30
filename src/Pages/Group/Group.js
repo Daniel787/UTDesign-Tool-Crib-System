@@ -25,12 +25,10 @@ export default function Group() {
     const modifiedRoute = route.replace(/^"(.*)"$/, "$1");
     const url = host + modifiedRoute + "?json=true";
     // const url = "http://localhost:5000" + "/groups/withmembers" + "?json=true";
-    Axios.get(url)
-      .then((response) => {
-        setGroupList(response.data);
-      })
+    Axios.get(url).then((response) => {
+      setGroupList(response.data);
+    });
   }
-
 
   useEffect(() => {
     getStudentInfo();
@@ -38,7 +36,12 @@ export default function Group() {
   }, []);
   return (
     <div>
-      <GroupTab studentList={studentList} groupList={groupList} />
+      <GroupTab
+        studentList={studentList}
+        setStudentList={setStudentList}
+        groupList={groupList}
+        setGroupList={setGroupList}
+      />
       <Button
         onClick={() => {
           getStudentInfo();
