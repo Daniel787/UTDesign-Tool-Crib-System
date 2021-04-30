@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import GroupTab from "./Components/Tab";
 import { Button } from "react-bootstrap";
+import Insert from './Components/Insert/Insert'
+
+
 
 export default function Group() {
   const [studentList, setStudentList] = useState(null);
@@ -36,12 +39,6 @@ export default function Group() {
   }, []);
   return (
     <div>
-      <GroupTab
-        studentList={studentList}
-        setStudentList={setStudentList}
-        groupList={groupList}
-        setGroupList={setGroupList}
-      />
       <Button
         onClick={() => {
           getStudentInfo();
@@ -50,6 +47,14 @@ export default function Group() {
       >
         Refresh
       </Button>
+      <Insert />
+      <GroupTab
+        studentList={studentList}
+        setStudentList={setStudentList}
+        groupList={groupList}
+        setGroupList={setGroupList}
+      />
+
     </div>
   );
 }
