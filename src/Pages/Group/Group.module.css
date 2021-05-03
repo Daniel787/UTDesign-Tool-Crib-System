@@ -1,0 +1,12 @@
+.Parent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  margin-top: 2%;
+  margin-right: 5%;
+}
+.Container {
+  margin-left: 3%;
+  margin-right: 3%;
+}
