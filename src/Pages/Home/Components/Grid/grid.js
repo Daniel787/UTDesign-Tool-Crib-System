@@ -22,18 +22,18 @@ function grid() {
             <Image url={rent} to="/rent" />
           </Col>
           <Col>
-            <Image url={holds} to="/holds" />
+            <Image url={expenses} to="/expenses" />
           </Col>
         </Row>
         <Row>
           <Col>
-            <Image url={expenses} to="/expenses" />
+            <Image url={inventory} to="/inventory" />
           </Col>
           <Col>
             <Image url={group} to="/groups" />
           </Col>
           <Col>
-            <Image url={inventory} to="/inventory" />
+            <Image url={holds} to="/holds" />
           </Col>
         </Row>
       </Container>
