@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import GroupTab from "./Components/Tab";
 import { Button } from "react-bootstrap";
-import Insert from "./Components/Insert/Insert";
 import Styles from "./Group.module.css";
 
 export default function Group() {
@@ -55,7 +54,6 @@ export default function Group() {
         >
           Refresh
         </Button>
-        <Insert />
       </div>
     </div>
   );
