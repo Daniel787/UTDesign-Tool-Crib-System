@@ -29,9 +29,9 @@ function DataTable(props) {
         </thead>
         {/* displays rows by mapping the list to row components */}
         <tbody>
-          {props.list.map((item) => {
+          {props.list.map((item, i) => {
             return (
-              <Row key={item.net_id} item={item.student} removeHold={removeHold} styles={props.styles} />
+              <Row key={i} item={item.student} removeHold={removeHold} styles={props.styles} />
             );
           })}</tbody>
       </Table>

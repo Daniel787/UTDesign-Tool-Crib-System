@@ -19,7 +19,7 @@ export default function InsertModal(props) {
             /* Convert array of arrays */
             const data = XLSX.utils.sheet_to_csv(ws, { header: 1 });
             /* Update state */
-            // props.addGroups(convertToJson(data));
+            props.addGroups({ groups: convertToJson(data) });
         };
         reader.readAsBinaryString(file);
     }
@@ -29,17 +29,25 @@ export default function InsertModal(props) {
         // skips empty lines
         var lines = csv.split("\n").filter((el) => el);
         var result = [];
-        var headers = ["part_id", "name", "quantity_available", "current_cost"];
+        var groupHeaders = ["group_id", "group_name", "group_sponsor", "students"];
+        var studentHeader = ["name", "net_id", "email"]
         for (var i = 1; i < lines.length; i++) {
-            var obj = {};
+            var groupObj = {};
             var currentline = lines[i].split(",");
-            console.log(currentline)
-            // if (currentline.filter(element => element.length === 0).length !== currentline.length) {
-            //     for (var j = 0; j < headers.length; j++) {
-            //         obj[headers[j]] = currentline[j];
-            //     }
-            //     result.push(obj);
-            // }
+            if (currentline.filter(element => element.length === 0).length !== currentline.length) {
+                groupObj[groupHeaders[0]] = currentline[0];
+                groupObj[groupHeaders[1]] = currentline[3];
+                groupObj[groupHeaders[2]] = currentline[4];
+                groupObj[groupHeaders[3]] = []
+                for (var j = 0; j < parseInt((currentline.length - 6) / 3); j++) {
+                    var studentObj = {}
+                    studentObj[studentHeader[0]] = currentline[6 + j * 3];
+                    studentObj[studentHeader[1]] = currentline[7 + j * 3];
+                    studentObj[studentHeader[2]] = currentline[8 + j * 3];
+                    groupObj[groupHeaders[3]].push(studentObj)
+                }
+                result.push(groupObj);
+            }
         }
         return (result); //JSON
     }

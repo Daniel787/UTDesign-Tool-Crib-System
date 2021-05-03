@@ -72,7 +72,7 @@ export default function AddMember(props) {
     if (groupSponsor.length > 0 && groupId > 0 && groupName.length > 0) {
       return (
         students.filter((e) => {
-          return e.name === "" || e.net_id.length !== 9 || e.email === "";
+          return e.name === "" || !(e.net_id.length > 3) || e.email === "";
         }).length > 0
       );
     }

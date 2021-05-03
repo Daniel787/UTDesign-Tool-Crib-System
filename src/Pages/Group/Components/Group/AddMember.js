@@ -46,7 +46,7 @@ export default function AddMember(props) {
 
   // Does error-checking
   function invalid() {
-    return !(groupid > 0 && netid.length === 9);
+    return !(groupid > 0 && netid.length > 3);
   }
 
   return (

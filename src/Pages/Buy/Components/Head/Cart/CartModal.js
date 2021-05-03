@@ -84,7 +84,7 @@ function CartModal(props) {
     // group id's can only be positive integers
     if (groupInfo.group_id > -1 && groupInfo.group_id % 1 === 0) {
       // net id's have to be in a specific format
-      return groupInfo.net_id.length === 9 && /^[a-zA-Z]+$/.test(groupInfo.net_id.substring(0, 3)) && /^[0-9]+$/.test(groupInfo.net_id.substring(4))
+      return groupInfo.net_id.length > 3 && /^[a-zA-Z]+$/.test(groupInfo.net_id.substring(0, 3)) && /^[0-9]+$/.test(groupInfo.net_id.substring(4))
     }
     return false
   }
