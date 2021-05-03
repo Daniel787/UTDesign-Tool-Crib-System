@@ -2,10 +2,8 @@ import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import GroupTab from "./Components/Tab";
 import { Button } from "react-bootstrap";
-import styles from './Group.module.css'
-
-
-
+import Insert from "./Components/Insert/Insert";
+import Styles from "./Group.module.css";
 
 export default function Group() {
   const [studentList, setStudentList] = useState(null);
@@ -39,23 +37,26 @@ export default function Group() {
     getGroupInfo();
   }, []);
   return (
-    <div className={styles.Body}>
-      <Button
-        onClick={() => {
-          getStudentInfo();
-          getGroupInfo();
-        }}
-      >
-        Refresh
-      </Button>
-
+    <div className={Styles.Body}>
+      <h1>Student & Group</h1>
       <GroupTab
         studentList={studentList}
         setStudentList={setStudentList}
         groupList={groupList}
         setGroupList={setGroupList}
       />
-
+      <div className={Styles.Parent}>
+        <Button
+          onClick={() => {
+            getStudentInfo();
+            getGroupInfo();
+          }}
+          className={Styles.Container}
+        >
+          Refresh
+        </Button>
+        <Insert />
+      </div>
     </div>
   );
 }

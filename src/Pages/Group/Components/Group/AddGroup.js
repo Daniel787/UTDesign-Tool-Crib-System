@@ -88,7 +88,10 @@ export default function AddMember(props) {
 
   return (
     <React.Fragment>
-      <Button onClick={showOn}> Add Group </Button>
+      <Button onClick={showOn} style={{ marginLeft: "2%" }}>
+        {" "}
+        Add Group{" "}
+      </Button>
       <Modal show={show} onHide={() => showOff()}>
         <Modal.Header>
           <Modal.Title> Add group </Modal.Title>
