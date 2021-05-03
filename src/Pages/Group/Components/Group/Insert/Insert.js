@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
 import InsertModal from './InsertModal'
+import Error from './ErrorModal/Error'
 
 export default function Insert(props) {
-    const [status, setStatus] = useState(null)
+
     const [show, setShow] = useState(false)
     const host = process.env.REACT_APP_SERVER_SITE;
     const route = process.env.REACT_APP_GROUP_INSERT_SHEET;
@@ -14,19 +15,19 @@ export default function Insert(props) {
     function addGroups(sheet) {
         console.log(sheet)
         axios.post(url, sheet).then(response => {
-            console.log(response.data)
             if (response.data.message === "SUCCESS") {
-                setStatus(null)
-                // window.location.reload()
+                props.setStatus(null)
+                window.location.reload()
             }
             else {
-                setStatus(response.data)
-
+                console.log(response.data)
+                props.setStatus(response.data)
             }
         });
     }
     return (
         <div>
+            <Error status={props.status} setStatus={props.setStatus} addGroups={addGroups} />
             <InsertModal addGroups={addGroups} show={show} setShow={setShow} />
         </div>
     )

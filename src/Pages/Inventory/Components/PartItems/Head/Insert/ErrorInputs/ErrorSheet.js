@@ -43,6 +43,7 @@ export default function ErrorSheet(props) {
     }
 
     function handleFail(index, row) {
+        // modify or remove
         let fails = [...props.status.failedinserts]
         if (row !== undefined) {
             fails[index] = row

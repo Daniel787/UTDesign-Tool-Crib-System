@@ -12,9 +12,9 @@ export default function Search(props) {
       // if search exists filter otherwise refresh
       response.data.length > 0
         ? props.setList(response.data)
-        : Axios.get(props.url).then((response) => {
-            props.setList(response.data);
-          });
+        : Axios.get(props.url + "?json=true").then((response) => {
+          props.setList(response.data);
+        });
     });
   }
 

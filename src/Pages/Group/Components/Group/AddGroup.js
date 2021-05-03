@@ -35,7 +35,14 @@ export default function AddMember(props) {
         },
       ],
     }).then((response) => {
-      refresh();
+      if (response.data.message === "SUCCESS") {
+        props.setStatus(null)
+        refresh()
+      }
+      else {
+        console.log(response.data)
+        props.setStatus(response.data)
+      }
     });
   }
 
@@ -69,10 +76,10 @@ export default function AddMember(props) {
 
   // Function for checking if some of the information is valid or not
   function invalid() {
-    if (groupSponsor.length > 0 && groupId > 0 && groupName.length > 0) {
+    if (groupId > 0 && groupName.length > 0) {
       return (
         students.filter((e) => {
-          return e.name === "" || !(e.net_id.length > 3) || e.email === "";
+          return e.name === "" || !(e.net_id.length > 3);
         }).length > 0
       );
     }

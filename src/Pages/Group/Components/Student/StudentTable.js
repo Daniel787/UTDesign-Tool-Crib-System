@@ -14,8 +14,9 @@ export default function StudentTable(props) {
 
   return (
     <React.Fragment key="table">
+      <CreateStudent />
       <Search url={url} setList={props.setList} />
-      <Table striped bordered hover>
+      <Table responsive hover>
         <thead>
           <tr key="header">
             <td> Name </td>
@@ -30,7 +31,7 @@ export default function StudentTable(props) {
           return <StudentInfo key={i} item={item} />;
         })}
       </Table>
-      <CreateStudent />
+
     </React.Fragment>
   );
 }

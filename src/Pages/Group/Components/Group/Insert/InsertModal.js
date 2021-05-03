@@ -56,7 +56,7 @@ export default function InsertModal(props) {
         <div>
 
             <Button onClick={() => { setShow(true) }}>
-                Insert
+                Insert Sheet
             </Button>
 
             {/* modal */}
