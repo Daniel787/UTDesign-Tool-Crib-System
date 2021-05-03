@@ -37,7 +37,8 @@ export default function Group() {
     getGroupInfo();
   }, []);
   return (
-    <div>
+    <div className={Styles.Body}>
+      <h1>Student & Group</h1>
       <GroupTab
         studentList={studentList}
         setStudentList={setStudentList}
