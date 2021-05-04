@@ -5,6 +5,7 @@ import Axios from "axios";
 // Function for adding members to an existing group
 export default function AddMember(props) {
   const [show, setShow] = useState(false);
+  const [showFail, setShowFail] = useState(false);
   const [netid, setStudent] = useState("");
   const [groupid, setGroupid] = useState(props.group_id ? props.group_id : "");
 
@@ -29,7 +30,14 @@ export default function AddMember(props) {
       net_id: netid,
     };
     Axios.post(url, newStudent).then((response) => {
-      refresh();
+      if (
+        response.data.message !== "DUPLICATE" &&
+        response.data.message != "FAILURE"
+      ) {
+        refresh();
+      } else {
+        showFailOn();
+      }
     });
   }
 
@@ -42,6 +50,14 @@ export default function AddMember(props) {
 
   function showOn() {
     setShow(true);
+  }
+
+  function showFailOff() {
+    setShowFail(false);
+  }
+
+  function showFailOn() {
+    setShowFail(true);
   }
 
   // Does error-checking
@@ -102,6 +118,19 @@ export default function AddMember(props) {
           >
             {" "}
             Insert{" "}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showFail}>
+        <Modal.Title> Insertion Failure </Modal.Title>
+        <Modal.Body>
+          {" "}
+          Most likely, there is already a student with this NETID in this group.
+          Please try again.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={showFailOff}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>
