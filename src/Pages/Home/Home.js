@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./Home.module.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Grid from "./Components/Grid/grid.js";
 
 function home() {
   return (
     <div className={styles.Body}>
-      <h1>Home Page</h1>
+      {/* <h1>Home Page</h1> */}
       {/*
       <ul>
         <li>
