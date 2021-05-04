@@ -8,6 +8,7 @@ export default function CreateStudent() {
   const [email, setEmail] = useState("");
 
   const [showCreateStudent, setShowCreateStudent] = useState(false);
+  const [showCreateFail, setShowCreateFail] = useState(false);
 
   const host = process.env.REACT_APP_SERVER_SITE;
   const route1 = process.env.REACT_APP_STUDENTS;
@@ -26,7 +27,11 @@ export default function CreateStudent() {
       net_id: netid,
       email: email,
     }).then((response) => {
-      refresh();
+      if (response.data.message !== "FAILURE") {
+        refresh();
+      } else {
+        failOn();
+      }
     });
     createStudentOff();
     event.preventDefault();
@@ -40,6 +45,14 @@ export default function CreateStudent() {
     setNetid("");
     setEmail("");
     setShowCreateStudent(false);
+  }
+
+  function failOn() {
+    setShowCreateFail(true);
+  }
+
+  function failOff() {
+    setShowCreateFail(false);
   }
 
   function invalid() {
@@ -85,6 +98,18 @@ export default function CreateStudent() {
           <Button variant="primary" onClick={handleSubmit} disabled={invalid()}>
             {" "}
             Insert{" "}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal show={showCreateFail}>
+        <Modal.Title>Insertion failed.</Modal.Title>
+        <Modal.Body>
+          Most likely, there is already a student with this NETID. Please try
+          again.
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={failOff}>
+            Close
           </Button>
         </Modal.Footer>
       </Modal>
