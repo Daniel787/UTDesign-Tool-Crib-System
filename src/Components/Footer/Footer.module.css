@@ -1,21 +1,28 @@
 .Container {
-    background-color: #28527A; 
-   }
-   
-   .Brand {
-     margin-left: 20%;
-     color: white;
-   }
-   
-   .Navbar {
-     background-color: #28527A;
-   } 
-   .links {
-     margin-left:auto;
-     margin-right:30%;
-   }
-   
-   p {
-     color: white;
-   }
-   
+  background-color: #c75b12;
+}
+
+.Brand {
+  margin-left: 20%;
+  color: white;
+}
+
+.Navbar {
+  background-color: #c75b12;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.links {
+  margin-left: auto;
+  margin-right: 20%;
+}
+
+p {
+  color: white;
+}
+
+.btnGreen {
+  background-color: #69be28;
+}

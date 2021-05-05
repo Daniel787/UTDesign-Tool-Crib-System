@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
 .Container {
- background-color: #28527A; 
+  background-color: #c75b12;
 }
 
 .Brand {
@@ -8,13 +10,21 @@
 }
 
 .Navbar {
-  background-color: #28527A;
-} 
+  background-color: #c75b12;
+}
 .links {
-  margin-left:auto;
-  margin-right:30%;
+  margin-left: auto;
+  margin-right: 35%;
+}
+.item {
+  margin-left: 15%;
+}
+p {
+  font-family: "Roboto";
+  color: white;
 }
 
-p {
+.btnGreen {
+  background-color: #69be28;
   color: white;
 }
