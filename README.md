@@ -1,3 +1,17 @@
+# Overview
+
+## Abstract
+
+The UTDesign Fabrication Shop needs an inventory system for their items that they rent and sell to students working on university projects. This system will automate and improve efficiency of several tasks such as creating expense reports and handling overdue tools. We will accomplish our goal by creating a frontend React based webapp that will run locally on their systems which will create query calls to a MySQL database via an Express/Node backend server. This project will not pose any costs and will not require meeting in person. The app will benefit UTD and the Fabrication Shop long term by having an efficient system to help students in their projects.
+
+## Images
+
+![Main](./github/Main.png)
+
+![Buy](./github/buy.png)
+
+![Student](./github/student.png)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
